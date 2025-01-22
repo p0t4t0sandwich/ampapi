@@ -3764,6 +3764,127 @@
       "IsComplexType": false
     }
   },
+  "srcdsModule": {
+    "BanUserByID": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "ID",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        }
+      ],
+      "ReturnTypeName": "Void",
+      "IsComplexType": false
+    },
+    "GetMapCycle": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [],
+      "ReturnTypeName": "List<String>",
+      "IsComplexType": false
+    },
+    "InsertMapEntry": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "MapName",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        }
+      ],
+      "ReturnTypeName": "Void",
+      "IsComplexType": false
+    },
+    "KickUserByID": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "ID",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        }
+      ],
+      "ReturnTypeName": "Void",
+      "IsComplexType": false
+    },
+    "MoveMapEntry": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "Index",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "Int32"
+        },
+        {
+          "Description": "",
+          "Name": "NewIndex",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "Int32"
+        }
+      ],
+      "ReturnTypeName": "Void",
+      "IsComplexType": false
+    },
+    "RecordDemo": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "Name",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        }
+      ],
+      "ReturnTypeName": "ActionResult",
+      "IsComplexType": true
+    },
+    "RemoveMapEntry": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "Index",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "Int32"
+        }
+      ],
+      "ReturnTypeName": "Void",
+      "IsComplexType": false
+    },
+    "ReplaceMapList": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "MapList",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String[]"
+        }
+      ],
+      "ReturnTypeName": "Void",
+      "IsComplexType": false
+    }
+  },
   "steamcmdplugin": {
     "CancelSteamGuard": {
       "Description": null,

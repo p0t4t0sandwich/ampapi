@@ -118,3 +118,32 @@ class RustAsync(CommonAPIAsync):
         self.RCONPlugin = RCONPluginAsync(self)
         self.RustModule = RustModuleAsync(self)
         self.steamcmdplugin = steamcmdpluginAsync(self)
+
+class srcds(CommonAPI):
+    AnalyticsPlugin = Final[AnalyticsPlugin]
+    LocalFileBackupPlugin = Final[LocalFileBackupPlugin]
+    RCONPlugin = Final[RCONPlugin]
+    srcdsModule = Final[srcdsModule]
+    steamcmdplugin = Final[steamcmdplugin]
+    def __init__(self, auth: AuthProvider):
+        super().__init__(auth)
+        self.AnalyticsPlugin = AnalyticsPlugin(self)
+        self.LocalFileBackupPlugin = LocalFileBackupPlugin(self)
+        self.RCONPlugin = RCONPlugin(self)
+        self.srcdsModule = srcdsModule(self)
+        self.steamcmdplugin = steamcmdplugin(self)
+
+class srcdsAsync(CommonAPIAsync):
+    AnalyticsPlugin = Final[AnalyticsPluginAsync]
+    LocalFileBackupPlugin = Final[LocalFileBackupPluginAsync]
+    RCONPlugin = Final[RCONPluginAsync]
+    srcdsModule = Final[srcdsModuleAsync]
+    steamcmdplugin = Final[steamcmdpluginAsync]
+
+    def __init__(self, auth: AuthProvider):
+        super().__init__(auth)
+        self.AnalyticsPlugin = AnalyticsPluginAsync(self)
+        self.LocalFileBackupPlugin = LocalFileBackupPluginAsync(self)
+        self.RCONPlugin = RCONPluginAsync(self)
+        self.srcdsModule = srcdsModuleAsync(self)
+        self.steamcmdplugin = steamcmdpluginAsync(self)

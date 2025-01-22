@@ -5248,6 +5248,190 @@ class RustModuleAsync(AMPAPI):
         """
         return json_to_obj(await self.api_call("RustModule/WipeMap", {}), None)
 
+class srcdsModule(AMPAPI):
+    def __init__(self, authprovider: AuthProvider) -> None:
+        super().__init__(authprovider)
+
+    def BanUserByID(self, ID: 'str') -> None:
+        """
+        Name Description Optional
+        :param ID: 
+        :type ID: str
+        :returns: None
+        """
+        return json_to_obj(self.api_call("srcdsModule/BanUserByID", {
+            'ID': ID
+        }), None)
+
+    def GetMapCycle(self, ) -> list[str]:
+        """
+        Name Description Optional
+
+        :returns: list[str]
+        """
+        return json_to_obj(self.api_call("srcdsModule/GetMapCycle", {}), list[str])
+
+    def InsertMapEntry(self, MapName: 'str') -> None:
+        """
+        Name Description Optional
+        :param MapName: 
+        :type MapName: str
+        :returns: None
+        """
+        return json_to_obj(self.api_call("srcdsModule/InsertMapEntry", {
+            'MapName': MapName
+        }), None)
+
+    def KickUserByID(self, ID: 'str') -> None:
+        """
+        Name Description Optional
+        :param ID: 
+        :type ID: str
+        :returns: None
+        """
+        return json_to_obj(self.api_call("srcdsModule/KickUserByID", {
+            'ID': ID
+        }), None)
+
+    def MoveMapEntry(self, Index: 'int', NewIndex: 'int') -> None:
+        """
+        Name Description Optional
+        :param Index: 
+        :type Index: int
+        :param NewIndex: 
+        :type NewIndex: int
+        :returns: None
+        """
+        return json_to_obj(self.api_call("srcdsModule/MoveMapEntry", {
+            'Index': Index,
+            'NewIndex': NewIndex
+        }), None)
+
+    def RecordDemo(self, Name: 'str') -> ActionResult:
+        """
+        Name Description Optional
+        :param Name: 
+        :type Name: str
+        :returns: ActionResult
+        """
+        return json_to_obj(self.api_call("srcdsModule/RecordDemo", {
+            'Name': Name
+        }), ActionResult)
+
+    def RemoveMapEntry(self, Index: 'int') -> None:
+        """
+        Name Description Optional
+        :param Index: 
+        :type Index: int
+        :returns: None
+        """
+        return json_to_obj(self.api_call("srcdsModule/RemoveMapEntry", {
+            'Index': Index
+        }), None)
+
+    def ReplaceMapList(self, MapList: 'String[]') -> None:
+        """
+        Name Description Optional
+        :param MapList: 
+        :type MapList: String[]
+        :returns: None
+        """
+        return json_to_obj(self.api_call("srcdsModule/ReplaceMapList", {
+            'MapList': MapList
+        }), None)
+
+class srcdsModuleAsync(AMPAPI):
+    def __init__(self, authprovider: AuthProvider) -> None:
+        super().__init__(authprovider)
+
+    async def BanUserByID(self, ID: 'str') -> None:
+        """
+        Name Description Optional
+        :param ID: 
+        :type ID: str
+        :returns: None
+        """
+        return json_to_obj(await self.api_call("srcdsModule/BanUserByID", {
+            'ID': ID
+        }), None)
+
+    async def GetMapCycle(self, ) -> list[str]:
+        """
+        Name Description Optional
+
+        :returns: list[str]
+        """
+        return json_to_obj(await self.api_call("srcdsModule/GetMapCycle", {}), list[str])
+
+    async def InsertMapEntry(self, MapName: 'str') -> None:
+        """
+        Name Description Optional
+        :param MapName: 
+        :type MapName: str
+        :returns: None
+        """
+        return json_to_obj(await self.api_call("srcdsModule/InsertMapEntry", {
+            'MapName': MapName
+        }), None)
+
+    async def KickUserByID(self, ID: 'str') -> None:
+        """
+        Name Description Optional
+        :param ID: 
+        :type ID: str
+        :returns: None
+        """
+        return json_to_obj(await self.api_call("srcdsModule/KickUserByID", {
+            'ID': ID
+        }), None)
+
+    async def MoveMapEntry(self, Index: 'int', NewIndex: 'int') -> None:
+        """
+        Name Description Optional
+        :param Index: 
+        :type Index: int
+        :param NewIndex: 
+        :type NewIndex: int
+        :returns: None
+        """
+        return json_to_obj(await self.api_call("srcdsModule/MoveMapEntry", {
+            'Index': Index,
+            'NewIndex': NewIndex
+        }), None)
+
+    async def RecordDemo(self, Name: 'str') -> ActionResult:
+        """
+        Name Description Optional
+        :param Name: 
+        :type Name: str
+        :returns: ActionResult
+        """
+        return json_to_obj(await self.api_call("srcdsModule/RecordDemo", {
+            'Name': Name
+        }), ActionResult)
+
+    async def RemoveMapEntry(self, Index: 'int') -> None:
+        """
+        Name Description Optional
+        :param Index: 
+        :type Index: int
+        :returns: None
+        """
+        return json_to_obj(await self.api_call("srcdsModule/RemoveMapEntry", {
+            'Index': Index
+        }), None)
+
+    async def ReplaceMapList(self, MapList: 'String[]') -> None:
+        """
+        Name Description Optional
+        :param MapList: 
+        :type MapList: String[]
+        :returns: None
+        """
+        return json_to_obj(await self.api_call("srcdsModule/ReplaceMapList", {
+            'MapList': MapList
+        }), None)
+
 class steamcmdplugin(AMPAPI):
     def __init__(self, authprovider: AuthProvider) -> None:
         super().__init__(authprovider)

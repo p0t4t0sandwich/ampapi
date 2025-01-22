@@ -36,5 +36,16 @@
     "RCONPlugin",
     "RustModule",
     "steamcmdplugin"
+  ],
+  "srcds": [
+    "AnalyticsPlugin",
+    "CommonCorePlugin",
+    "Core",
+    "EmailSenderPlugin",
+    "FileManagerPlugin",
+    "LocalFileBackupPlugin",
+    "RCONPlugin",
+    "srcdsModule",
+    "steamcmdplugin"
   ]
 }

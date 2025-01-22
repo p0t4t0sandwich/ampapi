@@ -209,6 +209,14 @@ RustModule.Ban(ID: String) -> Void
 RustModule.Kick(ID: String) -> Void
 RustModule.WipeBlueprints() -> Void
 RustModule.WipeMap() -> Void
+srcdsModule.BanUserByID(ID: String) -> Void
+srcdsModule.GetMapCycle() -> List<String>
+srcdsModule.InsertMapEntry(MapName: String) -> Void
+srcdsModule.KickUserByID(ID: String) -> Void
+srcdsModule.MoveMapEntry(Index: Int32, NewIndex: Int32) -> Void
+srcdsModule.RecordDemo(Name: String) -> ActionResult
+srcdsModule.RemoveMapEntry(Index: Int32) -> Void
+srcdsModule.ReplaceMapList(MapList: String[]) -> Void
 steamcmdplugin.CancelSteamGuard() -> Void
 steamcmdplugin.SteamGuardCode(code: String) -> Void
 steamcmdplugin.SteamUsernamePassword(username: String, password: String) -> Void
