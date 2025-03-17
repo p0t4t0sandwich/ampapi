@@ -1,0 +1,10 @@
+    /**{MethodDescription}
+     * Name Description Optional
+{MethodParameterDocs} * @return {ReturnType}
+     */
+    public {ReturnType} {MethodName}({MethodParameters}) {
+        Map<String, Object> args = new HashMap<>();{MethodParameterAssignments}
+        Type type = new TypeToken<{ReturnType}>() {}.getType();
+        return this.APICall("{PluginName}/{MethodName}", args, type);
+    }
+

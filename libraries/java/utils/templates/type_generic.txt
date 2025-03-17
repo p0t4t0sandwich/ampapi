@@ -1,0 +1,4 @@
+/**
+{TypeDescription}
+ */
+public record {TypeName}<T>({TypeFields}) {}

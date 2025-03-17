@@ -1,0 +1,12 @@
+package dev.neuralnexus.ampapi.modules;
+
+import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.plugins.*;
+
+public class {ModuleName} extends CommonAPI {
+{LoadedPlugins}
+
+    public {ModuleName}(AuthProvider authProvider) {
+        super(authProvider);
+{PluginInit}    }
+}
