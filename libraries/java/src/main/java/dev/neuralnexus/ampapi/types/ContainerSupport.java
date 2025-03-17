@@ -1,26 +1,17 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
-
 /**
- * Represents the container support
- * NoPreference: No preference
- * NotSupported: Not supported
- * SupportedOnLinux: Supported on Linux
- * SupportedOnWindows: Supported on Windows
- * Supported: Supported
- * RecommendedOnLinux: Recommended on Linux
- * RecommendedOnWindows: Recommended on Windows
- * Recommended: Recommended
- * RequiredOnLinux: Required on Linux
- * RequiredOnWindows: Required on Windows
- * Required: Required
+ * Represents the container support NoPreference: No preference NotSupported: Not supported
+ * SupportedOnLinux: Supported on Linux SupportedOnWindows: Supported on Windows Supported:
+ * Supported RecommendedOnLinux: Recommended on Linux RecommendedOnWindows: Recommended on Windows
+ * Recommended: Recommended RequiredOnLinux: Required on Linux RequiredOnWindows: Required on
+ * Windows Required: Required
  */
 public enum ContainerSupport {
     @SerializedName("0")

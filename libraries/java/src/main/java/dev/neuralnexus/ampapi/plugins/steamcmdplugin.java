@@ -1,62 +1,47 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.plugins;
 
-import com.google.gson.reflect.TypeToken;
-
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.types.*;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.types.*;
 
-import org.jetbrains.annotations.Nullable;
-
-import java.lang.reflect.Type;
-import java.net.InetAddress;
-import java.net.URI;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public final class steamcmdplugin extends AMPAPI {
     public steamcmdplugin(AuthProvider authprovider) {
         super(authprovider);
     }
 
-    /**
-     * Name Description Optional
-
-     * @return Void
-     */
-    public Void CancelSteamGuard() {
-        Map<String, Object> args = new HashMap<>();
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("steamcmdplugin/CancelSteamGuard", args, type);
+    /** */
+    public void CancelSteamGuard() {
+        this.APICall("steamcmdplugin/CancelSteamGuard");
     }
 
     /**
      * Name Description Optional
-     * @param code 
-     * @return Void
+     *
+     * @param code
      */
-    public Void SteamGuardCode(String code) {
+    public void SteamGuardCode(String code) {
         Map<String, Object> args = new HashMap<>();
         args.put("code", code);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("steamcmdplugin/SteamGuardCode", args, type);
+        this.APICall("steamcmdplugin/SteamGuardCode", args);
     }
 
     /**
      * Name Description Optional
-     * @param username 
-     * @param password 
-     * @return Void
+     *
+     * @param username
+     * @param password
      */
-    public Void SteamUsernamePassword(String username, String password) {
+    public void SteamUsernamePassword(String username, String password) {
         Map<String, Object> args = new HashMap<>();
         args.put("username", username);
         args.put("password", password);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("steamcmdplugin/SteamUsernamePassword", args, type);
+        this.APICall("steamcmdplugin/SteamUsernamePassword", args);
     }
-
-
 }

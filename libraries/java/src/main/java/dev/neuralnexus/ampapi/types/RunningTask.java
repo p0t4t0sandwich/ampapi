@@ -1,15 +1,15 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 /**
  * A running task object
+ *
  * @param Description The description
  * @param DontPropagate Whether the task should not propagate
  * @param FastDismiss Whether the task can be dismissed quickly
@@ -30,4 +30,23 @@ import java.util.UUID;
  * @param EndTime The end time
  * @param ParentTaskId The parent task ID
  */
-public record RunningTask(String Description, Boolean DontPropagate, Boolean FastDismiss, Boolean HideFromUI, UUID Id, Boolean IsCancellable, Boolean IsIndeterminate, Boolean IsPrimaryTask, String LastUpdatePushed, String Name, String Origin, Integer ProgressPercent, String Speed, String StartTime, TaskState State, String StateMessage, Optional<UUID> RemoteInstanceId, Optional<String> EndTime, Optional<UUID> ParentTaskId) {}
+public record RunningTask(
+        String Description,
+        Boolean DontPropagate,
+        Boolean FastDismiss,
+        Boolean HideFromUI,
+        UUID Id,
+        Boolean IsCancellable,
+        Boolean IsIndeterminate,
+        Boolean IsPrimaryTask,
+        String LastUpdatePushed,
+        String Name,
+        String Origin,
+        Integer ProgressPercent,
+        String Speed,
+        String StartTime,
+        TaskState State,
+        String StateMessage,
+        Optional<UUID> RemoteInstanceId,
+        Optional<String> EndTime,
+        Optional<UUID> ParentTaskId) {}

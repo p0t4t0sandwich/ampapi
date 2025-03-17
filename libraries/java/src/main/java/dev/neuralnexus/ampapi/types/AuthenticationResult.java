@@ -1,30 +1,19 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
-
 /**
- * Represents the authentication result
- * Failure: Failure
- * TokenRejected: Token rejected
- * FullLoginRequired: Full login required
- * NoInstanceAccess: No instance access
- * InstanceSuspended: Instance suspended
- * Success: Success
- * PasswordChangeRequired: Password change required
- * AccountDisabled: Account disabled
- * Ignored: Ignored
- * TwoFactorChallenge: Two-factor challenge
- * TwoFactorSetupRequired: Two-factor setup required
- * TwoFactorFailed: Two-factor failed
- * PassthruDisabled: Passthru disabled
- * PassthruRejected: Passthru rejected
- * LoginServerUnavailable: Login server unavailable
+ * Represents the authentication result Failure: Failure TokenRejected: Token rejected
+ * FullLoginRequired: Full login required NoInstanceAccess: No instance access InstanceSuspended:
+ * Instance suspended Success: Success PasswordChangeRequired: Password change required
+ * AccountDisabled: Account disabled Ignored: Ignored TwoFactorChallenge: Two-factor challenge
+ * TwoFactorSetupRequired: Two-factor setup required TwoFactorFailed: Two-factor failed
+ * PassthruDisabled: Passthru disabled PassthruRejected: Passthru rejected LoginServerUnavailable:
+ * Login server unavailable
  */
 public enum AuthenticationResult {
     @SerializedName("0")

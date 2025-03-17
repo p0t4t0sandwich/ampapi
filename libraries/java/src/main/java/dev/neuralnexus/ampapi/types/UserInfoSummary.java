@@ -1,15 +1,14 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
  * Information about the user
+ *
  * @param AvatarBase64 The avatar base64
  * @param Disabled Whether the user is disabled
  * @param EmailAddress The email address
@@ -20,4 +19,13 @@ import java.util.UUID;
  * @param LastLogin The last login
  * @param Username The username
  */
-public record UserInfoSummary(String AvatarBase64, Boolean Disabled, String EmailAddress, String GravatarHash, UUID ID, Boolean IsLDAPUser, Boolean IsTwoFactorEnabled, String LastLogin, String Username) {}
+public record UserInfoSummary(
+        String AvatarBase64,
+        Boolean Disabled,
+        String EmailAddress,
+        String GravatarHash,
+        UUID ID,
+        Boolean IsLDAPUser,
+        Boolean IsTwoFactorEnabled,
+        String LastLogin,
+        String Username) {}

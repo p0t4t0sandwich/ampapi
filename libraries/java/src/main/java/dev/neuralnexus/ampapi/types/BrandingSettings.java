@@ -1,15 +1,12 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Branding information
+ *
  * @param BackgroundURL The background URL
  * @param BrandingMessage The branding message
  * @param CompanyName The company name
@@ -25,4 +22,18 @@ import java.util.UUID;
  * @param URL The URL
  * @param WelcomeMessage The welcome message
  */
-public record BrandingSettings(String BackgroundURL, String BrandingMessage, String CompanyName, Boolean DisplayBranding, String ForgotPasswordURL, String LogoURL, String PageTitle, String ShortBrandingMessage, String SplashFrameURL, String SubmitTicketURL, String SupportText, String SupportURL, String URL, String WelcomeMessage) {}
+public record BrandingSettings(
+        String BackgroundURL,
+        String BrandingMessage,
+        String CompanyName,
+        Boolean DisplayBranding,
+        String ForgotPasswordURL,
+        String LogoURL,
+        String PageTitle,
+        String ShortBrandingMessage,
+        String SplashFrameURL,
+        String SubmitTicketURL,
+        String SupportText,
+        String SupportURL,
+        String URL,
+        String WelcomeMessage) {}

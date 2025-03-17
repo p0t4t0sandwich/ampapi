@@ -4,6 +4,7 @@
 from json import loads
 from typing import Any
 
+import re
 import sys
 sys.path.append("../../../")
 from validate_types import TypeDef, TypeField
@@ -258,7 +259,9 @@ class CodeGen:
                 if method_def.get("Description") is None:
                     method_def["Description"] = ""
                 method_text = method_text.replace("{MethodDescription}", method_def.get("Description", ""))
-                method_text = method_text.replace("{ReturnType}", self._convert_type(method_def["ReturnTypeName"]))
+                return_type = self._convert_type(method_def["ReturnTypeName"])
+                method_text = method_text.replace("{ReturnType}", return_type)
+                method_text = method_text.replace("{ReturnTypeDoc}", return_type.replace("<", "&lt;").replace(">", "&gt;"))
 
                 plugin_methods += method_text
 
@@ -270,6 +273,40 @@ class CodeGen:
             plugin_class = plugin_class[:-1]
 
             text += plugin_class
+
+            # Adapt Void return type usages
+            text = text.replace("public Void ", "public void ")\
+                .replace("* Name Description Optional\n     *\n\n     * @return Void\n     ", "")\
+                .replace("* @return Void\n     ", "")
+            pattern = r"Type type = new TypeToken<Void>\(\) \{\}\.getType\(\);\s*\n        return (this\.APICall\([^,]+, [^,]+), type\);"
+            replacement = r"\1);"
+            text = re.sub(pattern, replacement, text)
+
+            # Adapt arg-less methods
+            pattern = (
+                r"(\s*)Map<String, Object> args = new HashMap<>\(\);\s*"
+                # Type type = new TypeToken<List<DeploymentTemplate>>() {}.getType();
+                r"(\s*Type type = new TypeToken<[^>]+>\(\) \{\}\.getType\(\);)"
+                r"(\s*)return (this\.APICall\([^,]+), args, (type\));"
+            )
+            replacement = r"\n        \2\3return \4, \5;"
+            text = re.sub(pattern, replacement, text)
+
+            pattern = (
+                r"(\s*)Map<String, Object> args = new HashMap<>\(\);\s*"
+                # Type type = new TypeToken<RemoteTargetInfo>() {}.getType();
+                r"(\s*Type type = new TypeToken<[^>]+>>\(\) \{\}\.getType\(\);)"
+                r"(\s*)return (this\.APICall\([^,]+), args, (type\));"
+            )
+            replacement = r"\n        \2\3return \4, \5;"
+            text = re.sub(pattern, replacement, text)
+
+            pattern = (
+                r"(\s*)Map<String, Object> args = new HashMap<>\(\);\s*"
+                r"(\s*)(this\.APICall\([^,]+), args\);"
+            )
+            replacement = r"\n        \2\3);"
+            text = re.sub(pattern, replacement, text)
 
             with open(f"../src/main/java/dev/neuralnexus/ampapi/plugins/{plugin_name}.java", "w", encoding="UTF-8") as file:
                 file.write(text)

@@ -1,20 +1,22 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.plugins;
 
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.types.*;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Type;
-import java.net.InetAddress;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public final class FileManagerPlugin extends AMPAPI {
     public FileManagerPlugin(AuthProvider authprovider) {
@@ -23,24 +25,24 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Filename 
-     * @param Data 
-     * @param Delete 
-     * @return Void
+     *
+     * @param Filename
+     * @param Data
+     * @param Delete
      */
-    public Void AppendFileChunk(String Filename, String Data, Boolean Delete) {
+    public void AppendFileChunk(String Filename, String Data, Boolean Delete) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);
         args.put("Data", Data);
         args.put("Delete", Delete);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("FileManagerPlugin/AppendFileChunk", args, type);
+        this.APICall("FileManagerPlugin/AppendFileChunk", args);
     }
 
     /**
      * Name Description Optional
-     * @param FilePath 
-     * @return ActionResult<String>
+     *
+     * @param FilePath
+     * @return ActionResult&lt;String&gt;
      */
     public ActionResult<String> CalculateFileMD5Sum(String FilePath) {
         Map<String, Object> args = new HashMap<>();
@@ -51,9 +53,10 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param ModifyPath 
-     * @param AsDirectory 
-     * @param Exclude 
+     *
+     * @param ModifyPath
+     * @param AsDirectory
+     * @param Exclude
      * @return ActionResult
      */
     public ActionResult ChangeExclusion(String ModifyPath, Boolean AsDirectory, Boolean Exclude) {
@@ -67,8 +70,9 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Origin 
-     * @param TargetDirectory 
+     *
+     * @param Origin
+     * @param TargetDirectory
      * @return ActionResult
      */
     public ActionResult CopyFile(String Origin, String TargetDirectory) {
@@ -81,7 +85,8 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param PathToArchive 
+     *
+     * @param PathToArchive
      * @return ActionResult
      */
     public ActionResult CreateArchive(String PathToArchive) {
@@ -91,9 +96,10 @@ public final class FileManagerPlugin extends AMPAPI {
         return this.APICall("FileManagerPlugin/CreateArchive", args, type);
     }
 
-    /**Creates a new directory. The parent directory must already exist.
-     * Name Description Optional
-     * @param NewPath 
+    /**
+     * Creates a new directory. The parent directory must already exist. Name Description Optional
+     *
+     * @param NewPath
      * @return ActionResult
      */
     public ActionResult CreateDirectory(String NewPath) {
@@ -105,8 +111,9 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Source 
-     * @param TargetDirectory 
+     *
+     * @param Source
+     * @param TargetDirectory
      * @return ActionResult
      */
     public ActionResult DownloadFileFromURL(URI Source, String TargetDirectory) {
@@ -117,20 +124,15 @@ public final class FileManagerPlugin extends AMPAPI {
         return this.APICall("FileManagerPlugin/DownloadFileFromURL", args, type);
     }
 
-    /**
-     * Name Description Optional
-
-     * @return Void
-     */
-    public Void Dummy() {
-        Map<String, Object> args = new HashMap<>();
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("FileManagerPlugin/Dummy", args, type);
+    /** */
+    public void Dummy() {
+        this.APICall("FileManagerPlugin/Dummy");
     }
 
-    /**Empties a trash bin
-     * Name Description Optional
-     * @param TrashDirectoryName 
+    /**
+     * Empties a trash bin Name Description Optional
+     *
+     * @param TrashDirectoryName
      * @return ActionResult
      */
     public ActionResult EmptyTrash(String TrashDirectoryName) {
@@ -142,8 +144,9 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param ArchivePath 
-     * @param DestinationPath 
+     *
+     * @param ArchivePath
+     * @param DestinationPath
      * @return ActionResult
      */
     public ActionResult ExtractArchive(String ArchivePath, @Nullable String DestinationPath) {
@@ -156,8 +159,9 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Dir 
-     * @return List<DirectoryListing>
+     *
+     * @param Dir
+     * @return List&lt;DirectoryListing&gt;
      */
     public List<DirectoryListing> GetDirectoryListing(String Dir) {
         Map<String, Object> args = new HashMap<>();
@@ -168,9 +172,10 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Filename 
-     * @param Position 
-     * @param Length 
+     *
+     * @param Filename
+     * @param Position
+     * @param Length
      * @return FileChunkData
      */
     public FileChunkData GetFileChunk(String Filename, Integer Position, Integer Length) {
@@ -184,12 +189,14 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Filename 
-     * @param Offset 
-     * @param ChunkSize 
-     * @return ActionResult<String>
+     *
+     * @param Filename
+     * @param Offset
+     * @param ChunkSize
+     * @return ActionResult&lt;String&gt;
      */
-    public ActionResult<String> ReadFileChunk(String Filename, Integer Offset, @Nullable Integer ChunkSize) {
+    public ActionResult<String> ReadFileChunk(
+            String Filename, Integer Offset, @Nullable Integer ChunkSize) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);
         args.put("Offset", Offset);
@@ -200,7 +207,8 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Filename 
+     *
+     * @param Filename
      * @return ActionResult
      */
     public ActionResult ReleaseFileUploadLock(String Filename) {
@@ -210,8 +218,9 @@ public final class FileManagerPlugin extends AMPAPI {
         return this.APICall("FileManagerPlugin/ReleaseFileUploadLock", args, type);
     }
 
-    /**Renames a directory
-     * Name Description Optional
+    /**
+     * Renames a directory Name Description Optional
+     *
      * @param oldDirectory The full path to the old directory
      * @param NewDirectoryName The name component of the new directory (not the full path)
      * @return ActionResult
@@ -226,8 +235,9 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Filename 
-     * @param NewFilename 
+     *
+     * @param Filename
+     * @param NewFilename
      * @return ActionResult
      */
     public ActionResult RenameFile(String Filename, String NewFilename) {
@@ -238,9 +248,11 @@ public final class FileManagerPlugin extends AMPAPI {
         return this.APICall("FileManagerPlugin/RenameFile", args, type);
     }
 
-    /**Moves a directory to trash, files must be trashed before they can be deleted.
-     * Name Description Optional
-     * @param DirectoryName 
+    /**
+     * Moves a directory to trash, files must be trashed before they can be deleted. Name
+     * Description Optional
+     *
+     * @param DirectoryName
      * @return ActionResult
      */
     public ActionResult TrashDirectory(String DirectoryName) {
@@ -250,9 +262,11 @@ public final class FileManagerPlugin extends AMPAPI {
         return this.APICall("FileManagerPlugin/TrashDirectory", args, type);
     }
 
-    /**Moves a file to trash, files must be trashed before they can be deleted.
-     * Name Description Optional
-     * @param Filename 
+    /**
+     * Moves a file to trash, files must be trashed before they can be deleted. Name Description
+     * Optional
+     *
+     * @param Filename
      * @return ActionResult
      */
     public ActionResult TrashFile(String Filename) {
@@ -264,13 +278,15 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Filename 
-     * @param Data 
-     * @param Offset 
-     * @param FinalChunk 
+     *
+     * @param Filename
+     * @param Data
+     * @param Offset
+     * @param FinalChunk
      * @return ActionResult
      */
-    public ActionResult WriteFileChunk(String Filename, String Data, Integer Offset, Boolean FinalChunk) {
+    public ActionResult WriteFileChunk(
+            String Filename, String Data, Integer Offset, Boolean FinalChunk) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);
         args.put("Data", Data);
@@ -279,6 +295,4 @@ public final class FileManagerPlugin extends AMPAPI {
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("FileManagerPlugin/WriteFileChunk", args, type);
     }
-
-
 }

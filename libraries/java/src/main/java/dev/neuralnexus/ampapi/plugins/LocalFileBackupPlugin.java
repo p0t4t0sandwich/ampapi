@@ -1,16 +1,18 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.plugins;
 
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.types.*;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Type;
-import java.net.InetAddress;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +25,8 @@ public final class LocalFileBackupPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param BackupId 
+     *
+     * @param BackupId
      * @return ActionResult
      */
     public ActionResult DeleteFromS3(UUID BackupId) {
@@ -35,19 +38,19 @@ public final class LocalFileBackupPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param BackupId 
-     * @return Void
+     *
+     * @param BackupId
      */
-    public Void DeleteLocalBackup(UUID BackupId) {
+    public void DeleteLocalBackup(UUID BackupId) {
         Map<String, Object> args = new HashMap<>();
         args.put("BackupId", BackupId);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("LocalFileBackupPlugin/DeleteLocalBackup", args, type);
+        this.APICall("LocalFileBackupPlugin/DeleteLocalBackup", args);
     }
 
     /**
      * Name Description Optional
-     * @param BackupId 
+     *
+     * @param BackupId
      * @return RunningTask
      */
     public RunningTask DownloadFromS3(UUID BackupId) {
@@ -59,30 +62,24 @@ public final class LocalFileBackupPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-
-     * @return List<BackupManifest>
+     *
+     * @return List&lt;BackupManifest&gt;
      */
     public List<BackupManifest> GetBackups() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<List<BackupManifest>>() {}.getType();
-        return this.APICall("LocalFileBackupPlugin/GetBackups", args, type);
+        return this.APICall("LocalFileBackupPlugin/GetBackups", type);
+    }
+
+    /** */
+    public void RefreshBackupList() {
+        this.APICall("LocalFileBackupPlugin/RefreshBackupList");
     }
 
     /**
      * Name Description Optional
-
-     * @return Void
-     */
-    public Void RefreshBackupList() {
-        Map<String, Object> args = new HashMap<>();
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("LocalFileBackupPlugin/RefreshBackupList", args, type);
-    }
-
-    /**
-     * Name Description Optional
-     * @param BackupId 
-     * @param DeleteExistingData 
+     *
+     * @param BackupId
+     * @param DeleteExistingData
      * @return ActionResult
      */
     public ActionResult RestoreBackup(UUID BackupId, @Nullable Boolean DeleteExistingData) {
@@ -95,27 +92,31 @@ public final class LocalFileBackupPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param BackupId 
-     * @param Sticky 
-     * @return Void
+     *
+     * @param BackupId
+     * @param Sticky
      */
-    public Void SetBackupSticky(UUID BackupId, Boolean Sticky) {
+    public void SetBackupSticky(UUID BackupId, Boolean Sticky) {
         Map<String, Object> args = new HashMap<>();
         args.put("BackupId", BackupId);
         args.put("Sticky", Sticky);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("LocalFileBackupPlugin/SetBackupSticky", args, type);
+        this.APICall("LocalFileBackupPlugin/SetBackupSticky", args);
     }
 
     /**
      * Name Description Optional
-     * @param Title 
-     * @param Description 
-     * @param Sticky 
-     * @param WasCreatedAutomatically 
+     *
+     * @param Title
+     * @param Description
+     * @param Sticky
+     * @param WasCreatedAutomatically
      * @return ActionResult
      */
-    public ActionResult TakeBackup(String Title, String Description, Boolean Sticky, @Nullable Boolean WasCreatedAutomatically) {
+    public ActionResult TakeBackup(
+            String Title,
+            String Description,
+            Boolean Sticky,
+            @Nullable Boolean WasCreatedAutomatically) {
         Map<String, Object> args = new HashMap<>();
         args.put("Title", Title);
         args.put("Description", Description);
@@ -127,7 +128,8 @@ public final class LocalFileBackupPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param BackupId 
+     *
+     * @param BackupId
      * @return RunningTask
      */
     public RunningTask UploadToS3(UUID BackupId) {
@@ -136,6 +138,4 @@ public final class LocalFileBackupPlugin extends AMPAPI {
         Type type = new TypeToken<RunningTask>() {}.getType();
         return this.APICall("LocalFileBackupPlugin/UploadToS3", args, type);
     }
-
-
 }

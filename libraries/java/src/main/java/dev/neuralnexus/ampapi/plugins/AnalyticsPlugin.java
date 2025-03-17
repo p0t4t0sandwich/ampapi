@@ -1,20 +1,20 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.plugins;
 
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.types.*;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Type;
-import java.net.InetAddress;
-import java.net.URI;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public final class AnalyticsPlugin extends AMPAPI {
     public AnalyticsPlugin(AuthProvider authprovider) {
@@ -23,12 +23,16 @@ public final class AnalyticsPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param PeriodDays 
-     * @param StartDate 
-     * @param Filters 
+     *
+     * @param PeriodDays
+     * @param StartDate
+     * @param Filters
      * @return Object
      */
-    public Object GetAnalyticsSummary(@Nullable Integer PeriodDays, @Nullable String StartDate, @Nullable Map<String, String> Filters) {
+    public Object GetAnalyticsSummary(
+            @Nullable Integer PeriodDays,
+            @Nullable String StartDate,
+            @Nullable Map<String, String> Filters) {
         Map<String, Object> args = new HashMap<>();
         args.put("PeriodDays", PeriodDays);
         args.put("StartDate", StartDate);
@@ -36,6 +40,4 @@ public final class AnalyticsPlugin extends AMPAPI {
         Type type = new TypeToken<Object>() {}.getType();
         return this.APICall("AnalyticsPlugin/GetAnalyticsSummary", args, type);
     }
-
-
 }

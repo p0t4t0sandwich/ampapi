@@ -1,20 +1,16 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.plugins;
 
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.types.*;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
-
-import org.jetbrains.annotations.Nullable;
+import dev.neuralnexus.ampapi.types.*;
 
 import java.lang.reflect.Type;
-import java.net.InetAddress;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 public final class EmailSenderPlugin extends AMPAPI {
     public EmailSenderPlugin(AuthProvider authprovider) {
@@ -23,14 +19,11 @@ public final class EmailSenderPlugin extends AMPAPI {
 
     /**
      * Name Description Optional
-
+     *
      * @return ActionResult
      */
     public ActionResult TestSMTPSettings() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<ActionResult>() {}.getType();
-        return this.APICall("EmailSenderPlugin/TestSMTPSettings", args, type);
+        return this.APICall("EmailSenderPlugin/TestSMTPSettings", type);
     }
-
-
 }

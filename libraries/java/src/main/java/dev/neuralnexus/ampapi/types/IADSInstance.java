@@ -1,15 +1,16 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 /**
  * An ADS instance object
+ *
  * @param AvailableIPs Available IPs
  * @param AvailableInstances Available instances
  * @param CanCreate Whether the instance can be created
@@ -30,4 +31,23 @@ import java.util.UUID;
  * @param URL The URL
  * @param Fitness The fitness information object
  */
-public record IADSInstance(List<String> AvailableIPs, List<InstanceSummary> AvailableInstances, Boolean CanCreate, Boolean CreatesInContainers, List<DatastoreSummary> Datastores, String Description, Boolean Disabled, String FriendlyName, Integer Id, UUID InstanceId, Boolean IsRemote, String LastUpdated, IPlatformInfo Platform, RemoteInstanceState State, String StateReason, List<String> Tags, String TagsList, String URL, Optional<ProvisionFitness> Fitness) {}
+public record IADSInstance(
+        List<String> AvailableIPs,
+        List<InstanceSummary> AvailableInstances,
+        Boolean CanCreate,
+        Boolean CreatesInContainers,
+        List<DatastoreSummary> Datastores,
+        String Description,
+        Boolean Disabled,
+        String FriendlyName,
+        Integer Id,
+        UUID InstanceId,
+        Boolean IsRemote,
+        String LastUpdated,
+        IPlatformInfo Platform,
+        RemoteInstanceState State,
+        String StateReason,
+        List<String> Tags,
+        String TagsList,
+        String URL,
+        Optional<ProvisionFitness> Fitness) {}

@@ -105,16 +105,16 @@ import java.util.UUID;
 public class Main {
   public static void main(String[] args) {
     AuthStore authStore = new AuthStore();
-    AuthProvider authProvider =
+    AuthProvider adsAuthProvider =
             RefreshingAuthProvider.builder()
                     .relogInterval(30 * 1000)
                     .panelUrl("http://localhost:8080/")
                     .username("admin")
                     .password("myfancypassword123")
                     .build();
-    authStore.add(authProvider);
+    authStore.add(adsAuthProvider);
 
-    ADS API = new ADS(authProvider);
+    ADS API = new ADS(adsAuthProvider);
 
     // Get the available instances
     List<IADSInstance> targets = API.ADSModule.GetInstances(false);
@@ -126,11 +126,11 @@ public class Main {
     UUID hub_instance_id = null;
 
     // Get the available instances
-    List<InstanceSummary> instances = target.AvailableInstances;
+    List<InstanceSummary> instances = target.AvailableInstances();
     for (InstanceSummary instance : instances) {
       // Find the instance named "Hub"
-      if (instance.InstanceName.equals("Hub")) {
-        hub_instance_id = instance.InstanceID;
+      if (instance.InstanceName().equals("Hub01")) {
+        hub_instance_id = instance.InstanceID();
         break;
       }
     }
@@ -139,7 +139,8 @@ public class Main {
     AuthProvider hubAuthProvider =
             RefreshingAuthProvider.builder()
                     .relogInterval(30 * 1000)
-                    .panelUrl("http://localhost:8080/API/ADSModule/Servers/" + hub_instance_id)
+                    .panelUrl(adsAuthProvider.dataSource() + "ADSModule/Servers/" + hub_instance_id)
+                    // .panelUrl(adsAuthProvider.dataSource() + "ADSModule/Servers/" + "Hub01") Would also work
                     .username("admin")
                     .password("myfancypassword123")
                     .build();
@@ -149,7 +150,7 @@ public class Main {
 
     // Get the current CPU usage
     StatusResponse currentStatus = Hub.Core.GetStatus();
-    double CPUUsagePercent = currentStatus.Metrics.get("CPU Usage").Percent;
+    double CPUUsagePercent = currentStatus.Metrics().get("CPU Usage").Percent();
 
     // Send a message to the console
     Hub.Core.SendConsoleMessage("say Current CPU usage is: " + CPUUsagePercent + "%");
@@ -164,11 +165,13 @@ import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.auth.BasicAuthProvider;
 import dev.neuralnexus.ampapi.modules.CommonAPI;
 import dev.neuralnexus.ampapi.types.LoginResponse;
+import dev.neuralnexus.ampapi.types.StatusResponse;
 
 public class Main {
   public static void main(String[] args) {
     try {
-      // The third parameter is either used for 2FA logins, or if no password is specified to use a remembered token from a previous login, or a service login token.
+      // The third parameter is either used for 2FA logins, or if no password is specified
+      // to use a remembered token from a previous login, or a service login token.
       AuthProvider authProvider =
               BasicAuthProvider.builder()
                       .panelUrl("http://localhost:8080/")
@@ -185,26 +188,26 @@ public class Main {
       //     ...
       // }
 
-      LoginResponse loginResult = API.Core.Login(
-              authProvider.username(),
-              authProvider.password(),
-              authProvider.token(),
-              authProvider.rememberMe()
-      );
+      LoginResponse loginResult =
+              API.Core.Login(
+                      authProvider.username(),
+                      authProvider.password(),
+                      authProvider.token(),
+                      authProvider.rememberMe());
 
-      if (loginResult.success) {
+      if (loginResult.success()) {
         System.out.println("Login successful");
 
         // Update the session ID
-        String sessionId = loginResult.sessionID;
-        authProvider.sessionId = sessionId;
-        API.Core.sessionId = sessionId;
+        authProvider.update(loginResult);
 
-        // API call parameters are simply in the same order as shown in the documentation.
-        API.Core.SendConsoleMessage("say Hello Everyone, this message was sent from the Java API!");
+        // API call parameters are simply in the same order as shown in the
+        // documentation.
+        API.Core.SendConsoleMessage(
+                "say Hello Everyone, this message was sent from the Java API!");
 
-        Status currentStatus = API.Core.GetStatus();
-        double CPUUsagePercent = currentStatus.Metrics.get("CPU Usage").Percent;
+        StatusResponse currentStatus = API.Core.GetStatus();
+        double CPUUsagePercent = currentStatus.Metrics().get("CPU Usage").Percent();
 
         System.out.println("Current CPU usage is: " + CPUUsagePercent + "%");
 

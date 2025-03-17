@@ -1,6 +1,7 @@
     /**{MethodDescription}
      * Name Description Optional
-{MethodParameterDocs} * @return {ReturnType}
+     *
+{MethodParameterDocs} * @return {ReturnTypeDoc}
      */
     public {ReturnType} {MethodName}({MethodParameters}) {
         Map<String, Object> args = new HashMap<>();{MethodParameterAssignments}

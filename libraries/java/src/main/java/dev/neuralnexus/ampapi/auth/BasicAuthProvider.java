@@ -1,9 +1,10 @@
 /**
- * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
- * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi-java/blob/main/LICENSE">MIT</a>
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
  */
 package dev.neuralnexus.ampapi.auth;
 
+import dev.neuralnexus.ampapi.exceptions.LoginException;
 import dev.neuralnexus.ampapi.types.LoginResponse;
 import dev.neuralnexus.ampapi.types.ModuleInfo;
 
@@ -73,9 +74,13 @@ public class BasicAuthProvider implements AuthProvider {
     }
 
     private void UpdateModuleInfo() {
-        ModuleInfo info = this.APICall("Core/GetModuleInfo", ModuleInfo.class);
-        this.instanceName = info.InstanceName;
-        this.instanceId = info.InstanceId;
+        try {
+            ModuleInfo info = this.APICall("Core/GetModuleInfo", ModuleInfo.class);
+            this.instanceName = info.InstanceName();
+            this.instanceId = info.InstanceId();
+        } catch (LoginException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -95,7 +100,8 @@ public class BasicAuthProvider implements AuthProvider {
     }
 
     @Override
-    public <T> T APICall(String endpoint, Map<String, Object> args, Type returnType) {
+    public <T> T APICall(String endpoint, Map<String, Object> args, Type returnType)
+            throws LoginException {
         if (this.sessionId.isEmpty()) {
             this.Login();
         }
@@ -104,23 +110,30 @@ public class BasicAuthProvider implements AuthProvider {
     }
 
     @Override
-    public LoginResponse Login(boolean rememberMe) {
+    public void update(LoginResponse loginResponse) {
+        this.token = loginResponse.rememberMeToken();
+        this.sessionId = loginResponse.sessionID();
+    }
+
+    @Override
+    public LoginResponse Login(boolean rememberMe) throws LoginException {
         Map<String, Object> args = new HashMap<>();
         args.put("username", this.username);
         args.put("password", this.password);
         args.put("token", this.token);
         args.put("rememberMe", rememberMe);
 
-        LoginResponse loginResult =
+        LoginResponse loginResponse =
                 HTTPReq.APICall(
                         this.dataSource + "Core/Login",
                         this.requestMethod,
                         args,
                         LoginResponse.class);
-        this.token = loginResult.rememberMeToken;
-        this.sessionId = loginResult.sessionID;
-
-        return loginResult;
+        if (!loginResponse.success()) {
+            throw new LoginException(loginResponse);
+        }
+        this.update(loginResponse);
+        return loginResponse;
     }
 
     public static Builder builder() {
@@ -225,7 +238,7 @@ public class BasicAuthProvider implements AuthProvider {
                     this.username,
                     this.password,
                     this.token,
-                    this.rememberMe,
+                    false,
                     this.sessionId);
         }
     }

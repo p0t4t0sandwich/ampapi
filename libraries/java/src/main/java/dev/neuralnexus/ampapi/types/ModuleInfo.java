@@ -1,15 +1,15 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
  * A struct to represent the object returned by the Core.GetModuleInfo() method
+ *
  * @param AMPBuild The AMP build
  * @param AMPVersion The AMP version
  * @param APIVersion The API version
@@ -37,4 +37,30 @@ import java.util.UUID;
  * @param ToolsVersion The tools version
  * @param VersionCodename The version codename
  */
-public record ModuleInfo(String AMPBuild, String AMPVersion, String APIVersion, Boolean AllowRememberMe, Boolean Analytics, String AppName, String Author, Integer BasePort, BrandingSettings Branding, String BuildSpec, String DisplayBaseURI, String EndpointURI, List<String> FeatureSet, String FriendlyName, UUID InstanceId, String InstanceName, Boolean IsRemoteInstance, List<String> LoadedPlugins, String ModuleName, String Name, String PrimaryEndpoint, Boolean RequiresFullLoad, Boolean SupportsSleep, String Timestamp, String ToolsVersion, String VersionCodename) {}
+public record ModuleInfo(
+        String AMPBuild,
+        String AMPVersion,
+        String APIVersion,
+        Boolean AllowRememberMe,
+        Boolean Analytics,
+        String AppName,
+        String Author,
+        Integer BasePort,
+        BrandingSettings Branding,
+        String BuildSpec,
+        String DisplayBaseURI,
+        String EndpointURI,
+        List<String> FeatureSet,
+        String FriendlyName,
+        UUID InstanceId,
+        String InstanceName,
+        Boolean IsRemoteInstance,
+        List<String> LoadedPlugins,
+        String ModuleName,
+        String Name,
+        String PrimaryEndpoint,
+        Boolean RequiresFullLoad,
+        Boolean SupportsSleep,
+        String Timestamp,
+        String ToolsVersion,
+        String VersionCodename) {}

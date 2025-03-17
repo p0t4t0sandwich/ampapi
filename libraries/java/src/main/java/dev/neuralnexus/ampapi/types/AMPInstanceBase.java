@@ -1,8 +1,9 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -10,6 +11,7 @@ import java.util.UUID;
 
 /**
  * Base class for an AMP instance
+ *
  * @param AMPBuild The AMP build
  * @param AMPVersion The AMP version
  * @param AutomaticUPnP Whether to use automatic UPnP
@@ -63,4 +65,56 @@ import java.util.UUID;
  * @param WelcomeMessage The welcome message
  * @param LastReactivationAttempt The last reactivation attempt
  */
-public record AMPInstanceBase(String AMPBuild, String AMPVersion, Boolean AutomaticUPnP, Float ContainerCPUs, Integer ContainerMemoryMB, ContainerMemoryPolicy ContainerMemoryPolicy, Integer ContainerSwapMB, UUID CreatedBy, Map<String, String> CustomMountBinds, List<PortUsage> CustomPorts, Boolean Daemon, Boolean DaemonAutostart, Integer DatastoreId, Map<String, String> DeploymentArgs, String Description, Integer DiskUsageMB, String DisplayImageSource, Boolean DockerBaseReadOnly, Boolean ExcludeFromFirewall, List<String> ExtraContainerPackages, Boolean ForceDocker, String FriendlyName, String Group, String IP, UUID InstanceID, String InstanceName, Boolean IsContainerInstance, Boolean IsHTTPS, ManagementModes ManagementMode, Boolean MatchVersion, String MetricsPublishingHMAC, String Module, String ModuleDisplayName, SupportedOS OS, String OverlayPath, String Path, Map<String, String> PendingSettingChanges, List<String> Plugins, Integer Port, String PreviousBuild, String PreviousVersion, AMPReleaseStreams ReleaseStream, String SpecificDockerImage, Boolean Suspended, String Tag, List<String> Tags, Boolean TagsUsedForConfiguration, UUID TargetID, Boolean UseHostModeNetwork, String User, String WelcomeMessage, Optional<String> LastReactivationAttempt) {}
+public record AMPInstanceBase(
+        String AMPBuild,
+        String AMPVersion,
+        Boolean AutomaticUPnP,
+        Float ContainerCPUs,
+        Integer ContainerMemoryMB,
+        ContainerMemoryPolicy ContainerMemoryPolicy,
+        Integer ContainerSwapMB,
+        UUID CreatedBy,
+        Map<String, String> CustomMountBinds,
+        List<PortUsage> CustomPorts,
+        Boolean Daemon,
+        Boolean DaemonAutostart,
+        Integer DatastoreId,
+        Map<String, String> DeploymentArgs,
+        String Description,
+        Integer DiskUsageMB,
+        String DisplayImageSource,
+        Boolean DockerBaseReadOnly,
+        Boolean ExcludeFromFirewall,
+        List<String> ExtraContainerPackages,
+        Boolean ForceDocker,
+        String FriendlyName,
+        String Group,
+        String IP,
+        UUID InstanceID,
+        String InstanceName,
+        Boolean IsContainerInstance,
+        Boolean IsHTTPS,
+        ManagementModes ManagementMode,
+        Boolean MatchVersion,
+        String MetricsPublishingHMAC,
+        String Module,
+        String ModuleDisplayName,
+        SupportedOS OS,
+        String OverlayPath,
+        String Path,
+        Map<String, String> PendingSettingChanges,
+        List<String> Plugins,
+        Integer Port,
+        String PreviousBuild,
+        String PreviousVersion,
+        AMPReleaseStreams ReleaseStream,
+        String SpecificDockerImage,
+        Boolean Suspended,
+        String Tag,
+        List<String> Tags,
+        Boolean TagsUsedForConfiguration,
+        UUID TargetID,
+        Boolean UseHostModeNetwork,
+        String User,
+        String WelcomeMessage,
+        Optional<String> LastReactivationAttempt) {}

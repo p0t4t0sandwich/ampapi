@@ -1,15 +1,16 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
 /**
  * A time interval trigger
+ *
  * @param Description The description
  * @param EnabledState The enabled state
  * @param Id The ID
@@ -22,4 +23,15 @@ import java.util.UUID;
  * @param MatchMonths The match months
  * @param LastExecuted The last executed
  */
-public record TimeIntervalTrigger(String Description, ScheduleEnabledState EnabledState, UUID Id, String Name, Integer Order, List<Integer> MatchMinutes, List<Integer> MatchHours, List<Integer> MatchDays, List<Integer> MatchDaysOfMonth, List<Integer> MatchMonths, Optional<String> LastExecuted) {}
+public record TimeIntervalTrigger(
+        String Description,
+        ScheduleEnabledState EnabledState,
+        UUID Id,
+        String Name,
+        Integer Order,
+        List<Integer> MatchMinutes,
+        List<Integer> MatchHours,
+        List<Integer> MatchDays,
+        List<Integer> MatchDaysOfMonth,
+        List<Integer> MatchMonths,
+        Optional<String> LastExecuted) {}

@@ -1,10 +1,14 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.plugins;
 
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.types.*;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -23,7 +27,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param newDatastore 
+     *
+     * @param newDatastore
      * @return ActionResult
      */
     public ActionResult AddDatastore(InstanceDatastore newDatastore) {
@@ -35,12 +40,14 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceID 
-     * @param Args 
-     * @param RebuildConfiguration 
+     *
+     * @param InstanceID
+     * @param Args
+     * @param RebuildConfiguration
      * @return ActionResult
      */
-    public ActionResult ApplyInstanceConfiguration(UUID InstanceID, Map<String, String> Args, @Nullable Boolean RebuildConfiguration) {
+    public ActionResult ApplyInstanceConfiguration(
+            UUID InstanceID, Map<String, String> Args, @Nullable Boolean RebuildConfiguration) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceID", InstanceID);
         args.put("Args", Args);
@@ -49,16 +56,24 @@ public final class ADSModule extends AMPAPI {
         return this.APICall("ADSModule/ApplyInstanceConfiguration", args, type);
     }
 
-    /**Overlays an existing template on an existing instance. Used to perform package reconfigurations. Do not use this to 'transform' an existing application into another. The instance should be deleted and re-created in that situation.
-     * Name Description Optional
-     * @param InstanceID 
-     * @param TemplateID 
-     * @param NewFriendlyName 
-     * @param Secret 
-     * @param RestartIfPreviouslyRunning 
+    /**
+     * Overlays an existing template on an existing instance. Used to perform package
+     * reconfigurations. Do not use this to 'transform' an existing application into another. The
+     * instance should be deleted and re-created in that situation. Name Description Optional
+     *
+     * @param InstanceID
+     * @param TemplateID
+     * @param NewFriendlyName
+     * @param Secret
+     * @param RestartIfPreviouslyRunning
      * @return ActionResult
      */
-    public ActionResult ApplyTemplate(UUID InstanceID, Integer TemplateID, @Nullable String NewFriendlyName, @Nullable String Secret, @Nullable Boolean RestartIfPreviouslyRunning) {
+    public ActionResult ApplyTemplate(
+            UUID InstanceID,
+            Integer TemplateID,
+            @Nullable String NewFriendlyName,
+            @Nullable String Secret,
+            @Nullable Boolean RestartIfPreviouslyRunning) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceID", InstanceID);
         args.put("TemplateID", TemplateID);
@@ -71,14 +86,16 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Friendly 
-     * @param IsHTTPS 
-     * @param Host 
-     * @param Port 
-     * @param InstanceID 
+     *
+     * @param Friendly
+     * @param IsHTTPS
+     * @param Host
+     * @param Port
+     * @param InstanceID
      * @return ActionResult
      */
-    public ActionResult AttachADS(String Friendly, Boolean IsHTTPS, String Host, Integer Port, UUID InstanceID) {
+    public ActionResult AttachADS(
+            String Friendly, Boolean IsHTTPS, String Host, Integer Port, UUID InstanceID) {
         Map<String, Object> args = new HashMap<>();
         args.put("Friendly", Friendly);
         args.put("IsHTTPS", IsHTTPS);
@@ -91,8 +108,9 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Id 
-     * @param NewName 
+     *
+     * @param Id
+     * @param NewName
      * @return ActionResult
      */
     public ActionResult CloneTemplate(Integer Id, String NewName) {
@@ -105,7 +123,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Name 
+     *
+     * @param Name
      * @return ActionResult
      */
     public ActionResult CreateDeploymentTemplate(String Name) {
@@ -117,24 +136,41 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param TargetADSInstance 
-     * @param NewInstanceId 
-     * @param Module 
-     * @param InstanceName 
-     * @param FriendlyName 
-     * @param IPBinding 
-     * @param PortNumber 
-     * @param AdminUsername 
-     * @param AdminPassword 
-     * @param ProvisionSettings 
-     * @param AutoConfigure When enabled, all settings other than the Module, Target and FriendlyName are ignored and replaced with automatically generated values.
-     * @param StartOnBoot 
-     * @param DisplayImageSource 
-     * @param TargetDatastore 
-     * @param PostCreate 
+     *
+     * @param TargetADSInstance
+     * @param NewInstanceId
+     * @param Module
+     * @param InstanceName
+     * @param FriendlyName
+     * @param IPBinding
+     * @param PortNumber
+     * @param AdminUsername
+     * @param AdminPassword
+     * @param ProvisionSettings
+     * @param AutoConfigure When enabled, all settings other than the Module, Target and
+     *     FriendlyName are ignored and replaced with automatically generated values.
+     * @param StartOnBoot
+     * @param DisplayImageSource
+     * @param TargetDatastore
+     * @param PostCreate
      * @return ActionResult
      */
-    public ActionResult CreateInstance(UUID TargetADSInstance, UUID NewInstanceId, String Module, String InstanceName, String FriendlyName, String IPBinding, Integer PortNumber, String AdminUsername, String AdminPassword, Map<String, String> ProvisionSettings, @Nullable Boolean AutoConfigure, @Nullable Boolean StartOnBoot, @Nullable String DisplayImageSource, @Nullable Integer TargetDatastore, @Nullable PostCreateAppActions PostCreate) {
+    public ActionResult CreateInstance(
+            UUID TargetADSInstance,
+            UUID NewInstanceId,
+            String Module,
+            String InstanceName,
+            String FriendlyName,
+            String IPBinding,
+            Integer PortNumber,
+            String AdminUsername,
+            String AdminPassword,
+            Map<String, String> ProvisionSettings,
+            @Nullable Boolean AutoConfigure,
+            @Nullable Boolean StartOnBoot,
+            @Nullable String DisplayImageSource,
+            @Nullable Integer TargetDatastore,
+            @Nullable PostCreateAppActions PostCreate) {
         Map<String, Object> args = new HashMap<>();
         args.put("TargetADSInstance", TargetADSInstance);
         args.put("NewInstanceId", NewInstanceId);
@@ -157,15 +193,22 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param SpecId 
-     * @param TargetADSInstance 
-     * @param FriendlyName 
-     * @param PostCreate 
-     * @param StartOnBoot 
-     * @param TargetDatastore 
+     *
+     * @param SpecId
+     * @param TargetADSInstance
+     * @param FriendlyName
+     * @param PostCreate
+     * @param StartOnBoot
+     * @param TargetDatastore
      * @return ActionResult
      */
-    public ActionResult CreateInstanceFromSpec(UUID SpecId, UUID TargetADSInstance, String FriendlyName, @Nullable PostCreateAppActions PostCreate, @Nullable Boolean StartOnBoot, @Nullable Integer TargetDatastore) {
+    public ActionResult CreateInstanceFromSpec(
+            UUID SpecId,
+            UUID TargetADSInstance,
+            String FriendlyName,
+            @Nullable PostCreateAppActions PostCreate,
+            @Nullable Boolean StartOnBoot,
+            @Nullable Integer TargetDatastore) {
         Map<String, Object> args = new HashMap<>();
         args.put("SpecId", SpecId);
         args.put("TargetADSInstance", TargetADSInstance);
@@ -179,11 +222,13 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Instance 
-     * @param PostCreate 
+     *
+     * @param Instance
+     * @param PostCreate
      * @return ActionResult
      */
-    public ActionResult CreateLocalInstance(LocalAMPInstance Instance, @Nullable PostCreateAppActions PostCreate) {
+    public ActionResult CreateLocalInstance(
+            LocalAMPInstance Instance, @Nullable PostCreateAppActions PostCreate) {
         Map<String, Object> args = new HashMap<>();
         args.put("Instance", Instance);
         args.put("PostCreate", PostCreate);
@@ -193,7 +238,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param id 
+     *
+     * @param id
      * @return ActionResult
      */
     public ActionResult DeleteDatastore(Integer id) {
@@ -205,7 +251,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Id 
+     *
+     * @param Id
      * @return ActionResult
      */
     public ActionResult DeleteDeploymentTemplate(Integer Id) {
@@ -217,7 +264,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceName 
+     *
+     * @param InstanceName
      * @return RunningTask
      */
     public RunningTask DeleteInstance(String InstanceName) {
@@ -229,7 +277,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceId 
+     *
+     * @param InstanceId
      * @return ActionResult
      */
     public ActionResult DeleteInstanceUsers(UUID InstanceId) {
@@ -241,19 +290,47 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param TemplateID The ID of the template to be deployed, as per the Template Management UI in AMP itself.
-     * @param NewUsername If specified, AMP will create a new user with this name for this instance. Must be unique. If this user already exists, this will be ignored but the new instance will be assigned to this user.
-     * @param NewPassword If 'NewUsername' is specified and the user doesn't already exist, the password that will be assigned to this user.
-     * @param NewEmail If 'NewUsername' is specified and the user doesn't already exist, the email address that will be assigned to this user.
-     * @param RequiredTags If specified, AMP will only deploy this template to targets that have every single 'tag' specified in their target configuration. You can adjust this via the controller by clicking 'Edit' on the target settings.
-     * @param Tag Unrelated to RequiredTags. This is to uniquely identify this instance to your own systems. It may be something like an order ID or service ID so you can find the associated instance again at a later time. If 'UseTagAsInstanceName' is enabled, then this will also be used as the instance name for the created instance - but it must be unique.
-     * @param FriendlyName A friendly name for this instance. If left blank, AMP will generate one for you.
-     * @param Secret Must be a non-empty strong in order to get a callback on deployment state change. This secret will be passed back to you in the callback so you can verify the request.
-     * @param ExtraProvisionSettings A dictionary of setting nodes and values to create the new instance with. Identical in function to the provisioning arguments in the template itself.
-     * @param PostCreate 0: Do Nothing, 1: Update Once, 2: Update Always, 3: Update and Start Once, 4: Update and Start Always, 5. Start Always
+     *
+     * @param TemplateID The ID of the template to be deployed, as per the Template Management UI in
+     *     AMP itself.
+     * @param NewUsername If specified, AMP will create a new user with this name for this instance.
+     *     Must be unique. If this user already exists, this will be ignored but the new instance
+     *     will be assigned to this user.
+     * @param NewPassword If 'NewUsername' is specified and the user doesn't already exist, the
+     *     password that will be assigned to this user.
+     * @param NewEmail If 'NewUsername' is specified and the user doesn't already exist, the email
+     *     address that will be assigned to this user.
+     * @param RequiredTags If specified, AMP will only deploy this template to targets that have
+     *     every single 'tag' specified in their target configuration. You can adjust this via the
+     *     controller by clicking 'Edit' on the target settings.
+     * @param Tag Unrelated to RequiredTags. This is to uniquely identify this instance to your own
+     *     systems. It may be something like an order ID or service ID so you can find the
+     *     associated instance again at a later time. If 'UseTagAsInstanceName' is enabled, then
+     *     this will also be used as the instance name for the created instance - but it must be
+     *     unique.
+     * @param FriendlyName A friendly name for this instance. If left blank, AMP will generate one
+     *     for you.
+     * @param Secret Must be a non-empty strong in order to get a callback on deployment state
+     *     change. This secret will be passed back to you in the callback so you can verify the
+     *     request.
+     * @param ExtraProvisionSettings A dictionary of setting nodes and values to create the new
+     *     instance with. Identical in function to the provisioning arguments in the template
+     *     itself.
+     * @param PostCreate 0: Do Nothing, 1: Update Once, 2: Update Always, 3: Update and Start Once,
+     *     4: Update and Start Always, 5. Start Always
      * @return RunningTask
      */
-    public RunningTask DeployTemplate(Integer TemplateID, @Nullable String NewUsername, @Nullable String NewPassword, @Nullable String NewEmail, @Nullable List<String> RequiredTags, @Nullable String Tag, @Nullable String FriendlyName, @Nullable String Secret, @Nullable Map<String, String> ExtraProvisionSettings, @Nullable PostCreateAppActions PostCreate) {
+    public RunningTask DeployTemplate(
+            Integer TemplateID,
+            @Nullable String NewUsername,
+            @Nullable String NewPassword,
+            @Nullable String NewEmail,
+            @Nullable List<String> RequiredTags,
+            @Nullable String Tag,
+            @Nullable String FriendlyName,
+            @Nullable String Secret,
+            @Nullable Map<String, String> ExtraProvisionSettings,
+            @Nullable PostCreateAppActions PostCreate) {
         Map<String, Object> args = new HashMap<>();
         args.put("TemplateID", TemplateID);
         args.put("NewUsername", NewUsername);
@@ -271,7 +348,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Id 
+     *
+     * @param Id
      * @return ActionResult
      */
     public ActionResult DetachTarget(UUID Id) {
@@ -283,7 +361,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param SourceArchive 
+     *
+     * @param SourceArchive
      * @return ActionResult
      */
     public ActionResult ExtractEverywhere(String SourceArchive) {
@@ -295,8 +374,9 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param instanceId 
-     * @return List<EndpointInfo>
+     *
+     * @param instanceId
+     * @return List&lt;EndpointInfo&gt;
      */
     public List<EndpointInfo> GetApplicationEndpoints(UUID instanceId) {
         Map<String, Object> args = new HashMap<>();
@@ -307,7 +387,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param id 
+     *
+     * @param id
      * @return InstanceDatastore
      */
     public InstanceDatastore GetDatastore(Integer id) {
@@ -319,8 +400,9 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param datastoreId 
-     * @return List<InstanceSummary>
+     *
+     * @param datastoreId
+     * @return List&lt;InstanceSummary&gt;
      */
     public List<InstanceSummary> GetDatastoreInstances(Integer datastoreId) {
         Map<String, Object> args = new HashMap<>();
@@ -331,29 +413,28 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-
-     * @return List<InstanceDatastore>
+     *
+     * @return List&lt;InstanceDatastore&gt;
      */
     public List<InstanceDatastore> GetDatastores() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<List<InstanceDatastore>>() {}.getType();
-        return this.APICall("ADSModule/GetDatastores", args, type);
+        return this.APICall("ADSModule/GetDatastores", type);
     }
 
     /**
      * Name Description Optional
-
-     * @return List<DeploymentTemplate>
+     *
+     * @return List&lt;DeploymentTemplate&gt;
      */
     public List<DeploymentTemplate> GetDeploymentTemplates() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<List<DeploymentTemplate>>() {}.getType();
-        return this.APICall("ADSModule/GetDeploymentTemplates", args, type);
+        return this.APICall("ADSModule/GetDeploymentTemplates", type);
     }
 
     /**
      * Name Description Optional
-     * @param GroupId 
+     *
+     * @param GroupId
      * @return IADSInstance
      */
     public IADSInstance GetGroup(UUID GroupId) {
@@ -365,7 +446,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceId 
+     *
+     * @param InstanceId
      * @return InstanceSummary
      */
     public InstanceSummary GetInstance(UUID InstanceId) {
@@ -377,8 +459,9 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceName 
-     * @return List<PortUsage>
+     *
+     * @param InstanceName
+     * @return List&lt;PortUsage&gt;
      */
     public List<PortUsage> GetInstanceNetworkInfo(String InstanceName) {
         Map<String, Object> args = new HashMap<>();
@@ -389,19 +472,19 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-
-     * @return List<InstanceStatus>
+     *
+     * @return List&lt;InstanceStatus&gt;
      */
     public List<InstanceStatus> GetInstanceStatuses() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<List<InstanceStatus>>() {}.getType();
-        return this.APICall("ADSModule/GetInstanceStatuses", args, type);
+        return this.APICall("ADSModule/GetInstanceStatuses", type);
     }
 
     /**
      * Name Description Optional
-     * @param ForceIncludeSelf 
-     * @return List<IADSInstance>
+     *
+     * @param ForceIncludeSelf
+     * @return List&lt;IADSInstance&gt;
      */
     public List<IADSInstance> GetInstances(@Nullable Boolean ForceIncludeSelf) {
         Map<String, Object> args = new HashMap<>();
@@ -412,19 +495,19 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-
-     * @return List<InstanceSummary>
+     *
+     * @return List&lt;InstanceSummary&gt;
      */
     public List<InstanceSummary> GetLocalInstances() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<List<InstanceSummary>>() {}.getType();
-        return this.APICall("ADSModule/GetLocalInstances", args, type);
+        return this.APICall("ADSModule/GetLocalInstances", type);
     }
 
     /**
      * Name Description Optional
-     * @param ModuleName 
-     * @return List<ProvisionSettingInfo>
+     *
+     * @param ModuleName
+     * @return List&lt;ProvisionSettingInfo&gt;
      */
     public List<ProvisionSettingInfo> GetProvisionArguments(String ModuleName) {
         Map<String, Object> args = new HashMap<>();
@@ -435,56 +518,54 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-
+     *
      * @return ProvisionFitness
      */
     public ProvisionFitness GetProvisionFitness() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<ProvisionFitness>() {}.getType();
-        return this.APICall("ADSModule/GetProvisionFitness", args, type);
+        return this.APICall("ADSModule/GetProvisionFitness", type);
     }
 
     /**
      * Name Description Optional
-
-     * @return List<ApplicationSpecSummary>
+     *
+     * @return List&lt;ApplicationSpecSummary&gt;
      */
     public List<ApplicationSpecSummary> GetSupportedAppSummaries() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<List<ApplicationSpecSummary>>() {}.getType();
-        return this.APICall("ADSModule/GetSupportedAppSummaries", args, type);
+        return this.APICall("ADSModule/GetSupportedAppSummaries", type);
     }
 
     /**
      * Name Description Optional
-
-     * @return List<ApplicationSpec>
+     *
+     * @return List&lt;ApplicationSpec&gt;
      */
     public List<ApplicationSpec> GetSupportedApplications() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<List<ApplicationSpec>>() {}.getType();
-        return this.APICall("ADSModule/GetSupportedApplications", args, type);
+        return this.APICall("ADSModule/GetSupportedApplications", type);
     }
 
     /**
      * Name Description Optional
-
+     *
      * @return RemoteTargetInfo
      */
     public RemoteTargetInfo GetTargetInfo() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<RemoteTargetInfo>() {}.getType();
-        return this.APICall("ADSModule/GetTargetInfo", args, type);
+        return this.APICall("ADSModule/GetTargetInfo", type);
     }
 
     /**
      * Name Description Optional
-     * @param ForModule 
-     * @param SettingNode 
-     * @param Values 
+     *
+     * @param ForModule
+     * @param SettingNode
+     * @param Values
      * @return ActionResult
      */
-    public ActionResult HandoutInstanceConfigs(String ForModule, String SettingNode, List<String> Values) {
+    public ActionResult HandoutInstanceConfigs(
+            String ForModule, String SettingNode, List<String> Values) {
         Map<String, Object> args = new HashMap<>();
         args.put("ForModule", ForModule);
         args.put("SettingNode", SettingNode);
@@ -495,8 +576,9 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceId 
-     * @return ActionResult<String>
+     *
+     * @param InstanceId
+     * @return ActionResult&lt;String&gt;
      */
     public ActionResult<String> ManageInstance(UUID InstanceId) {
         Map<String, Object> args = new HashMap<>();
@@ -507,15 +589,22 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param instanceId 
-     * @param PortNumber 
-     * @param Range 
-     * @param Protocol 
-     * @param Description 
-     * @param Open 
+     *
+     * @param instanceId
+     * @param PortNumber
+     * @param Range
+     * @param Protocol
+     * @param Description
+     * @param Open
      * @return ActionResult
      */
-    public ActionResult ModifyCustomFirewallRule(UUID instanceId, Integer PortNumber, Integer Range, PortProtocol Protocol, String Description, Boolean Open) {
+    public ActionResult ModifyCustomFirewallRule(
+            UUID instanceId,
+            Integer PortNumber,
+            Integer Range,
+            PortProtocol Protocol,
+            String Description,
+            Boolean Open) {
         Map<String, Object> args = new HashMap<>();
         args.put("instanceId", instanceId);
         args.put("PortNumber", PortNumber);
@@ -529,8 +618,9 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param instanceId 
-     * @param datastoreId 
+     *
+     * @param instanceId
+     * @param datastoreId
      * @return RunningTask
      */
     public RunningTask MoveInstanceDatastore(UUID instanceId, Integer datastoreId) {
@@ -543,7 +633,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param instanceId 
+     *
+     * @param instanceId
      * @return RunningTask
      */
     public RunningTask ReactivateInstance(UUID instanceId) {
@@ -555,29 +646,23 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-
+     *
      * @return RunningTask
      */
     public RunningTask ReactivateLocalInstances() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<RunningTask>() {}.getType();
-        return this.APICall("ADSModule/ReactivateLocalInstances", args, type);
+        return this.APICall("ADSModule/ReactivateLocalInstances", type);
+    }
+
+    /** */
+    public void RefreshAppCache() {
+        this.APICall("ADSModule/RefreshAppCache");
     }
 
     /**
      * Name Description Optional
-
-     * @return Void
-     */
-    public Void RefreshAppCache() {
-        Map<String, Object> args = new HashMap<>();
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("ADSModule/RefreshAppCache", args, type);
-    }
-
-    /**
-     * Name Description Optional
-     * @param GroupId 
+     *
+     * @param GroupId
      * @return ActionResult
      */
     public ActionResult RefreshGroup(UUID GroupId) {
@@ -589,7 +674,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceId 
+     *
+     * @param InstanceId
      * @return ActionResult
      */
     public ActionResult RefreshInstanceConfig(String InstanceId) {
@@ -601,27 +687,33 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param force 
-     * @return Void
+     *
+     * @param force
      */
-    public Void RefreshRemoteConfigStores(@Nullable Boolean force) {
+    public void RefreshRemoteConfigStores(@Nullable Boolean force) {
         Map<String, Object> args = new HashMap<>();
         args.put("force", force);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("ADSModule/RefreshRemoteConfigStores", args, type);
+        this.APICall("ADSModule/RefreshRemoteConfigStores", args);
     }
 
     /**
      * Name Description Optional
-     * @param controllerUrl 
-     * @param myUrl 
-     * @param username 
-     * @param password 
-     * @param twoFactorToken 
-     * @param friendlyName 
+     *
+     * @param controllerUrl
+     * @param myUrl
+     * @param username
+     * @param password
+     * @param twoFactorToken
+     * @param friendlyName
      * @return ActionResult
      */
-    public ActionResult RegisterTarget(String controllerUrl, String myUrl, String username, String password, String twoFactorToken, String friendlyName) {
+    public ActionResult RegisterTarget(
+            String controllerUrl,
+            String myUrl,
+            String username,
+            String password,
+            String twoFactorToken,
+            String friendlyName) {
         Map<String, Object> args = new HashMap<>();
         args.put("controllerUrl", controllerUrl);
         args.put("myUrl", myUrl);
@@ -635,7 +727,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param id 
+     *
+     * @param id
      * @return RunningTask
      */
     public RunningTask RepairDatastore(Integer id) {
@@ -647,7 +740,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param datastoreId 
+     *
+     * @param datastoreId
      * @return RunningTask
      */
     public RunningTask RequestDatastoreSizeCalculation(Integer datastoreId) {
@@ -659,7 +753,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceName 
+     *
+     * @param InstanceName
      * @return ActionResult
      */
     public ActionResult RestartInstance(String InstanceName) {
@@ -671,9 +766,10 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param Data 
-     * @param RealIP 
-     * @return Map<String, Object>
+     *
+     * @param Data
+     * @param RealIP
+     * @return Map&lt;String, Object&gt;
      */
     public Map<String, Object> Servers(Map<String, Object> Data, InetAddress RealIP) {
         Map<String, Object> args = new HashMap<>();
@@ -685,9 +781,10 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceName 
-     * @param SettingNode 
-     * @param Value 
+     *
+     * @param InstanceName
+     * @param SettingNode
+     * @param Value
      * @return ActionResult
      */
     public ActionResult SetInstanceConfig(String InstanceName, String SettingNode, String Value) {
@@ -701,8 +798,9 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceId 
-     * @param PortMappings 
+     *
+     * @param InstanceId
+     * @param PortMappings
      * @return ActionResult
      */
     public ActionResult SetInstanceNetworkInfo(UUID InstanceId, Map<String, Integer> PortMappings) {
@@ -715,8 +813,9 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceName 
-     * @param Suspended 
+     *
+     * @param InstanceName
+     * @param Suspended
      * @return ActionResult
      */
     public ActionResult SetInstanceSuspended(String InstanceName, Boolean Suspended) {
@@ -729,7 +828,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param TargetADSInstance 
+     *
+     * @param TargetADSInstance
      * @return ActionResult
      */
     public ActionResult StartAllInstances(UUID TargetADSInstance) {
@@ -741,7 +841,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceName 
+     *
+     * @param InstanceName
      * @return ActionResult
      */
     public ActionResult StartInstance(String InstanceName) {
@@ -753,7 +854,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param TargetADSInstance 
+     *
+     * @param TargetADSInstance
      * @return ActionResult
      */
     public ActionResult StopAllInstances(UUID TargetADSInstance) {
@@ -765,7 +867,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceName 
+     *
+     * @param InstanceName
      * @return ActionResult
      */
     public ActionResult StopInstance(String InstanceName) {
@@ -777,13 +880,15 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param url 
-     * @param username 
-     * @param password 
-     * @param twoFactorToken 
+     *
+     * @param url
+     * @param username
+     * @param password
+     * @param twoFactorToken
      * @return ActionResult
      */
-    public ActionResult TestADSLoginDetails(String url, String username, String password, String twoFactorToken) {
+    public ActionResult TestADSLoginDetails(
+            String url, String username, String password, String twoFactorToken) {
         Map<String, Object> args = new HashMap<>();
         args.put("url", url);
         args.put("username", username);
@@ -795,7 +900,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param updatedDatastore 
+     *
+     * @param updatedDatastore
      * @return ActionResult
      */
     public ActionResult UpdateDatastore(InstanceDatastore updatedDatastore) {
@@ -807,7 +913,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param templateToUpdate 
+     *
+     * @param templateToUpdate
      * @return ActionResult
      */
     public ActionResult UpdateDeploymentTemplate(DeploymentTemplate templateToUpdate) {
@@ -819,22 +926,36 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceId 
-     * @param FriendlyName 
-     * @param Description 
-     * @param StartOnBoot 
-     * @param Suspended 
-     * @param ExcludeFromFirewall 
-     * @param RunInContainer 
-     * @param ContainerMemory 
-     * @param MemoryPolicy 
-     * @param ContainerMaxCPU 
-     * @param ContainerImage 
-     * @param ContainerSwap 
-     * @param WelcomeMessage 
+     *
+     * @param InstanceId
+     * @param FriendlyName
+     * @param Description
+     * @param StartOnBoot
+     * @param Suspended
+     * @param ExcludeFromFirewall
+     * @param RunInContainer
+     * @param ContainerMemory
+     * @param MemoryPolicy
+     * @param ContainerMaxCPU
+     * @param ContainerImage
+     * @param ContainerSwap
+     * @param WelcomeMessage
      * @return ActionResult
      */
-    public ActionResult UpdateInstanceInfo(String InstanceId, String FriendlyName, String Description, Boolean StartOnBoot, Boolean Suspended, Boolean ExcludeFromFirewall, Boolean RunInContainer, Integer ContainerMemory, ContainerMemoryPolicy MemoryPolicy, Float ContainerMaxCPU, String ContainerImage, Integer ContainerSwap, @Nullable String WelcomeMessage) {
+    public ActionResult UpdateInstanceInfo(
+            String InstanceId,
+            String FriendlyName,
+            String Description,
+            Boolean StartOnBoot,
+            Boolean Suspended,
+            Boolean ExcludeFromFirewall,
+            Boolean RunInContainer,
+            Integer ContainerMemory,
+            ContainerMemoryPolicy MemoryPolicy,
+            Float ContainerMaxCPU,
+            String ContainerImage,
+            Integer ContainerSwap,
+            @Nullable String WelcomeMessage) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceId", InstanceId);
         args.put("FriendlyName", FriendlyName);
@@ -855,26 +976,27 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param TargetID 
-     * @return Void
+     *
+     * @param TargetID
      */
-    public Void UpdateTarget(UUID TargetID) {
+    public void UpdateTarget(UUID TargetID) {
         Map<String, Object> args = new HashMap<>();
         args.put("TargetID", TargetID);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("ADSModule/UpdateTarget", args, type);
+        this.APICall("ADSModule/UpdateTarget", args);
     }
 
     /**
      * Name Description Optional
-     * @param Id 
-     * @param FriendlyName 
-     * @param Url 
-     * @param Description 
-     * @param Tags 
+     *
+     * @param Id
+     * @param FriendlyName
+     * @param Url
+     * @param Description
+     * @param Tags
      * @return ActionResult
      */
-    public ActionResult UpdateTargetInfo(UUID Id, String FriendlyName, URI Url, String Description, List<String> Tags) {
+    public ActionResult UpdateTargetInfo(
+            UUID Id, String FriendlyName, URI Url, String Description, List<String> Tags) {
         Map<String, Object> args = new HashMap<>();
         args.put("Id", Id);
         args.put("FriendlyName", FriendlyName);
@@ -887,8 +1009,9 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param RestartRunning 
-     * @param TargetADSInstance 
+     *
+     * @param RestartRunning
+     * @param TargetADSInstance
      * @return ActionResult
      */
     public ActionResult UpgradeAllInstances(Boolean RestartRunning, UUID TargetADSInstance) {
@@ -901,7 +1024,8 @@ public final class ADSModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param InstanceName 
+     *
+     * @param InstanceName
      * @return ActionResult
      */
     public ActionResult UpgradeInstance(String InstanceName) {
@@ -910,6 +1034,4 @@ public final class ADSModule extends AMPAPI {
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("ADSModule/UpgradeInstance", args, type);
     }
-
-
 }

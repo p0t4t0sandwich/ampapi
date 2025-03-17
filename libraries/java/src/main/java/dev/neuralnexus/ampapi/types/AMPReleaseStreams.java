@@ -1,23 +1,15 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
-
 /**
- * Represents the AMP release streams
- * NotSpecified: Not specified
- * LTS: LTS
- * Mainline: Mainline
- * Preview: Preview
- * Development: Development
- * FastTrack: Fast track
- * Nightly: Nightly
- * Bleeding: Bleeding
+ * Represents the AMP release streams NotSpecified: Not specified LTS: LTS Mainline: Mainline
+ * Preview: Preview Development: Development FastTrack: Fast track Nightly: Nightly Bleeding:
+ * Bleeding
  */
 public enum AMPReleaseStreams {
     @SerializedName("0")

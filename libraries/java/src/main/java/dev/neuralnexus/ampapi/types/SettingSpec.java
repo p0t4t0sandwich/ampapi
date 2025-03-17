@@ -1,15 +1,16 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.UUID;
 
 /**
  * A setting specification object
+ *
  * @param Actions The actions
  * @param AlwaysAllowRead Whether the setting is always allowed to be read
  * @param Attributes The attributes
@@ -39,4 +40,32 @@ import java.util.UUID;
  * @param MinValue The min value
  * @param SelectionSource The selection source
  */
-public record SettingSpec(List<InlineActionAttribute> Actions, Boolean AlwaysAllowRead, Object Attributes, String Category, Object CurrentValue, String Description, Boolean EnumValuesAreDeferred, String InputType, Boolean IsProvisionSpec, String Keywords, Integer MaxLength, String Meta, String Name, String Node, Integer Order, String Placeholder, Boolean ReadOnly, Boolean ReadOnlyProvision, Boolean Required, Boolean RequiresRestart, String Subcategory, String Suffix, String Tag, String ValType, Optional<Map<String, String>> EnumValues, Optional<Float> MaxValue, Optional<Float> MinValue, Optional<StringSelectionSourceAttribute> SelectionSource) {}
+public record SettingSpec(
+        List<InlineActionAttribute> Actions,
+        Boolean AlwaysAllowRead,
+        Object Attributes,
+        String Category,
+        Object CurrentValue,
+        String Description,
+        Boolean EnumValuesAreDeferred,
+        String InputType,
+        Boolean IsProvisionSpec,
+        String Keywords,
+        Integer MaxLength,
+        String Meta,
+        String Name,
+        String Node,
+        Integer Order,
+        String Placeholder,
+        Boolean ReadOnly,
+        Boolean ReadOnlyProvision,
+        Boolean Required,
+        Boolean RequiresRestart,
+        String Subcategory,
+        String Suffix,
+        String Tag,
+        String ValType,
+        Optional<Map<String, String>> EnumValues,
+        Optional<Float> MaxValue,
+        Optional<Float> MinValue,
+        Optional<StringSelectionSourceAttribute> SelectionSource) {}

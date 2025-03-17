@@ -1,20 +1,19 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.plugins;
 
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.types.*;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
-
-import org.jetbrains.annotations.Nullable;
+import dev.neuralnexus.ampapi.types.*;
 
 import java.lang.reflect.Type;
-import java.net.InetAddress;
-import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 public final class MinecraftModule extends AMPAPI {
     public MinecraftModule(AuthProvider authprovider) {
@@ -23,18 +22,18 @@ public final class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-
+     *
      * @return Boolean
      */
     public Boolean AcceptEULA() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<Boolean>() {}.getType();
-        return this.APICall("MinecraftModule/AcceptEULA", args, type);
+        return this.APICall("MinecraftModule/AcceptEULA", type);
     }
 
     /**
      * Name Description Optional
-     * @param UserOrUUID 
+     *
+     * @param UserOrUUID
      * @return ActionResult
      */
     public ActionResult AddOPEntry(String UserOrUUID) {
@@ -46,7 +45,8 @@ public final class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param UserOrUUID 
+     *
+     * @param UserOrUUID
      * @return ActionResult
      */
     public ActionResult AddToWhitelist(String UserOrUUID) {
@@ -58,30 +58,29 @@ public final class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param ID 
-     * @return Void
+     *
+     * @param ID
      */
-    public Void BanUserByID(String ID) {
+    public void BanUserByID(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("MinecraftModule/BanUserByID", args, type);
+        this.APICall("MinecraftModule/BanUserByID", args);
     }
 
     /**
      * Name Description Optional
-
-     * @return Map<String, Object>
+     *
+     * @return Map&lt;String, Object&gt;
      */
     public Map<String, Object> BukGetCategories() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<Map<String, Object>>() {}.getType();
-        return this.APICall("MinecraftModule/BukGetCategories", args, type);
+        return this.APICall("MinecraftModule/BukGetCategories", type);
     }
 
     /**
      * Name Description Optional
-     * @param pluginId 
+     *
+     * @param pluginId
      * @return RunningTask
      */
     public RunningTask BukGetInstallUpdatePlugin(Integer pluginId) {
@@ -93,19 +92,19 @@ public final class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-
-     * @return Map<String, Object>
+     *
+     * @return Map&lt;String, Object&gt;
      */
     public Map<String, Object> BukGetInstalledPlugins() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<Map<String, Object>>() {}.getType();
-        return this.APICall("MinecraftModule/BukGetInstalledPlugins", args, type);
+        return this.APICall("MinecraftModule/BukGetInstalledPlugins", type);
     }
 
     /**
      * Name Description Optional
-     * @param PluginId 
-     * @return Map<String, Object>
+     *
+     * @param PluginId
+     * @return Map&lt;String, Object&gt;
      */
     public Map<String, Object> BukGetPluginInfo(Integer PluginId) {
         Map<String, Object> args = new HashMap<>();
@@ -116,12 +115,14 @@ public final class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param CategoryId 
-     * @param PageNumber 
-     * @param PageSize 
-     * @return Map<String, Object>
+     *
+     * @param CategoryId
+     * @param PageNumber
+     * @param PageSize
+     * @return Map&lt;String, Object&gt;
      */
-    public Map<String, Object> BukGetPluginsForCategory(String CategoryId, Integer PageNumber, Integer PageSize) {
+    public Map<String, Object> BukGetPluginsForCategory(
+            String CategoryId, Integer PageNumber, Integer PageSize) {
         Map<String, Object> args = new HashMap<>();
         args.put("CategoryId", CategoryId);
         args.put("PageNumber", PageNumber);
@@ -132,33 +133,32 @@ public final class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-
-     * @return Map<String, Object>
+     *
+     * @return Map&lt;String, Object&gt;
      */
     public Map<String, Object> BukGetPopularPlugins() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<Map<String, Object>>() {}.getType();
-        return this.APICall("MinecraftModule/BukGetPopularPlugins", args, type);
+        return this.APICall("MinecraftModule/BukGetPopularPlugins", type);
     }
 
     /**
      * Name Description Optional
-     * @param PluginId 
-     * @return Void
+     *
+     * @param PluginId
      */
-    public Void BukGetRemovePlugin(Integer PluginId) {
+    public void BukGetRemovePlugin(Integer PluginId) {
         Map<String, Object> args = new HashMap<>();
         args.put("PluginId", PluginId);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("MinecraftModule/BukGetRemovePlugin", args, type);
+        this.APICall("MinecraftModule/BukGetRemovePlugin", args);
     }
 
     /**
      * Name Description Optional
-     * @param Query 
-     * @param PageNumber 
-     * @param PageSize 
-     * @return Map<String, Object>
+     *
+     * @param Query
+     * @param PageNumber
+     * @param PageSize
+     * @return Map&lt;String, Object&gt;
      */
     public Map<String, Object> BukGetSearch(String Query, Integer PageNumber, Integer PageSize) {
         Map<String, Object> args = new HashMap<>();
@@ -171,30 +171,29 @@ public final class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-     * @param ID 
-     * @return Void
+     *
+     * @param ID
      */
-    public Void ClearInventoryByID(String ID) {
+    public void ClearInventoryByID(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("MinecraftModule/ClearInventoryByID", args, type);
+        this.APICall("MinecraftModule/ClearInventoryByID", args);
     }
 
     /**
      * Name Description Optional
-
+     *
      * @return String
      */
     public String GetFailureReason() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<String>() {}.getType();
-        return this.APICall("MinecraftModule/GetFailureReason", args, type);
+        return this.APICall("MinecraftModule/GetFailureReason", type);
     }
 
-    /**Get a skin as a base64 string
-     * Name Description Optional
-     * @param id 
+    /**
+     * Get a skin as a base64 string Name Description Optional
+     *
+     * @param id
      * @return String
      */
     public String GetHeadByUUID(String id) {
@@ -206,96 +205,86 @@ public final class MinecraftModule extends AMPAPI {
 
     /**
      * Name Description Optional
-
+     *
      * @return UserAccessData
      */
     public UserAccessData GetOPWhitelist() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<UserAccessData>() {}.getType();
-        return this.APICall("MinecraftModule/GetOPWhitelist", args, type);
+        return this.APICall("MinecraftModule/GetOPWhitelist", type);
     }
 
     /**
      * Name Description Optional
-
-     * @return List<WhitelistEntry>
+     *
+     * @return List&lt;WhitelistEntry&gt;
      */
     public List<WhitelistEntry> GetWhitelist() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<List<WhitelistEntry>>() {}.getType();
-        return this.APICall("MinecraftModule/GetWhitelist", args, type);
+        return this.APICall("MinecraftModule/GetWhitelist", type);
     }
 
     /**
      * Name Description Optional
-     * @param ID 
-     * @return Void
+     *
+     * @param ID
      */
-    public Void KickUserByID(String ID) {
+    public void KickUserByID(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("MinecraftModule/KickUserByID", args, type);
+        this.APICall("MinecraftModule/KickUserByID", args);
     }
 
     /**
      * Name Description Optional
-     * @param ID 
-     * @return Void
+     *
+     * @param ID
      */
-    public Void KillByID(String ID) {
+    public void KillByID(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("MinecraftModule/KillByID", args, type);
+        this.APICall("MinecraftModule/KillByID", args);
     }
 
     /**
      * Name Description Optional
-
-     * @return List<OPEntry>
+     *
+     * @return List&lt;OPEntry&gt;
      */
     public List<OPEntry> LoadOPList() {
-        Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<List<OPEntry>>() {}.getType();
-        return this.APICall("MinecraftModule/LoadOPList", args, type);
+        return this.APICall("MinecraftModule/LoadOPList", type);
     }
 
     /**
      * Name Description Optional
-     * @param UserOrUUID 
-     * @return Void
+     *
+     * @param UserOrUUID
      */
-    public Void RemoveOPEntry(String UserOrUUID) {
+    public void RemoveOPEntry(String UserOrUUID) {
         Map<String, Object> args = new HashMap<>();
         args.put("UserOrUUID", UserOrUUID);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("MinecraftModule/RemoveOPEntry", args, type);
+        this.APICall("MinecraftModule/RemoveOPEntry", args);
     }
 
     /**
      * Name Description Optional
-     * @param UserOrUUID 
-     * @return Void
+     *
+     * @param UserOrUUID
      */
-    public Void RemoveWhitelistEntry(String UserOrUUID) {
+    public void RemoveWhitelistEntry(String UserOrUUID) {
         Map<String, Object> args = new HashMap<>();
         args.put("UserOrUUID", UserOrUUID);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("MinecraftModule/RemoveWhitelistEntry", args, type);
+        this.APICall("MinecraftModule/RemoveWhitelistEntry", args);
     }
 
-    /**Strike a player with lightning
-     * Name Description Optional
-     * @param ID 
-     * @return Void
+    /**
+     * Strike a player with lightning Name Description Optional
+     *
+     * @param ID
      */
-    public Void SmiteByID(String ID) {
+    public void SmiteByID(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
-        Type type = new TypeToken<Void>() {}.getType();
-        return this.APICall("MinecraftModule/SmiteByID", args, type);
+        this.APICall("MinecraftModule/SmiteByID", args);
     }
-
-
 }

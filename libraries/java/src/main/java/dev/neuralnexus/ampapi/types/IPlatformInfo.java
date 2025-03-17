@@ -1,15 +1,12 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
 
 /**
  * Platform information object
+ *
  * @param CPUInfo The CPU information object
  * @param DockerNetworkIsHostMode Whether the Docker network is in host mode
  * @param InstalledRAMMB The installed RAM in MB
@@ -18,4 +15,11 @@ import java.util.UUID;
  * @param SystemType The system type
  * @param Virtualization The virtualization type
  */
-public record IPlatformInfo(ProcessorInfo CPUInfo, Boolean DockerNetworkIsHostMode, Integer InstalledRAMMB, SupportedOS OS, String PlatformName, Architecture SystemType, VirtualizationType Virtualization) {}
+public record IPlatformInfo(
+        ProcessorInfo CPUInfo,
+        Boolean DockerNetworkIsHostMode,
+        Integer InstalledRAMMB,
+        SupportedOS OS,
+        String PlatformName,
+        Architecture SystemType,
+        VirtualizationType Virtualization) {}

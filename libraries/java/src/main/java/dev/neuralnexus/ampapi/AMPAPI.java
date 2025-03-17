@@ -1,6 +1,6 @@
 /**
- * Copyright (c) 2024 Dylan Sperrer - dylan@sperrer.ca
- * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi-java/blob/main/LICENSE">MIT</a>
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
  */
 package dev.neuralnexus.ampapi;
 
@@ -23,5 +23,17 @@ public class AMPAPI {
 
     public <T> T APICall(String endpoint, Map<String, Object> args, Type returnType) {
         return this.authProvider.APICall(endpoint, args, returnType);
+    }
+
+    public <T> T APICall(String endpoint, Type returnType) {
+        return this.authProvider.APICall(endpoint, returnType);
+    }
+
+    public void APICall(String endpoint, Map<String, Object> args) {
+        this.authProvider.APICall(endpoint, args);
+    }
+
+    public void APICall(String endpoint) {
+        this.authProvider.APICall(endpoint);
     }
 }

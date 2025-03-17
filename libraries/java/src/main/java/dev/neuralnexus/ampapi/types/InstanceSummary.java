@@ -1,15 +1,16 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
-import com.google.gson.annotations.SerializedName;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 /**
  * An instance object
+ *
  * @param AMPVersion The AMP version
  * @param AppState The application state
  * @param ApplicationEndpoints The application endpoints
@@ -44,4 +45,37 @@ import java.util.UUID;
  * @param UseHostModeNetwork Whether the container uses host mode network
  * @param WelcomeMessage The instance's welcome message
  */
-public record InstanceSummary(String AMPVersion, ApplicationState AppState, List<EndpointInfo> ApplicationEndpoints, Float ContainerCPUs, Integer ContainerMemoryMB, ContainerMemoryPolicy ContainerMemoryPolicy, Integer ContainerSwapMB, Boolean Daemon, Boolean DaemonAutostart, Map<String, String> DeploymentArgs, String Description, Integer DiskUsageMB, String DisplayImageSource, Boolean ExcludeFromFirewall, String FriendlyName, String IP, UUID InstanceID, String InstanceName, Boolean IsContainerInstance, Boolean IsHTTPS, ManagementModes ManagementMode, Map<String, MetricInfo> Metrics, String Module, String ModuleDisplayName, Integer Port, AMPReleaseStreams ReleaseStream, Boolean Running, String SpecificDockerImage, Boolean Suspended, List<String> Tags, UUID TargetID, Boolean UseHostModeNetwork, String WelcomeMessage) {}
+public record InstanceSummary(
+        String AMPVersion,
+        ApplicationState AppState,
+        List<EndpointInfo> ApplicationEndpoints,
+        Float ContainerCPUs,
+        Integer ContainerMemoryMB,
+        ContainerMemoryPolicy ContainerMemoryPolicy,
+        Integer ContainerSwapMB,
+        Boolean Daemon,
+        Boolean DaemonAutostart,
+        Map<String, String> DeploymentArgs,
+        String Description,
+        Integer DiskUsageMB,
+        String DisplayImageSource,
+        Boolean ExcludeFromFirewall,
+        String FriendlyName,
+        String IP,
+        UUID InstanceID,
+        String InstanceName,
+        Boolean IsContainerInstance,
+        Boolean IsHTTPS,
+        ManagementModes ManagementMode,
+        Map<String, MetricInfo> Metrics,
+        String Module,
+        String ModuleDisplayName,
+        Integer Port,
+        AMPReleaseStreams ReleaseStream,
+        Boolean Running,
+        String SpecificDockerImage,
+        Boolean Suspended,
+        List<String> Tags,
+        UUID TargetID,
+        Boolean UseHostModeNetwork,
+        String WelcomeMessage) {}

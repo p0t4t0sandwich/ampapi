@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "dev.neuralnexus"
-version = "1.3.0"
+version = "2612.3.0"
 
 repositories {
     mavenCentral()
@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     compileOnly("org.jetbrains:annotations:24.1.0")
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.code.gson:gson:2.12.1")
 }
 
 tasks.named<DowngradeJar>("downgradeJar") {
@@ -55,6 +55,7 @@ tasks.withType<JavaCompile>().configureEach {
 
 java {
     withSourcesJar()
+    withJavadocJar()
     val javaVersion = JavaVersion.toVersion(21)
     sourceCompatibility = javaVersion
     targetCompatibility = javaVersion
@@ -65,6 +66,17 @@ java {
 
 tasks.downgradeJar {
     dependsOn(tasks.spotlessApply)
+}
+
+tasks.shadeDowngradedApi {
+    downgradeTo = JavaVersion.VERSION_1_8
+    shadePath = {
+        it.substringBefore(".")
+            .substringBeforeLast("-")
+            .replace(Regex("[.;\\[/]"), "-")
+            .replace("ampapi", "dev/neuralnexus/ampapi/jvmdg")
+    }
+    archiveClassifier.set("downgraded-8-shaded")
 }
 
 tasks.assemble {
@@ -96,7 +108,8 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
-            artifact(tasks["downgradeJar"])
+            artifact(tasks.downgradeJar.get())
+            artifact(tasks.shadeDowngradedApi.get())
         }
     }
 }

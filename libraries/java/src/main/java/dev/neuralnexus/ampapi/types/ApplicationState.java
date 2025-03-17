@@ -1,33 +1,23 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
 package dev.neuralnexus.ampapi.types;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.UUID;
-
 /**
- * Represents the state of an instance's application
- * Undefined: Undefined
- * Stopped: Stopped
- * PreStart: The server is performing some first-time-start configuration.
- * Configuring: The server is performing some first-time-start configuration.
- * Starting: Starting
- * Ready: Ready
- * Restarting: Server is in the middle of stopping, but once shutdown has finished it will automatically restart.
- * Stopping: Stopping
- * PreparingForSleep: Preparing for sleep
- * Sleeping: The application should be able to be resumed quickly if using this state. Otherwise use Stopped.
- * Waiting: The application is waiting for some external service/application to respond/become available.
- * Installing: Installing
- * Updating: Updating
- * AwaitingUserInput: Used during installation, means that some user input is required to complete setup (authentication etc).
- * Failed: Failed
- * Suspended: Suspended
- * Maintainence: Maintainence
- * Indeterminate: The state is unknown, or doesn't apply (for modules that don't start an external process)
+ * Represents the state of an instance's application Undefined: Undefined Stopped: Stopped PreStart:
+ * The server is performing some first-time-start configuration. Configuring: The server is
+ * performing some first-time-start configuration. Starting: Starting Ready: Ready Restarting:
+ * Server is in the middle of stopping, but once shutdown has finished it will automatically
+ * restart. Stopping: Stopping PreparingForSleep: Preparing for sleep Sleeping: The application
+ * should be able to be resumed quickly if using this state. Otherwise use Stopped. Waiting: The
+ * application is waiting for some external service/application to respond/become available.
+ * Installing: Installing Updating: Updating AwaitingUserInput: Used during installation, means that
+ * some user input is required to complete setup (authentication etc). Failed: Failed Suspended:
+ * Suspended Maintainence: Maintainence Indeterminate: The state is unknown, or doesn't apply (for
+ * modules that don't start an external process)
  */
 public enum ApplicationState {
     @SerializedName("-1")
