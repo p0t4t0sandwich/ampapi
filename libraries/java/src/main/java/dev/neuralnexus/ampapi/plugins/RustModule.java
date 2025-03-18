@@ -17,7 +17,7 @@ public final class RustModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ID
      */
@@ -28,7 +28,7 @@ public final class RustModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ID
      */
@@ -38,12 +38,12 @@ public final class RustModule extends AMPAPI {
         this.APICall("RustModule/Kick", args);
     }
 
-    /** */
+    /** Name Description */
     public void WipeBlueprints() {
         this.APICall("RustModule/WipeBlueprints");
     }
 
-    /** */
+    /** Name Description */
     public void WipeMap() {
         this.APICall("RustModule/WipeMap");
     }

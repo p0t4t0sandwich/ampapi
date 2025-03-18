@@ -16,13 +16,13 @@ public final class steamcmdplugin extends AMPAPI {
         super(authprovider);
     }
 
-    /** */
+    /** Name Description */
     public void CancelSteamGuard() {
         this.APICall("steamcmdplugin/CancelSteamGuard");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param code
      */
@@ -33,7 +33,7 @@ public final class steamcmdplugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param username
      * @param password

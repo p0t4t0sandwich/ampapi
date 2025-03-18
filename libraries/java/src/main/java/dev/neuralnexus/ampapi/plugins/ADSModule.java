@@ -26,7 +26,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param newDatastore
      * @return ActionResult
@@ -39,7 +39,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceID
      * @param Args
@@ -59,7 +59,7 @@ public final class ADSModule extends AMPAPI {
     /**
      * Overlays an existing template on an existing instance. Used to perform package
      * reconfigurations. Do not use this to 'transform' an existing application into another. The
-     * instance should be deleted and re-created in that situation. Name Description Optional
+     * instance should be deleted and re-created in that situation. Name Description
      *
      * @param InstanceID
      * @param TemplateID
@@ -85,7 +85,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Friendly
      * @param IsHTTPS
@@ -107,7 +107,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Id
      * @param NewName
@@ -122,7 +122,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Name
      * @return ActionResult
@@ -135,7 +135,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TargetADSInstance
      * @param NewInstanceId
@@ -192,7 +192,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param SpecId
      * @param TargetADSInstance
@@ -221,7 +221,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Instance
      * @param PostCreate
@@ -237,7 +237,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param id
      * @return ActionResult
@@ -250,7 +250,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Id
      * @return ActionResult
@@ -263,7 +263,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceName
      * @return RunningTask
@@ -276,7 +276,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceId
      * @return ActionResult
@@ -289,7 +289,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TemplateID The ID of the template to be deployed, as per the Template Management UI in
      *     AMP itself.
@@ -347,7 +347,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Id
      * @return ActionResult
@@ -360,7 +360,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param SourceArchive
      * @return ActionResult
@@ -373,7 +373,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param instanceId
      * @return List&lt;EndpointInfo&gt;
@@ -386,7 +386,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param id
      * @return InstanceDatastore
@@ -399,7 +399,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param datastoreId
      * @return List&lt;InstanceSummary&gt;
@@ -412,7 +412,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;InstanceDatastore&gt;
      */
@@ -422,7 +422,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;DeploymentTemplate&gt;
      */
@@ -432,7 +432,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param GroupId
      * @return IADSInstance
@@ -445,7 +445,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceId
      * @return InstanceSummary
@@ -458,7 +458,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceName
      * @return List&lt;PortUsage&gt;
@@ -471,7 +471,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;InstanceStatus&gt;
      */
@@ -481,7 +481,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ForceIncludeSelf
      * @return List&lt;IADSInstance&gt;
@@ -494,7 +494,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;InstanceSummary&gt;
      */
@@ -504,7 +504,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ModuleName
      * @return List&lt;ProvisionSettingInfo&gt;
@@ -517,7 +517,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ProvisionFitness
      */
@@ -527,7 +527,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;ApplicationSpecSummary&gt;
      */
@@ -537,7 +537,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;ApplicationSpec&gt;
      */
@@ -547,7 +547,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return RemoteTargetInfo
      */
@@ -557,7 +557,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ForModule
      * @param SettingNode
@@ -575,7 +575,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceId
      * @return ActionResult&lt;String&gt;
@@ -588,7 +588,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param instanceId
      * @param PortNumber
@@ -617,7 +617,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param instanceId
      * @param datastoreId
@@ -632,7 +632,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param instanceId
      * @return RunningTask
@@ -645,7 +645,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return RunningTask
      */
@@ -654,13 +654,13 @@ public final class ADSModule extends AMPAPI {
         return this.APICall("ADSModule/ReactivateLocalInstances", type);
     }
 
-    /** */
+    /** Name Description */
     public void RefreshAppCache() {
         this.APICall("ADSModule/RefreshAppCache");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param GroupId
      * @return ActionResult
@@ -673,7 +673,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceId
      * @return ActionResult
@@ -686,7 +686,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param force
      */
@@ -697,7 +697,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param controllerUrl
      * @param myUrl
@@ -726,7 +726,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param id
      * @return RunningTask
@@ -739,7 +739,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param datastoreId
      * @return RunningTask
@@ -752,7 +752,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceName
      * @return ActionResult
@@ -765,7 +765,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Data
      * @param RealIP
@@ -780,7 +780,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceName
      * @param SettingNode
@@ -797,7 +797,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceId
      * @param PortMappings
@@ -812,7 +812,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceName
      * @param Suspended
@@ -827,7 +827,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TargetADSInstance
      * @return ActionResult
@@ -840,7 +840,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceName
      * @return ActionResult
@@ -853,7 +853,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TargetADSInstance
      * @return ActionResult
@@ -866,7 +866,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceName
      * @return ActionResult
@@ -879,7 +879,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param url
      * @param username
@@ -899,7 +899,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param updatedDatastore
      * @return ActionResult
@@ -912,7 +912,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param templateToUpdate
      * @return ActionResult
@@ -925,7 +925,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceId
      * @param FriendlyName
@@ -975,7 +975,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TargetID
      */
@@ -986,7 +986,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Id
      * @param FriendlyName
@@ -1008,7 +1008,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param RestartRunning
      * @param TargetADSInstance
@@ -1023,7 +1023,7 @@ public final class ADSModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceName
      * @return ActionResult

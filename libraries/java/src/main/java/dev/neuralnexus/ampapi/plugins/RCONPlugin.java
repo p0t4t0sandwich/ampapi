@@ -13,7 +13,7 @@ public final class RCONPlugin extends AMPAPI {
         super(authprovider);
     }
 
-    /** */
+    /** Name Description */
     public void Dummy() {
         this.APICall("RCONPlugin/Dummy");
     }

@@ -8,9 +8,15 @@ import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.plugins.*;
 
+/** Module containing all the common plugins. */
 public class CommonAPI extends AMPAPI {
+    /** Core plugin */
     public final Core Core;
+
+    /** EmailSenderPlugin plugin */
     public final EmailSenderPlugin EmailSenderPlugin;
+
+    /** FileManagerPlugin plugin */
     public final FileManagerPlugin FileManagerPlugin;
 
     public CommonAPI(AuthProvider authProvider) {

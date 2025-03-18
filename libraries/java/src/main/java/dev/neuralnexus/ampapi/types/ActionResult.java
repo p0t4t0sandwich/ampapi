@@ -14,6 +14,7 @@ import java.util.Optional;
  * @param SupportTitle Support title
  * @param SupportURL Support URL
  * @param Result Result of the call
+ * @param <T> Type of the result
  */
 public record ActionResult<T>(
         String Reason,

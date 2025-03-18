@@ -18,7 +18,7 @@ public final class EmailSenderPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ActionResult
      */

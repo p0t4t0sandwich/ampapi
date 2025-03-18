@@ -7,13 +7,28 @@ package dev.neuralnexus.ampapi.modules;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.plugins.*;
 
+/** GenericModule Module */
 public class GenericModule extends CommonAPI {
+    /** AnalyticsPlugin plugin */
     public final AnalyticsPlugin AnalyticsPlugin;
+
+    /** GenericModule plugin */
     public final GenericModule GenericModule;
+
+    /** LocalFileBackupPlugin plugin */
     public final LocalFileBackupPlugin LocalFileBackupPlugin;
+
+    /** RCONPlugin plugin */
     public final RCONPlugin RCONPlugin;
+
+    /** steamcmdplugin plugin */
     public final steamcmdplugin steamcmdplugin;
 
+    /**
+     * Constructor
+     *
+     * @param authProvider The AuthProvider to use
+     */
     public GenericModule(AuthProvider authProvider) {
         super(authProvider);
         this.AnalyticsPlugin = new AnalyticsPlugin(authProvider);

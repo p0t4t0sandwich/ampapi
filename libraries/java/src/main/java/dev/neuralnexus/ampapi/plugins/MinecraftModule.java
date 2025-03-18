@@ -21,7 +21,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return Boolean
      */
@@ -31,7 +31,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param UserOrUUID
      * @return ActionResult
@@ -44,7 +44,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param UserOrUUID
      * @return ActionResult
@@ -57,7 +57,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ID
      */
@@ -68,7 +68,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return Map&lt;String, Object&gt;
      */
@@ -78,7 +78,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param pluginId
      * @return RunningTask
@@ -91,7 +91,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return Map&lt;String, Object&gt;
      */
@@ -101,7 +101,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param PluginId
      * @return Map&lt;String, Object&gt;
@@ -114,7 +114,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param CategoryId
      * @param PageNumber
@@ -132,7 +132,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return Map&lt;String, Object&gt;
      */
@@ -142,7 +142,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param PluginId
      */
@@ -153,7 +153,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Query
      * @param PageNumber
@@ -170,7 +170,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ID
      */
@@ -181,7 +181,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return String
      */
@@ -191,7 +191,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Get a skin as a base64 string Name Description Optional
+     * Get a skin as a base64 string Name Description
      *
      * @param id
      * @return String
@@ -204,7 +204,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return UserAccessData
      */
@@ -214,7 +214,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;WhitelistEntry&gt;
      */
@@ -224,7 +224,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ID
      */
@@ -235,7 +235,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ID
      */
@@ -246,7 +246,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;OPEntry&gt;
      */
@@ -256,7 +256,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param UserOrUUID
      */
@@ -267,7 +267,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param UserOrUUID
      */
@@ -278,7 +278,7 @@ public final class MinecraftModule extends AMPAPI {
     }
 
     /**
-     * Strike a player with lightning Name Description Optional
+     * Strike a player with lightning Name Description
      *
      * @param ID
      */

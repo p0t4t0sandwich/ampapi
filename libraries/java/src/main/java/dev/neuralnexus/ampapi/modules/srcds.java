@@ -7,13 +7,28 @@ package dev.neuralnexus.ampapi.modules;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.plugins.*;
 
+/** srcds Module */
 public class srcds extends CommonAPI {
+    /** AnalyticsPlugin plugin */
     public final AnalyticsPlugin AnalyticsPlugin;
+
+    /** LocalFileBackupPlugin plugin */
     public final LocalFileBackupPlugin LocalFileBackupPlugin;
+
+    /** RCONPlugin plugin */
     public final RCONPlugin RCONPlugin;
+
+    /** srcdsModule plugin */
     public final srcdsModule srcdsModule;
+
+    /** steamcmdplugin plugin */
     public final steamcmdplugin steamcmdplugin;
 
+    /**
+     * Constructor
+     *
+     * @param authProvider The AuthProvider to use
+     */
     public srcds(AuthProvider authProvider) {
         super(authProvider);
         this.AnalyticsPlugin = new AnalyticsPlugin(authProvider);

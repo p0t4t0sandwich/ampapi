@@ -20,7 +20,7 @@ public final class GenericModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param filename
      * @return Map&lt;String, String&gt;
@@ -32,7 +32,7 @@ public final class GenericModule extends AMPAPI {
         return this.APICall("GenericModule/ImportConfig", args, type);
     }
 
-    /** */
+    /** Name Description */
     public void ReloadGenericConfig() {
         this.APICall("GenericModule/ReloadGenericConfig");
     }

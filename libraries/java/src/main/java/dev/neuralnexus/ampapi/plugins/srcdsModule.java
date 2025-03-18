@@ -21,7 +21,7 @@ public final class srcdsModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ID
      */
@@ -32,7 +32,7 @@ public final class srcdsModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;String&gt;
      */
@@ -42,7 +42,7 @@ public final class srcdsModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param MapName
      */
@@ -53,7 +53,7 @@ public final class srcdsModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ID
      */
@@ -64,7 +64,7 @@ public final class srcdsModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Index
      * @param NewIndex
@@ -77,7 +77,7 @@ public final class srcdsModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Name
      * @return ActionResult
@@ -90,7 +90,7 @@ public final class srcdsModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Index
      */
@@ -101,7 +101,7 @@ public final class srcdsModule extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param MapList
      */

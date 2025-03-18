@@ -24,7 +24,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param BackupId
      * @return ActionResult
@@ -37,7 +37,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param BackupId
      */
@@ -48,7 +48,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param BackupId
      * @return RunningTask
@@ -61,7 +61,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;BackupManifest&gt;
      */
@@ -70,13 +70,13 @@ public final class LocalFileBackupPlugin extends AMPAPI {
         return this.APICall("LocalFileBackupPlugin/GetBackups", type);
     }
 
-    /** */
+    /** Name Description */
     public void RefreshBackupList() {
         this.APICall("LocalFileBackupPlugin/RefreshBackupList");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param BackupId
      * @param DeleteExistingData
@@ -91,7 +91,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param BackupId
      * @param Sticky
@@ -104,7 +104,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Title
      * @param Description
@@ -127,7 +127,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param BackupId
      * @return RunningTask

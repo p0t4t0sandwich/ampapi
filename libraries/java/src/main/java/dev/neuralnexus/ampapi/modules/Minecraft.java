@@ -7,11 +7,22 @@ package dev.neuralnexus.ampapi.modules;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.plugins.*;
 
+/** Minecraft Module */
 public class Minecraft extends CommonAPI {
+    /** AnalyticsPlugin plugin */
     public final AnalyticsPlugin AnalyticsPlugin;
+
+    /** LocalFileBackupPlugin plugin */
     public final LocalFileBackupPlugin LocalFileBackupPlugin;
+
+    /** MinecraftModule plugin */
     public final MinecraftModule MinecraftModule;
 
+    /**
+     * Constructor
+     *
+     * @param authProvider The AuthProvider to use
+     */
     public Minecraft(AuthProvider authProvider) {
         super(authProvider);
         this.AnalyticsPlugin = new AnalyticsPlugin(authProvider);

@@ -22,7 +22,7 @@ public final class AnalyticsPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param PeriodDays
      * @param StartDate

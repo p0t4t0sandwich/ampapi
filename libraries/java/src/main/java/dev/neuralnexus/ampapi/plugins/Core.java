@@ -23,13 +23,13 @@ public final class Core extends AMPAPI {
         super(authprovider);
     }
 
-    /** */
+    /** Name Description */
     public void AcknowledgeAMPUpdate() {
         this.APICall("Core/AcknowledgeAMPUpdate");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param LicenceKey
      * @param QueryOnly
@@ -45,7 +45,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param triggerId
      * @return ActionResult
@@ -58,7 +58,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param months
      * @param days
@@ -87,7 +87,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TriggerID
      * @param MethodID
@@ -105,7 +105,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * DEV: Async test method Name Description Optional
+     * DEV: Async test method Name Description
      *
      * @return String
      */
@@ -115,7 +115,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TaskId
      * @return ActionResult
@@ -128,7 +128,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TriggerID
      * @param TaskID
@@ -146,7 +146,6 @@ public final class Core extends AMPAPI {
 
     /**
      * For a user to change their own password, requires knowing the old password Name Description
-     * Optional
      *
      * @param Username
      * @param OldPassword
@@ -167,7 +166,7 @@ public final class Core extends AMPAPI {
 
     /**
      * Completes two-factor setup by supplying a valid two factor code based on the secret provided
-     * by EnableTwoFactor Name Description Optional
+     * by EnableTwoFactor Name Description
      *
      * @param Username
      * @param TwoFactorCode
@@ -182,7 +181,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Name
      * @param AsCommonRole
@@ -196,13 +195,13 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/CreateRole", args, type);
     }
 
-    /** DEV: Creates a non-ending task with 50% progress for testing purposes */
+    /** DEV: Creates a non-ending task with 50% progress for testing purposes Name Description */
     public void CreateTestTask() {
         this.APICall("Core/CreateTestTask");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Username
      * @return ActionResult&lt;UUID&gt;
@@ -215,7 +214,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param PermissionNode
      * @return Boolean
@@ -228,7 +227,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param InstanceId
      * @return ActionResult
@@ -241,7 +240,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param RoleId
      * @return ActionResult
@@ -254,7 +253,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TriggerID
      * @param TaskID
@@ -269,7 +268,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TriggerID
      * @return ActionResult
@@ -282,7 +281,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Username
      * @return ActionResult
@@ -295,7 +294,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Password
      * @param TwoFactorCode
@@ -310,7 +309,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ActionResult
      */
@@ -320,7 +319,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TaskId
      * @return ActionResult
@@ -333,7 +332,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Id
      * @param months
@@ -365,7 +364,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param TriggerID
      * @param TaskID
@@ -384,7 +383,7 @@ public final class Core extends AMPAPI {
 
     /**
      * Sets up two-factor authentication for the given user. ConfirmTwoFactorSetup must be invoked
-     * to complete setup. Name Description Optional
+     * to complete setup. Name Description
      *
      * @param Username
      * @param Password
@@ -399,7 +398,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Id
      */
@@ -410,7 +409,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param RoleId
      * @return List&lt;String&gt;
@@ -423,7 +422,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Username
      * @return UserInfo
@@ -436,7 +435,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;UserInfoSummary&gt;
      */
@@ -446,7 +445,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return Map&lt;String, Map&lt;String, MethodInfoSummary&gt;&gt;
      */
@@ -457,7 +456,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;WebSessionSummary&gt;
      */
@@ -467,7 +466,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;UserInfo&gt;
      */
@@ -477,7 +476,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Before
      * @param Count
@@ -492,7 +491,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param username
      * @return List&lt;AuthenticationRequirement&gt;
@@ -505,7 +504,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param node
      * @return SettingSpec
@@ -518,7 +517,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param nodes
      * @return List&lt;SettingSpec&gt;
@@ -531,7 +530,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return Map&lt;String, String&gt;
      */
@@ -541,7 +540,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ModuleInfo
      */
@@ -551,7 +550,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return UUID
      */
@@ -561,7 +560,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;IPermissionsTreeNode&gt;
      */
@@ -571,7 +570,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;ListeningPortSummary&gt;
      */
@@ -581,7 +580,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;SettingSpec&gt;
      */
@@ -591,7 +590,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Description
      * @param IsTemporary
@@ -606,7 +605,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param RoleId
      * @return AuthRoleSummary
@@ -619,7 +618,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;AuthRoleSummary&gt;
      */
@@ -629,7 +628,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return Map&lt;UUID, String&gt;
      */
@@ -639,7 +638,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ScheduleInfo
      */
@@ -649,7 +648,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param SettingNode
      * @param WithRefresh
@@ -664,7 +663,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return Map&lt;String, List&lt;SettingSpec&gt;&gt;
      */
@@ -675,7 +674,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return StatusResponse
      */
@@ -685,7 +684,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;RunningTask&gt;
      */
@@ -695,7 +694,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Id
      * @return TimeIntervalTrigger
@@ -708,7 +707,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return UpdateInfo
      */
@@ -720,7 +719,7 @@ public final class Core extends AMPAPI {
     /**
      * Gets changes to the server status, in addition to any notifications or console output that
      * have occured since the last time GetUpdates() was called by the current session. Name
-     * Description Optional
+     * Description
      *
      * @return UpdateResponse
      */
@@ -730,7 +729,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return Object
      */
@@ -741,7 +740,7 @@ public final class Core extends AMPAPI {
 
     /**
      * Provides information about a given in-application user (as opposed to AMP system users) Name
-     * Description Optional
+     * Description
      *
      * @param UID
      * @return SimpleUser
@@ -754,7 +753,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Returns a list of in-application users Name Description Optional
+     * Returns a list of in-application users Name Description
      *
      * @return Map&lt;String, String&gt;
      */
@@ -764,7 +763,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ActionResult&lt;String&gt;
      */
@@ -774,7 +773,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param username
      * @return WebauthnLoginInfo
@@ -787,7 +786,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;WebauthnCredentialSummary&gt;
      */
@@ -796,13 +795,13 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/GetWebauthnCredentialSummaries", type);
     }
 
-    /** */
+    /** Name Description */
     public void Kill() {
         this.APICall("Core/Kill");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param username
      * @param password
@@ -820,13 +819,13 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/Login", args, type);
     }
 
-    /** */
+    /** Name Description */
     public void Logout() {
         this.APICall("Core/Logout");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Node
      * @return ActionResult
@@ -838,13 +837,13 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/RefreshSettingValueList", args, type);
     }
 
-    /** */
+    /** Name Description */
     public void RefreshSettingsSourceCache() {
         this.APICall("Core/RefreshSettingsSourceCache");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param RoleId
      * @param NewName
@@ -859,7 +858,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * For administrative users to alter the password of another user Name Description Optional
+     * For administrative users to alter the password of another user Name Description
      *
      * @param Username
      * @param NewPassword
@@ -874,7 +873,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ActionResult
      */
@@ -883,18 +882,18 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/Restart", type);
     }
 
-    /** */
+    /** Name Description */
     public void RestartAMP() {
         this.APICall("Core/RestartAMP");
     }
 
-    /** Allows the service to be re-started after previously being suspended. */
+    /** Allows the service to be re-started after previously being suspended. Name Description */
     public void Resume() {
         this.APICall("Core/Resume");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ID
      * @return ActionResult
@@ -907,7 +906,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param triggerId
      * @return ActionResult
@@ -920,7 +919,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return List&lt;SecurityCheckResult&gt;
      */
@@ -930,7 +929,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param message
      */
@@ -941,7 +940,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param RoleId
      * @param PermissionNode
@@ -958,7 +957,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param UserId
      * @param RoleId
@@ -975,7 +974,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param node
      * @param value
@@ -990,7 +989,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param data
      * @return Boolean
@@ -1003,7 +1002,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Id
      * @param Enabled
@@ -1018,7 +1017,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ActionResult
      */
@@ -1028,7 +1027,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ActionResult
      */
@@ -1037,23 +1036,26 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/Start", type);
     }
 
-    /** */
+    /** Name Description */
     public void Stop() {
         this.APICall("Core/Stop");
     }
 
-    /** Prevents the current instance from being started, and stops it if it's currently running. */
+    /**
+     * Prevents the current instance from being started, and stops it if it's currently running.
+     * Name Description
+     */
     public void Suspend() {
         this.APICall("Core/Suspend");
     }
 
-    /** */
+    /** Name Description */
     public void UpdateAMPInstance() {
         this.APICall("Core/UpdateAMPInstance");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param EmailAddress
      * @param TwoFactorPIN
@@ -1068,7 +1070,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @return ActionResult
      */
@@ -1078,7 +1080,7 @@ public final class Core extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Username
      * @param Disabled
@@ -1106,13 +1108,13 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/UpdateUserInfo", args, type);
     }
 
-    /** */
+    /** Name Description */
     public void UpgradeAMP() {
         this.APICall("Core/UpgradeAMP");
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param attestationObject
      * @param clientDataJSON

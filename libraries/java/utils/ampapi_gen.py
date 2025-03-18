@@ -345,7 +345,7 @@ class CodeGen:
         common_async_loaded_plugins = ""
         common_async_plugin_init = ""
         for plugin in common_plugins:
-            common_loaded_plugins += f"    public final {plugin} {plugin};\n"
+            common_loaded_plugins += f"    /** {plugin} plugin */\n    public final {plugin} {plugin};\n"
             common_plugin_init += f"        this.{plugin} = new {plugin}(authProvider);\n"
 #             common_async_loaded_plugins += f"    {plugin} = Final[{plugin}Async]\n"
 #             common_async_plugin_init += f"        self.{plugin} = {plugin}Async(self)\n"
@@ -369,7 +369,7 @@ class CodeGen:
             async_module_loaded_plugins = ""
             async_module_plugin_init = ""
             for plugin in plugin_list:
-                module_loaded_plugins += f"    public final {plugin} {plugin};\n"
+                module_loaded_plugins += f"    /** {plugin} plugin */\n    public final {plugin} {plugin};\n"
                 module_plugin_init += f"        this.{plugin} = new {plugin}(authProvider);\n"
 #                 async_module_loaded_plugins += f"    {plugin} = Final[{plugin}Async]\n"
 #                 async_module_plugin_init += f"        self.{plugin} = {plugin}Async(self)\n"

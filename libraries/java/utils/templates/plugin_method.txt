@@ -1,5 +1,5 @@
     /**{MethodDescription}
-     * Name Description Optional
+     * Name Description
      *
 {MethodParameterDocs} * @return {ReturnTypeDoc}
      */

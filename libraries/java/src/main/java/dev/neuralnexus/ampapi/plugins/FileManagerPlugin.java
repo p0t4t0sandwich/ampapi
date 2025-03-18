@@ -24,7 +24,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Filename
      * @param Data
@@ -39,7 +39,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param FilePath
      * @return ActionResult&lt;String&gt;
@@ -52,7 +52,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ModifyPath
      * @param AsDirectory
@@ -69,7 +69,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Origin
      * @param TargetDirectory
@@ -84,7 +84,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param PathToArchive
      * @return ActionResult
@@ -97,7 +97,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Creates a new directory. The parent directory must already exist. Name Description Optional
+     * Creates a new directory. The parent directory must already exist. Name Description
      *
      * @param NewPath
      * @return ActionResult
@@ -110,7 +110,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Source
      * @param TargetDirectory
@@ -124,13 +124,13 @@ public final class FileManagerPlugin extends AMPAPI {
         return this.APICall("FileManagerPlugin/DownloadFileFromURL", args, type);
     }
 
-    /** */
+    /** Name Description */
     public void Dummy() {
         this.APICall("FileManagerPlugin/Dummy");
     }
 
     /**
-     * Empties a trash bin Name Description Optional
+     * Empties a trash bin Name Description
      *
      * @param TrashDirectoryName
      * @return ActionResult
@@ -143,7 +143,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param ArchivePath
      * @param DestinationPath
@@ -158,7 +158,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Dir
      * @return List&lt;DirectoryListing&gt;
@@ -171,7 +171,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Filename
      * @param Position
@@ -188,7 +188,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Filename
      * @param Offset
@@ -206,7 +206,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Filename
      * @return ActionResult
@@ -219,7 +219,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Renames a directory Name Description Optional
+     * Renames a directory Name Description
      *
      * @param oldDirectory The full path to the old directory
      * @param NewDirectoryName The name component of the new directory (not the full path)
@@ -234,7 +234,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Filename
      * @param NewFilename
@@ -250,7 +250,7 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Moves a directory to trash, files must be trashed before they can be deleted. Name
-     * Description Optional
+     * Description
      *
      * @param DirectoryName
      * @return ActionResult
@@ -264,7 +264,6 @@ public final class FileManagerPlugin extends AMPAPI {
 
     /**
      * Moves a file to trash, files must be trashed before they can be deleted. Name Description
-     * Optional
      *
      * @param Filename
      * @return ActionResult
@@ -277,7 +276,7 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
-     * Name Description Optional
+     * Name Description
      *
      * @param Filename
      * @param Data
