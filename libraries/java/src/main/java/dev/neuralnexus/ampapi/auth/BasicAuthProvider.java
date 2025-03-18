@@ -75,6 +75,7 @@ public class BasicAuthProvider implements AuthProvider {
         return this.sessionId;
     }
 
+    // TODO: This may be a pain point when working with futures
     private void UpdateModuleInfo() {
         this.<ModuleInfo>APICall("Core/GetModuleInfo", ModuleInfo.class)
                 .discardError()

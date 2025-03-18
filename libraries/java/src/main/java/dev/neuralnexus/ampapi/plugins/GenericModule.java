@@ -8,12 +8,15 @@ import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.AMPError;
+import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.types.*;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 public final class GenericModule extends AMPAPI {
     public GenericModule(AuthProvider authprovider) {
@@ -36,10 +39,30 @@ public final class GenericModule extends AMPAPI {
     /**
      * Name Description
      *
+     * @param filename
+     * @return Map&lt;String, String&gt;
+     */
+    public CompletionStage<Result<Map<String, String>, AMPError>> ImportConfigAsync(
+            String filename) {
+        return CompletableFuture.supplyAsync(() -> this.ImportConfig(filename));
+    }
+
+    /**
+     * Name Description
+     *
      * @return Void
      */
     public Result<Void, AMPError> ReloadGenericConfig() {
         Type type = new TypeToken<Void>() {}.getType();
         return this.APICall("GenericModule/ReloadGenericConfig", type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> ReloadGenericConfigAsync() {
+        return CompletableFuture.supplyAsync(() -> this.ReloadGenericConfig());
     }
 }

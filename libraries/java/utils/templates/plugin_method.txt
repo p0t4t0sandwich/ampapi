@@ -3,9 +3,18 @@
      *
 {MethodParameterDocs} * @return {ReturnTypeDoc}
      */
-    public Result<{ReturnType}, APIError> {MethodName}({MethodParameters}) {
+    public Result<{ReturnType}, AMPError> {MethodName}({MethodParameters}) {
         Map<String, Object> args = new HashMap<>();{MethodParameterAssignments}
         Type type = new TypeToken<{ReturnType}>() {}.getType();
         return this.APICall("{PluginName}/{MethodName}", args, type);
+    }
+
+    /**{MethodDescription}
+     * Name Description
+     *
+{MethodParameterDocs} * @return {ReturnTypeDoc}
+     */
+    public CompletionStage<Result<{ReturnType}, AMPError>> {MethodName}Async({MethodParameters}) {
+        return CompletableFuture.supplyAsync(() -> this.{MethodName}({MethodParameterNames}));
     }
 

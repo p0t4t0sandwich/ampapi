@@ -4,7 +4,7 @@ import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.APIError;
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.*;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
 
@@ -17,4 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 

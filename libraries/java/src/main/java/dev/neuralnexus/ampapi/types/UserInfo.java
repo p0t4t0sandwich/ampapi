@@ -19,7 +19,7 @@ import java.util.UUID;
  * @param IsLDAPUser Whether the user is an LDAP user
  * @param IsSuperUser Whether the user is a super user
  * @param IsTwoFactorEnabled Whether two-factor is enabled
- * @param LastLogin The last callback
+ * @param LastLogin The last login
  * @param MustChangePassword Whether the password must be changed
  * @param Name The name
  * @param PasswordExpires Whether the password expires

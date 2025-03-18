@@ -8,12 +8,15 @@ import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.AMPError;
+import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.types.*;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 public final class RustModule extends AMPAPI {
     public RustModule(AuthProvider authprovider) {
@@ -39,11 +42,31 @@ public final class RustModule extends AMPAPI {
      * @param ID
      * @return Void
      */
+    public CompletionStage<Result<Void, AMPError>> BanAsync(String ID) {
+        return CompletableFuture.supplyAsync(() -> this.Ban(ID));
+    }
+
+    /**
+     * Name Description
+     *
+     * @param ID
+     * @return Void
+     */
     public Result<Void, AMPError> Kick(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
         Type type = new TypeToken<Void>() {}.getType();
         return this.APICall("RustModule/Kick", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param ID
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> KickAsync(String ID) {
+        return CompletableFuture.supplyAsync(() -> this.Kick(ID));
     }
 
     /**
@@ -61,8 +84,26 @@ public final class RustModule extends AMPAPI {
      *
      * @return Void
      */
+    public CompletionStage<Result<Void, AMPError>> WipeBlueprintsAsync() {
+        return CompletableFuture.supplyAsync(() -> this.WipeBlueprints());
+    }
+
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
     public Result<Void, AMPError> WipeMap() {
         Type type = new TypeToken<Void>() {}.getType();
         return this.APICall("RustModule/WipeMap", type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> WipeMapAsync() {
+        return CompletableFuture.supplyAsync(() -> this.WipeMap());
     }
 }

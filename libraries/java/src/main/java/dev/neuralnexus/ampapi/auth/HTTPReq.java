@@ -16,8 +16,6 @@ import com.google.gson.stream.JsonWriter;
 
 import dev.neuralnexus.ampapi.AMPError;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,7 +30,7 @@ public class HTTPReq {
     private static final Gson gson =
             new GsonBuilder().registerTypeAdapterFactory(OptionalTypeAdapter.FACTORY).create();
 
-    public static @NotNull <T> Result<T, AMPError> APICall(
+    public static <T> Result<T, AMPError> APICall(
             String endpoint, String requestMethod, Map<String, Object> args, Type returnType) {
         try {
             HttpURLConnection con =

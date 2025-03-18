@@ -95,6 +95,7 @@ public class RefreshingAuthProvider extends BasicAuthProvider {
 
         /**
          * Set the relog interval for the AuthProvider
+         *
          * @param relogInterval The relog interval to use
          * @return The builder
          */
@@ -104,7 +105,9 @@ public class RefreshingAuthProvider extends BasicAuthProvider {
         }
 
         /**
-         * Set the relog callback for the AuthProvider, you can use this to set up token storage and the like
+         * Set the relog callback for the AuthProvider, you can use this to set up token storage and
+         * the like
+         *
          * @param relogCallback The relog callback to use
          * @return The builder
          */

@@ -16,7 +16,7 @@ import java.util.UUID;
  * @param ID The user ID
  * @param IsLDAPUser Whether the user is an LDAP user
  * @param IsTwoFactorEnabled Whether 2FA is enabled
- * @param LastLogin The last callback
+ * @param LastLogin The last login
  * @param Username The username
  */
 public record UserInfoSummary(

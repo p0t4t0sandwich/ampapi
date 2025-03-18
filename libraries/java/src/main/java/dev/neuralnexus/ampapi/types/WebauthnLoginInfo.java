@@ -7,7 +7,7 @@ package dev.neuralnexus.ampapi.types;
 import java.util.List;
 
 /**
- * Information about a WebAuthn callback
+ * Information about a WebAuthn login
  *
  * @param Challenge The challenge
  * @param Ids The IDs

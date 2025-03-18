@@ -14,6 +14,8 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 /** Generalized Auth Provider for working with AMP instances */
 public interface AuthProvider {
@@ -97,22 +99,45 @@ public interface AuthProvider {
     }
 
     /**
-     * Method to make an API call to the remote AMP instance
+     * Asynchronous API call
      *
      * @param endpoint The endpoint to call
+     * @param requestMethod The request method to use
      * @param args The arguments to pass to the endpoint
+     * @param returnType The expected return type
+     * @return The return value from the API call
+     * @param <T> The expected return type
      */
-    default void APICall(String endpoint, Map<String, Object> args) {
-        this.APICall(endpoint, args, Void.class);
+    default <T> CompletionStage<Result<T, AMPError>> APICallAsync(
+            String endpoint, String requestMethod, Map<String, Object> args, Type returnType) {
+        return CompletableFuture.supplyAsync(() -> this.APICall(endpoint, args, returnType));
     }
 
     /**
-     * Method to make an API call to the remote AMP instance
+     * Asynchronous API call
      *
      * @param endpoint The endpoint to call
+     * @param args The arguments to pass to the endpoint
+     * @param returnType The expected return type
+     * @return The return value from the API call
+     * @param <T> The expected return type
      */
-    default void APICall(String endpoint) {
-        this.APICall(endpoint, new HashMap<>(), Void.class);
+    default <T> CompletionStage<Result<T, AMPError>> APICallAsync(
+            String endpoint, Map<String, Object> args, Type returnType) {
+        return this.APICallAsync(endpoint, "POST", args, returnType);
+    }
+
+    /**
+     * Asynchronous API call
+     *
+     * @param endpoint The endpoint to call
+     * @param returnType The expected return type
+     * @return The return value from the API call
+     * @param <T> The expected return type
+     */
+    default <T> CompletionStage<Result<T, AMPError>> APICallAsync(
+            String endpoint, Type returnType) {
+        return this.APICallAsync(endpoint, new HashMap<>(), returnType);
     }
 
     /**
@@ -137,6 +162,25 @@ public interface AuthProvider {
      */
     default Result<LoginResponse, AMPError> Login() {
         return this.Login(this.rememberMe());
+    }
+
+    /**
+     * Async method to log into the remote AMP instance
+     *
+     * @param rememberMe Whether to enable "remember me"
+     * @return The LoginResponse from the callback attempt
+     */
+    default CompletionStage<Result<LoginResponse, AMPError>> LoginAsync(boolean rememberMe) {
+        return CompletableFuture.supplyAsync(() -> this.Login(rememberMe));
+    }
+
+    /**
+     * Async method to log into the remote AMP instance
+     *
+     * @return The LoginResponse from the callback attempt
+     */
+    default CompletionStage<Result<LoginResponse, AMPError>> LoginAsync() {
+        return this.LoginAsync(this.rememberMe());
     }
 
     /** Builder for AuthProvider */

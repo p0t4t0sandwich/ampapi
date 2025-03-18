@@ -8,11 +8,13 @@ import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.AMPError;
+import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.types.*;
 
 import java.lang.reflect.Type;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 public final class EmailSenderPlugin extends AMPAPI {
     public EmailSenderPlugin(AuthProvider authprovider) {
@@ -27,5 +29,14 @@ public final class EmailSenderPlugin extends AMPAPI {
     public Result<ActionResult, AMPError> TestSMTPSettings() {
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("EmailSenderPlugin/TestSMTPSettings", type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> TestSMTPSettingsAsync() {
+        return CompletableFuture.supplyAsync(() -> this.TestSMTPSettings());
     }
 }

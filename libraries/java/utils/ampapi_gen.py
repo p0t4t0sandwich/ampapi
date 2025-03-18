@@ -217,9 +217,11 @@ class CodeGen:
                 method_text = plugin_method_template
 
                 parameter_text = ""
+                parameter_names = ""
                 payload_text = ""
                 for param in method_def["Parameters"]:
                     param_text = f"{self._convert_type(param['TypeName'])} {param['Name']}"
+                    parameter_names += f"{param['Name']}, "
                     payload_text += f"\n        args.put(\"{param['Name']}\", {param['Name']});"
 
                     if param.get("Optional"):
@@ -230,6 +232,8 @@ class CodeGen:
 
                 if parameter_text != "":
                     parameter_text = parameter_text[:-2]
+                if parameter_names != "":
+                    parameter_names = parameter_names[:-2]
 
                 parameter_args = ""
                 for param in method_def["Parameters"]:
@@ -252,6 +256,7 @@ class CodeGen:
                 parameter_docs = parameter_docs + "\n    "
 
                 method_text = method_text.replace("{MethodParameters}", parameter_text)
+                method_text = method_text.replace("{MethodParameterNames}", parameter_names)
                 method_text = method_text.replace("{MethodParameterAssignments}", payload_text)
                 method_text = method_text.replace("{MethodParameterArgs}", parameter_args)
                 method_text = method_text.replace("{MethodParameterDocs}", parameter_docs)

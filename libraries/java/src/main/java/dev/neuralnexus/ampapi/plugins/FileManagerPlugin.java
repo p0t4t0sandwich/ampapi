@@ -8,8 +8,8 @@ import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.AMPError;
+import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
@@ -19,6 +19,8 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 public final class FileManagerPlugin extends AMPAPI {
     public FileManagerPlugin(AuthProvider authprovider) {
@@ -45,6 +47,19 @@ public final class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description
      *
+     * @param Filename
+     * @param Data
+     * @param Delete
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> AppendFileChunkAsync(
+            String Filename, String Data, Boolean Delete) {
+        return CompletableFuture.supplyAsync(() -> this.AppendFileChunk(Filename, Data, Delete));
+    }
+
+    /**
+     * Name Description
+     *
      * @param FilePath
      * @return ActionResult&lt;String&gt;
      */
@@ -53,6 +68,17 @@ public final class FileManagerPlugin extends AMPAPI {
         args.put("FilePath", FilePath);
         Type type = new TypeToken<ActionResult<String>>() {}.getType();
         return this.APICall("FileManagerPlugin/CalculateFileMD5Sum", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param FilePath
+     * @return ActionResult&lt;String&gt;
+     */
+    public CompletionStage<Result<ActionResult<String>, AMPError>> CalculateFileMD5SumAsync(
+            String FilePath) {
+        return CompletableFuture.supplyAsync(() -> this.CalculateFileMD5Sum(FilePath));
     }
 
     /**
@@ -76,6 +102,20 @@ public final class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description
      *
+     * @param ModifyPath
+     * @param AsDirectory
+     * @param Exclude
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> ChangeExclusionAsync(
+            String ModifyPath, Boolean AsDirectory, Boolean Exclude) {
+        return CompletableFuture.supplyAsync(
+                () -> this.ChangeExclusion(ModifyPath, AsDirectory, Exclude));
+    }
+
+    /**
+     * Name Description
+     *
      * @param Origin
      * @param TargetDirectory
      * @return ActionResult
@@ -86,6 +126,18 @@ public final class FileManagerPlugin extends AMPAPI {
         args.put("TargetDirectory", TargetDirectory);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("FileManagerPlugin/CopyFile", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param Origin
+     * @param TargetDirectory
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> CopyFileAsync(
+            String Origin, String TargetDirectory) {
+        return CompletableFuture.supplyAsync(() -> this.CopyFile(Origin, TargetDirectory));
     }
 
     /**
@@ -102,6 +154,17 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
+     * Name Description
+     *
+     * @param PathToArchive
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> CreateArchiveAsync(
+            String PathToArchive) {
+        return CompletableFuture.supplyAsync(() -> this.CreateArchive(PathToArchive));
+    }
+
+    /**
      * Creates a new directory. The parent directory must already exist. Name Description
      *
      * @param NewPath
@@ -112,6 +175,16 @@ public final class FileManagerPlugin extends AMPAPI {
         args.put("NewPath", NewPath);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("FileManagerPlugin/CreateDirectory", args, type);
+    }
+
+    /**
+     * Creates a new directory. The parent directory must already exist. Name Description
+     *
+     * @param NewPath
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> CreateDirectoryAsync(String NewPath) {
+        return CompletableFuture.supplyAsync(() -> this.CreateDirectory(NewPath));
     }
 
     /**
@@ -132,11 +205,33 @@ public final class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description
      *
+     * @param Source
+     * @param TargetDirectory
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> DownloadFileFromURLAsync(
+            URI Source, String TargetDirectory) {
+        return CompletableFuture.supplyAsync(
+                () -> this.DownloadFileFromURL(Source, TargetDirectory));
+    }
+
+    /**
+     * Name Description
+     *
      * @return Void
      */
     public Result<Void, AMPError> Dummy() {
         Type type = new TypeToken<Void>() {}.getType();
         return this.APICall("FileManagerPlugin/Dummy", type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> DummyAsync() {
+        return CompletableFuture.supplyAsync(() -> this.Dummy());
     }
 
     /**
@@ -150,6 +245,17 @@ public final class FileManagerPlugin extends AMPAPI {
         args.put("TrashDirectoryName", TrashDirectoryName);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("FileManagerPlugin/EmptyTrash", args, type);
+    }
+
+    /**
+     * Empties a trash bin Name Description
+     *
+     * @param TrashDirectoryName
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> EmptyTrashAsync(
+            String TrashDirectoryName) {
+        return CompletableFuture.supplyAsync(() -> this.EmptyTrash(TrashDirectoryName));
     }
 
     /**
@@ -171,6 +277,19 @@ public final class FileManagerPlugin extends AMPAPI {
     /**
      * Name Description
      *
+     * @param ArchivePath
+     * @param DestinationPath
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> ExtractArchiveAsync(
+            String ArchivePath, @Nullable String DestinationPath) {
+        return CompletableFuture.supplyAsync(
+                () -> this.ExtractArchive(ArchivePath, DestinationPath));
+    }
+
+    /**
+     * Name Description
+     *
      * @param Dir
      * @return List&lt;DirectoryListing&gt;
      */
@@ -179,6 +298,17 @@ public final class FileManagerPlugin extends AMPAPI {
         args.put("Dir", Dir);
         Type type = new TypeToken<List<DirectoryListing>>() {}.getType();
         return this.APICall("FileManagerPlugin/GetDirectoryListing", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param Dir
+     * @return List&lt;DirectoryListing&gt;
+     */
+    public CompletionStage<Result<List<DirectoryListing>, AMPError>> GetDirectoryListingAsync(
+            String Dir) {
+        return CompletableFuture.supplyAsync(() -> this.GetDirectoryListing(Dir));
     }
 
     /**
@@ -203,6 +333,19 @@ public final class FileManagerPlugin extends AMPAPI {
      * Name Description
      *
      * @param Filename
+     * @param Position
+     * @param Length
+     * @return FileChunkData
+     */
+    public CompletionStage<Result<FileChunkData, AMPError>> GetFileChunkAsync(
+            String Filename, Integer Position, Integer Length) {
+        return CompletableFuture.supplyAsync(() -> this.GetFileChunk(Filename, Position, Length));
+    }
+
+    /**
+     * Name Description
+     *
+     * @param Filename
      * @param Offset
      * @param ChunkSize
      * @return ActionResult&lt;String&gt;
@@ -221,6 +364,19 @@ public final class FileManagerPlugin extends AMPAPI {
      * Name Description
      *
      * @param Filename
+     * @param Offset
+     * @param ChunkSize
+     * @return ActionResult&lt;String&gt;
+     */
+    public CompletionStage<Result<ActionResult<String>, AMPError>> ReadFileChunkAsync(
+            String Filename, Integer Offset, @Nullable Integer ChunkSize) {
+        return CompletableFuture.supplyAsync(() -> this.ReadFileChunk(Filename, Offset, ChunkSize));
+    }
+
+    /**
+     * Name Description
+     *
+     * @param Filename
      * @return ActionResult
      */
     public Result<ActionResult, AMPError> ReleaseFileUploadLock(String Filename) {
@@ -228,6 +384,17 @@ public final class FileManagerPlugin extends AMPAPI {
         args.put("Filename", Filename);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("FileManagerPlugin/ReleaseFileUploadLock", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param Filename
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> ReleaseFileUploadLockAsync(
+            String Filename) {
+        return CompletableFuture.supplyAsync(() -> this.ReleaseFileUploadLock(Filename));
     }
 
     /**
@@ -247,6 +414,19 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
+     * Renames a directory Name Description
+     *
+     * @param oldDirectory The full path to the old directory
+     * @param NewDirectoryName The name component of the new directory (not the full path)
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> RenameDirectoryAsync(
+            String oldDirectory, String NewDirectoryName) {
+        return CompletableFuture.supplyAsync(
+                () -> this.RenameDirectory(oldDirectory, NewDirectoryName));
+    }
+
+    /**
      * Name Description
      *
      * @param Filename
@@ -259,6 +439,18 @@ public final class FileManagerPlugin extends AMPAPI {
         args.put("NewFilename", NewFilename);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("FileManagerPlugin/RenameFile", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param Filename
+     * @param NewFilename
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> RenameFileAsync(
+            String Filename, String NewFilename) {
+        return CompletableFuture.supplyAsync(() -> this.RenameFile(Filename, NewFilename));
     }
 
     /**
@@ -276,6 +468,18 @@ public final class FileManagerPlugin extends AMPAPI {
     }
 
     /**
+     * Moves a directory to trash, files must be trashed before they can be deleted. Name
+     * Description
+     *
+     * @param DirectoryName
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> TrashDirectoryAsync(
+            String DirectoryName) {
+        return CompletableFuture.supplyAsync(() -> this.TrashDirectory(DirectoryName));
+    }
+
+    /**
      * Moves a file to trash, files must be trashed before they can be deleted. Name Description
      *
      * @param Filename
@@ -286,6 +490,16 @@ public final class FileManagerPlugin extends AMPAPI {
         args.put("Filename", Filename);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("FileManagerPlugin/TrashFile", args, type);
+    }
+
+    /**
+     * Moves a file to trash, files must be trashed before they can be deleted. Name Description
+     *
+     * @param Filename
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> TrashFileAsync(String Filename) {
+        return CompletableFuture.supplyAsync(() -> this.TrashFile(Filename));
     }
 
     /**
@@ -306,5 +520,20 @@ public final class FileManagerPlugin extends AMPAPI {
         args.put("FinalChunk", FinalChunk);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("FileManagerPlugin/WriteFileChunk", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param Filename
+     * @param Data
+     * @param Offset
+     * @param FinalChunk
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> WriteFileChunkAsync(
+            String Filename, String Data, Integer Offset, Boolean FinalChunk) {
+        return CompletableFuture.supplyAsync(
+                () -> this.WriteFileChunk(Filename, Data, Offset, FinalChunk));
     }
 }

@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * Represents the authentication result Failure: Failure TokenRejected: Token rejected
- * FullLoginRequired: Full callback required NoInstanceAccess: No instance access InstanceSuspended:
+ * FullLoginRequired: Full login required NoInstanceAccess: No instance access InstanceSuspended:
  * Instance suspended Success: Success PasswordChangeRequired: Password change required
  * AccountDisabled: Account disabled Ignored: Ignored TwoFactorChallenge: Two-factor challenge
  * TwoFactorSetupRequired: Two-factor setup required TwoFactorFailed: Two-factor failed

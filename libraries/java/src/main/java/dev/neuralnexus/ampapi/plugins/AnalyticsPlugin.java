@@ -8,14 +8,17 @@ import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.AMPError;
+import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 public final class AnalyticsPlugin extends AMPAPI {
     public AnalyticsPlugin(AuthProvider authprovider) {
@@ -40,5 +43,21 @@ public final class AnalyticsPlugin extends AMPAPI {
         args.put("Filters", Filters);
         Type type = new TypeToken<Object>() {}.getType();
         return this.APICall("AnalyticsPlugin/GetAnalyticsSummary", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param PeriodDays
+     * @param StartDate
+     * @param Filters
+     * @return Object
+     */
+    public CompletionStage<Result<Object, AMPError>> GetAnalyticsSummaryAsync(
+            @Nullable Integer PeriodDays,
+            @Nullable String StartDate,
+            @Nullable Map<String, String> Filters) {
+        return CompletableFuture.supplyAsync(
+                () -> this.GetAnalyticsSummary(PeriodDays, StartDate, Filters));
     }
 }

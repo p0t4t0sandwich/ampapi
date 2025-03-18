@@ -31,12 +31,4 @@ public class AMPAPI {
     public <T> Result<T, AMPError> APICall(String endpoint, Type returnType) {
         return this.authProvider.APICall(endpoint, returnType);
     }
-
-    public void APICall(String endpoint, Map<String, Object> args) {
-        this.authProvider.APICall(endpoint, args);
-    }
-
-    public void APICall(String endpoint) {
-        this.authProvider.APICall(endpoint);
-    }
 }

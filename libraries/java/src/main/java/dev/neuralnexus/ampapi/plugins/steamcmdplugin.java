@@ -8,12 +8,15 @@ import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
-import dev.neuralnexus.ampapi.auth.AuthProvider;
 import dev.neuralnexus.ampapi.AMPError;
+import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.types.*;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 public final class steamcmdplugin extends AMPAPI {
     public steamcmdplugin(AuthProvider authprovider) {
@@ -33,6 +36,15 @@ public final class steamcmdplugin extends AMPAPI {
     /**
      * Name Description
      *
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> CancelSteamGuardAsync() {
+        return CompletableFuture.supplyAsync(() -> this.CancelSteamGuard());
+    }
+
+    /**
+     * Name Description
+     *
      * @param code
      * @return Void
      */
@@ -41,6 +53,16 @@ public final class steamcmdplugin extends AMPAPI {
         args.put("code", code);
         Type type = new TypeToken<Void>() {}.getType();
         return this.APICall("steamcmdplugin/SteamGuardCode", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param code
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> SteamGuardCodeAsync(String code) {
+        return CompletableFuture.supplyAsync(() -> this.SteamGuardCode(code));
     }
 
     /**
@@ -56,5 +78,17 @@ public final class steamcmdplugin extends AMPAPI {
         args.put("password", password);
         Type type = new TypeToken<Void>() {}.getType();
         return this.APICall("steamcmdplugin/SteamUsernamePassword", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param username
+     * @param password
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> SteamUsernamePasswordAsync(
+            String username, String password) {
+        return CompletableFuture.supplyAsync(() -> this.SteamUsernamePassword(username, password));
     }
 }
