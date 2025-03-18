@@ -275,12 +275,12 @@ class CodeGen:
             text += plugin_class
 
             # Adapt Void return type usages
-            text = text.replace("public Void ", "public void ")\
-                .replace("* Name Description Optional\n     *\n\n     * @return Void\n     ", "")\
-                .replace("* @return Void\n     ", "")
-            pattern = r"Type type = new TypeToken<Void>\(\) \{\}\.getType\(\);\s*\n        return (this\.APICall\([^,]+, [^,]+), type\);"
-            replacement = r"\1);"
-            text = re.sub(pattern, replacement, text)
+#             text = text.replace("public Void ", "public void ")\
+#                 .replace("* Name Description Optional\n     *\n\n     * @return Void\n     ", "")\
+#                 .replace("* @return Void\n     ", "")
+#             pattern = r"Type type = new TypeToken<Void>\(\) \{\}\.getType\(\);\s*\n        return (this\.APICall\([^,]+, [^,]+), type\);"
+#             replacement = r"\1);"
+#             text = re.sub(pattern, replacement, text)
 
             # Adapt arg-less methods
             pattern = (

@@ -4,6 +4,8 @@
  */
 package dev.neuralnexus.ampapi;
 
+import com.github.sviperll.result4j.Result;
+
 import dev.neuralnexus.ampapi.auth.AuthProvider;
 
 import java.lang.reflect.Type;
@@ -21,11 +23,12 @@ public class AMPAPI {
         this.authProvider = authProvider;
     }
 
-    public <T> T APICall(String endpoint, Map<String, Object> args, Type returnType) {
+    public <T> Result<T, AMPError> APICall(
+            String endpoint, Map<String, Object> args, Type returnType) {
         return this.authProvider.APICall(endpoint, args, returnType);
     }
 
-    public <T> T APICall(String endpoint, Type returnType) {
+    public <T> Result<T, AMPError> APICall(String endpoint, Type returnType) {
         return this.authProvider.APICall(endpoint, returnType);
     }
 

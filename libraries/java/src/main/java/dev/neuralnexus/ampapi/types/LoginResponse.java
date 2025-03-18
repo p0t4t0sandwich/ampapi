@@ -14,7 +14,7 @@ import java.util.List;
  * @param result The result
  * @param resultReason The result reason
  * @param sessionID The session ID
- * @param success Whether the login was successful
+ * @param success Whether the callback was successful
  * @param userInfo The user info
  */
 public record LoginResponse(

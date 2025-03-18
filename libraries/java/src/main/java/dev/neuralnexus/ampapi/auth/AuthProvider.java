@@ -4,7 +4,9 @@
  */
 package dev.neuralnexus.ampapi.auth;
 
-import dev.neuralnexus.ampapi.exceptions.LoginException;
+import com.github.sviperll.result4j.Result;
+
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.LoginResponse;
 
 import java.lang.reflect.Type;
@@ -37,7 +39,7 @@ public interface AuthProvider {
     String password();
 
     /**
-     * The token currently in use, used for rememberMe, 2FA, or one-time login tokens
+     * The token currently in use, used for rememberMe, 2FA, or one-time callback tokens
      *
      * @return The token currently in use
      */
@@ -79,9 +81,8 @@ public interface AuthProvider {
      * @param returnType The expected return type
      * @return The return value from the API call
      * @param <T> The expected return type
-     * @throws LoginException If the API call fails
      */
-    <T> T APICall(String endpoint, Map<String, Object> args, Type returnType) throws LoginException;
+    <T> Result<T, AMPError> APICall(String endpoint, Map<String, Object> args, Type returnType);
 
     /**
      * Method to make an API call to the remote AMP instance
@@ -90,9 +91,8 @@ public interface AuthProvider {
      * @param returnType The expected return type
      * @return The return value from the API call
      * @param <T> The expected return type
-     * @throws LoginException If the API call fails
      */
-    default <T> T APICall(String endpoint, Type returnType) throws LoginException {
+    default <T> Result<T, AMPError> APICall(String endpoint, Type returnType) {
         return this.APICall(endpoint, new HashMap<>(), returnType);
     }
 
@@ -101,9 +101,8 @@ public interface AuthProvider {
      *
      * @param endpoint The endpoint to call
      * @param args The arguments to pass to the endpoint
-     * @throws LoginException If the API call fails
      */
-    default void APICall(String endpoint, Map<String, Object> args) throws LoginException {
+    default void APICall(String endpoint, Map<String, Object> args) {
         this.APICall(endpoint, args, Void.class);
     }
 
@@ -111,9 +110,8 @@ public interface AuthProvider {
      * Method to make an API call to the remote AMP instance
      *
      * @param endpoint The endpoint to call
-     * @throws LoginException If the API call fails
      */
-    default void APICall(String endpoint) throws LoginException {
+    default void APICall(String endpoint) {
         this.APICall(endpoint, new HashMap<>(), Void.class);
     }
 
@@ -128,18 +126,16 @@ public interface AuthProvider {
      * Method to log into the remote AMP instance
      *
      * @param rememberMe Whether to enable "remember me"
-     * @return The LoginResponse from the login attempt
-     * @throws LoginException If the login attempt fails
+     * @return The LoginResponse from the callback attempt
      */
-    LoginResponse Login(boolean rememberMe) throws LoginException;
+    Result<LoginResponse, AMPError> Login(boolean rememberMe);
 
     /**
      * Method to log into the remote AMP instance
      *
-     * @return The LoginResponse from the login attempt
-     * @throws LoginException If the login attempt fails
+     * @return The LoginResponse from the callback attempt
      */
-    default LoginResponse Login() throws LoginException {
+    default Result<LoginResponse, AMPError> Login() {
         return this.Login(this.rememberMe());
     }
 

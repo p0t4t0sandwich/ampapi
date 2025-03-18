@@ -1,8 +1,10 @@
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
+import dev.neuralnexus.ampapi.APIError;
 import dev.neuralnexus.ampapi.types.*;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
 

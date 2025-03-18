@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.*;
 
 import java.lang.reflect.Type;
@@ -22,7 +24,7 @@ public final class EmailSenderPlugin extends AMPAPI {
      *
      * @return ActionResult
      */
-    public ActionResult TestSMTPSettings() {
+    public Result<ActionResult, AMPError> TestSMTPSettings() {
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("EmailSenderPlugin/TestSMTPSettings", type);
     }

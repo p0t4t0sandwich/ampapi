@@ -22,40 +22,49 @@ API module inheritance for different instance types:
 
 <https://github.com/p0t4t0sandwich/ampapi-spec/blob/main/ModuleInheritance.json>
 
-## AMP API and Library Info
-
-### API docs
+## API docs
 
 Go to `http(s)://your.domain.com/API` to see the API docs.
 
-### Libraries
+## Libraries
 
-#### C#
+### C\#
+
 - [Developer Licence Usage](https://github.com/cubecoders/amp/wiki/Getting-started-with-AMP-developer-licences)
 - Examples:
   - [SampleAMPModule](https://github.com/CubeCoders/SampleAMPModule) - official code example
   - [AMP-Discord-Bot](https://github.com/winglessraven/AMP-Discord-Bot) - a great community developed Discord bot
-#### NodeJS
+
+### NodeJS
+
 - [ampapi-node](https://github.com/CubeCoders/ampapi-node) - bare bones, but generates new methods on the fly, not requiring library updates
 - [ampapi-js](https://github.com/p0t4t0sandwich/ampapi-js) - auto-generated from the API, includes `d.ts` type definitions and code-completion
   - Examples:
     - [taterland-discord-bot](https://github.com/p0t4t0sandwich/taterland-discord-bot)
-#### Python
-- [ampapi-py](https://github.com/p0t4t0sandwich/ampapi-py) - auto-generated from the API, though a bit bland in terms of tooling
+
+### Python
+
 - [AMPAPI_Python](https://github.com/k8thekat/AMPAPI_Python) - built with developer experiences in mind, with all the bells and whistles you'll need
   - Examples:
     - [GatekeeperV2](https://github.com/k8thekat/GatekeeperV2)
-#### Java
-- [ampapi-java](https://github.com/p0t4t0sandwich/ampapi-java)
+- [ampapi-py](https://github.com/p0t4t0sandwich/ampapi/tree/main/readmes/Python.md) - auto-generated from the API, though a bit bland in terms of tooling
+
+### Java
+
+- [ampapi-java](https://github.com/p0t4t0sandwich/ampapi/tree/main/readmes/Java.md)
   - Examples:
     - [ServerPanelManager](https://github.com/p0t4t0sandwich/ServerPanelManager)
     - [taterlib-ci](https://github.com/p0t4t0sandwich/taterlib-ci)
     - [CustomServerManager](https://github.com/p0t4t0sandwich/CustomServerManager)
-#### Go/Golang
+
+### Go/Golang
+
 - [ampapi-go](https://github.com/p0t4t0sandwich/ampapi-go)
   - Examples:
     - [ampapi-stats-wrapper](https://github.com/p0t4t0sandwich/ampapi-stats-wrapper)
-#### Rust
+
+### Rust
+
 - [ampapi-rs](https://github.com/p0t4t0sandwich/ampapi-rs)
 
 ### Work in Progress

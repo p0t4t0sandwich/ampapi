@@ -4,10 +4,14 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
+import com.google.gson.reflect.TypeToken;
+
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
-import dev.neuralnexus.ampapi.types.*;
+import dev.neuralnexus.ampapi.AMPError;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,20 +20,27 @@ public final class steamcmdplugin extends AMPAPI {
         super(authprovider);
     }
 
-    /** Name Description */
-    public void CancelSteamGuard() {
-        this.APICall("steamcmdplugin/CancelSteamGuard");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> CancelSteamGuard() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("steamcmdplugin/CancelSteamGuard", type);
     }
 
     /**
      * Name Description
      *
      * @param code
+     * @return Void
      */
-    public void SteamGuardCode(String code) {
+    public Result<Void, AMPError> SteamGuardCode(String code) {
         Map<String, Object> args = new HashMap<>();
         args.put("code", code);
-        this.APICall("steamcmdplugin/SteamGuardCode", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("steamcmdplugin/SteamGuardCode", args, type);
     }
 
     /**
@@ -37,11 +48,13 @@ public final class steamcmdplugin extends AMPAPI {
      *
      * @param username
      * @param password
+     * @return Void
      */
-    public void SteamUsernamePassword(String username, String password) {
+    public Result<Void, AMPError> SteamUsernamePassword(String username, String password) {
         Map<String, Object> args = new HashMap<>();
         args.put("username", username);
         args.put("password", password);
-        this.APICall("steamcmdplugin/SteamUsernamePassword", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("steamcmdplugin/SteamUsernamePassword", args, type);
     }
 }

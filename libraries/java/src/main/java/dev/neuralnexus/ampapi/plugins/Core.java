@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
@@ -23,9 +25,14 @@ public final class Core extends AMPAPI {
         super(authprovider);
     }
 
-    /** Name Description */
-    public void AcknowledgeAMPUpdate() {
-        this.APICall("Core/AcknowledgeAMPUpdate");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> AcknowledgeAMPUpdate() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/AcknowledgeAMPUpdate", type);
     }
 
     /**
@@ -35,7 +42,7 @@ public final class Core extends AMPAPI {
      * @param QueryOnly
      * @return ActionResult&lt;LicenceInfo&gt;
      */
-    public ActionResult<LicenceInfo> ActivateAMPLicence(
+    public Result<ActionResult<LicenceInfo>, AMPError> ActivateAMPLicence(
             String LicenceKey, @Nullable Boolean QueryOnly) {
         Map<String, Object> args = new HashMap<>();
         args.put("LicenceKey", LicenceKey);
@@ -50,7 +57,7 @@ public final class Core extends AMPAPI {
      * @param triggerId
      * @return ActionResult
      */
-    public ActionResult AddEventTrigger(UUID triggerId) {
+    public Result<ActionResult, AMPError> AddEventTrigger(UUID triggerId) {
         Map<String, Object> args = new HashMap<>();
         args.put("triggerId", triggerId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -68,7 +75,7 @@ public final class Core extends AMPAPI {
      * @param description
      * @return ActionResult
      */
-    public ActionResult AddIntervalTrigger(
+    public Result<ActionResult, AMPError> AddIntervalTrigger(
             List<Integer> months,
             List<Integer> days,
             List<Integer> hours,
@@ -94,7 +101,7 @@ public final class Core extends AMPAPI {
      * @param ParameterMapping
      * @return ActionResult
      */
-    public ActionResult AddTask(
+    public Result<ActionResult, AMPError> AddTask(
             UUID TriggerID, String MethodID, Map<String, String> ParameterMapping) {
         Map<String, Object> args = new HashMap<>();
         args.put("TriggerID", TriggerID);
@@ -109,7 +116,7 @@ public final class Core extends AMPAPI {
      *
      * @return String
      */
-    public String AsyncTest() {
+    public Result<String, AMPError> AsyncTest() {
         Type type = new TypeToken<String>() {}.getType();
         return this.APICall("Core/AsyncTest", type);
     }
@@ -120,7 +127,7 @@ public final class Core extends AMPAPI {
      * @param TaskId
      * @return ActionResult
      */
-    public ActionResult CancelTask(UUID TaskId) {
+    public Result<ActionResult, AMPError> CancelTask(UUID TaskId) {
         Map<String, Object> args = new HashMap<>();
         args.put("TaskId", TaskId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -135,7 +142,8 @@ public final class Core extends AMPAPI {
      * @param NewOrder
      * @return ActionResult
      */
-    public ActionResult ChangeTaskOrder(UUID TriggerID, UUID TaskID, Integer NewOrder) {
+    public Result<ActionResult, AMPError> ChangeTaskOrder(
+            UUID TriggerID, UUID TaskID, Integer NewOrder) {
         Map<String, Object> args = new HashMap<>();
         args.put("TriggerID", TriggerID);
         args.put("TaskID", TaskID);
@@ -153,7 +161,7 @@ public final class Core extends AMPAPI {
      * @param TwoFactorPIN
      * @return ActionResult
      */
-    public ActionResult ChangeUserPassword(
+    public Result<ActionResult, AMPError> ChangeUserPassword(
             String Username, String OldPassword, String NewPassword, String TwoFactorPIN) {
         Map<String, Object> args = new HashMap<>();
         args.put("Username", Username);
@@ -172,7 +180,8 @@ public final class Core extends AMPAPI {
      * @param TwoFactorCode
      * @return ActionResult
      */
-    public ActionResult ConfirmTwoFactorSetup(String Username, String TwoFactorCode) {
+    public Result<ActionResult, AMPError> ConfirmTwoFactorSetup(
+            String Username, String TwoFactorCode) {
         Map<String, Object> args = new HashMap<>();
         args.put("Username", Username);
         args.put("TwoFactorCode", TwoFactorCode);
@@ -187,7 +196,8 @@ public final class Core extends AMPAPI {
      * @param AsCommonRole
      * @return ActionResult&lt;UUID&gt;
      */
-    public ActionResult<UUID> CreateRole(String Name, @Nullable Boolean AsCommonRole) {
+    public Result<ActionResult<UUID>, AMPError> CreateRole(
+            String Name, @Nullable Boolean AsCommonRole) {
         Map<String, Object> args = new HashMap<>();
         args.put("Name", Name);
         args.put("AsCommonRole", AsCommonRole);
@@ -195,9 +205,14 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/CreateRole", args, type);
     }
 
-    /** DEV: Creates a non-ending task with 50% progress for testing purposes Name Description */
-    public void CreateTestTask() {
-        this.APICall("Core/CreateTestTask");
+    /**
+     * DEV: Creates a non-ending task with 50% progress for testing purposes Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> CreateTestTask() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/CreateTestTask", type);
     }
 
     /**
@@ -206,7 +221,7 @@ public final class Core extends AMPAPI {
      * @param Username
      * @return ActionResult&lt;UUID&gt;
      */
-    public ActionResult<UUID> CreateUser(String Username) {
+    public Result<ActionResult<UUID>, AMPError> CreateUser(String Username) {
         Map<String, Object> args = new HashMap<>();
         args.put("Username", Username);
         Type type = new TypeToken<ActionResult<UUID>>() {}.getType();
@@ -219,7 +234,7 @@ public final class Core extends AMPAPI {
      * @param PermissionNode
      * @return Boolean
      */
-    public Boolean CurrentSessionHasPermission(String PermissionNode) {
+    public Result<Boolean, AMPError> CurrentSessionHasPermission(String PermissionNode) {
         Map<String, Object> args = new HashMap<>();
         args.put("PermissionNode", PermissionNode);
         Type type = new TypeToken<Boolean>() {}.getType();
@@ -232,7 +247,7 @@ public final class Core extends AMPAPI {
      * @param InstanceId
      * @return ActionResult
      */
-    public ActionResult DeleteInstanceUsers(UUID InstanceId) {
+    public Result<ActionResult, AMPError> DeleteInstanceUsers(UUID InstanceId) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceId", InstanceId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -245,7 +260,7 @@ public final class Core extends AMPAPI {
      * @param RoleId
      * @return ActionResult
      */
-    public ActionResult DeleteRole(UUID RoleId) {
+    public Result<ActionResult, AMPError> DeleteRole(UUID RoleId) {
         Map<String, Object> args = new HashMap<>();
         args.put("RoleId", RoleId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -259,7 +274,7 @@ public final class Core extends AMPAPI {
      * @param TaskID
      * @return ActionResult
      */
-    public ActionResult DeleteTask(UUID TriggerID, UUID TaskID) {
+    public Result<ActionResult, AMPError> DeleteTask(UUID TriggerID, UUID TaskID) {
         Map<String, Object> args = new HashMap<>();
         args.put("TriggerID", TriggerID);
         args.put("TaskID", TaskID);
@@ -273,7 +288,7 @@ public final class Core extends AMPAPI {
      * @param TriggerID
      * @return ActionResult
      */
-    public ActionResult DeleteTrigger(UUID TriggerID) {
+    public Result<ActionResult, AMPError> DeleteTrigger(UUID TriggerID) {
         Map<String, Object> args = new HashMap<>();
         args.put("TriggerID", TriggerID);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -286,7 +301,7 @@ public final class Core extends AMPAPI {
      * @param Username
      * @return ActionResult
      */
-    public ActionResult DeleteUser(String Username) {
+    public Result<ActionResult, AMPError> DeleteUser(String Username) {
         Map<String, Object> args = new HashMap<>();
         args.put("Username", Username);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -300,7 +315,7 @@ public final class Core extends AMPAPI {
      * @param TwoFactorCode
      * @return ActionResult
      */
-    public ActionResult DisableTwoFactor(String Password, String TwoFactorCode) {
+    public Result<ActionResult, AMPError> DisableTwoFactor(String Password, String TwoFactorCode) {
         Map<String, Object> args = new HashMap<>();
         args.put("Password", Password);
         args.put("TwoFactorCode", TwoFactorCode);
@@ -313,7 +328,7 @@ public final class Core extends AMPAPI {
      *
      * @return ActionResult
      */
-    public ActionResult DismissAllTasks() {
+    public Result<ActionResult, AMPError> DismissAllTasks() {
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("Core/DismissAllTasks", type);
     }
@@ -324,7 +339,7 @@ public final class Core extends AMPAPI {
      * @param TaskId
      * @return ActionResult
      */
-    public ActionResult DismissTask(UUID TaskId) {
+    public Result<ActionResult, AMPError> DismissTask(UUID TaskId) {
         Map<String, Object> args = new HashMap<>();
         args.put("TaskId", TaskId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -343,7 +358,7 @@ public final class Core extends AMPAPI {
      * @param description
      * @return ActionResult
      */
-    public ActionResult EditIntervalTrigger(
+    public Result<ActionResult, AMPError> EditIntervalTrigger(
             UUID Id,
             List<Integer> months,
             List<Integer> days,
@@ -371,7 +386,7 @@ public final class Core extends AMPAPI {
      * @param ParameterMapping
      * @return ActionResult
      */
-    public ActionResult EditTask(
+    public Result<ActionResult, AMPError> EditTask(
             UUID TriggerID, UUID TaskID, Map<String, String> ParameterMapping) {
         Map<String, Object> args = new HashMap<>();
         args.put("TriggerID", TriggerID);
@@ -389,7 +404,8 @@ public final class Core extends AMPAPI {
      * @param Password
      * @return ActionResult&lt;TwoFactorSetupInfo&gt;
      */
-    public ActionResult<TwoFactorSetupInfo> EnableTwoFactor(String Username, String Password) {
+    public Result<ActionResult<TwoFactorSetupInfo>, AMPError> EnableTwoFactor(
+            String Username, String Password) {
         Map<String, Object> args = new HashMap<>();
         args.put("Username", Username);
         args.put("Password", Password);
@@ -401,11 +417,13 @@ public final class Core extends AMPAPI {
      * Name Description
      *
      * @param Id
+     * @return Void
      */
-    public void EndUserSession(UUID Id) {
+    public Result<Void, AMPError> EndUserSession(UUID Id) {
         Map<String, Object> args = new HashMap<>();
         args.put("Id", Id);
-        this.APICall("Core/EndUserSession", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/EndUserSession", args, type);
     }
 
     /**
@@ -414,7 +432,7 @@ public final class Core extends AMPAPI {
      * @param RoleId
      * @return List&lt;String&gt;
      */
-    public List<String> GetAMPRolePermissions(UUID RoleId) {
+    public Result<List<String>, AMPError> GetAMPRolePermissions(UUID RoleId) {
         Map<String, Object> args = new HashMap<>();
         args.put("RoleId", RoleId);
         Type type = new TypeToken<List<String>>() {}.getType();
@@ -427,7 +445,7 @@ public final class Core extends AMPAPI {
      * @param Username
      * @return UserInfo
      */
-    public UserInfo GetAMPUserInfo(String Username) {
+    public Result<UserInfo, AMPError> GetAMPUserInfo(String Username) {
         Map<String, Object> args = new HashMap<>();
         args.put("Username", Username);
         Type type = new TypeToken<UserInfo>() {}.getType();
@@ -439,7 +457,7 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;UserInfoSummary&gt;
      */
-    public List<UserInfoSummary> GetAMPUsersSummary() {
+    public Result<List<UserInfoSummary>, AMPError> GetAMPUsersSummary() {
         Type type = new TypeToken<List<UserInfoSummary>>() {}.getType();
         return this.APICall("Core/GetAMPUsersSummary", type);
     }
@@ -449,7 +467,7 @@ public final class Core extends AMPAPI {
      *
      * @return Map&lt;String, Map&lt;String, MethodInfoSummary&gt;&gt;
      */
-    public Map<String, Map<String, MethodInfoSummary>> GetAPISpec() {
+    public Result<Map<String, Map<String, MethodInfoSummary>>, AMPError> GetAPISpec() {
         Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<Map<String, Map<String, MethodInfoSummary>>>() {}.getType();
         return this.APICall("Core/GetAPISpec", args, type);
@@ -460,7 +478,7 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;WebSessionSummary&gt;
      */
-    public List<WebSessionSummary> GetActiveAMPSessions() {
+    public Result<List<WebSessionSummary>, AMPError> GetActiveAMPSessions() {
         Type type = new TypeToken<List<WebSessionSummary>>() {}.getType();
         return this.APICall("Core/GetActiveAMPSessions", type);
     }
@@ -470,7 +488,7 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;UserInfo&gt;
      */
-    public List<UserInfo> GetAllAMPUserInfo() {
+    public Result<List<UserInfo>, AMPError> GetAllAMPUserInfo() {
         Type type = new TypeToken<List<UserInfo>>() {}.getType();
         return this.APICall("Core/GetAllAMPUserInfo", type);
     }
@@ -482,7 +500,7 @@ public final class Core extends AMPAPI {
      * @param Count
      * @return List&lt;IAuditLogEntry&gt;
      */
-    public List<IAuditLogEntry> GetAuditLogEntries(String Before, Integer Count) {
+    public Result<List<IAuditLogEntry>, AMPError> GetAuditLogEntries(String Before, Integer Count) {
         Map<String, Object> args = new HashMap<>();
         args.put("Before", Before);
         args.put("Count", Count);
@@ -496,7 +514,8 @@ public final class Core extends AMPAPI {
      * @param username
      * @return List&lt;AuthenticationRequirement&gt;
      */
-    public List<AuthenticationRequirement> GetAuthenticationRequirements(String username) {
+    public Result<List<AuthenticationRequirement>, AMPError> GetAuthenticationRequirements(
+            String username) {
         Map<String, Object> args = new HashMap<>();
         args.put("username", username);
         Type type = new TypeToken<List<AuthenticationRequirement>>() {}.getType();
@@ -509,7 +528,7 @@ public final class Core extends AMPAPI {
      * @param node
      * @return SettingSpec
      */
-    public SettingSpec GetConfig(String node) {
+    public Result<SettingSpec, AMPError> GetConfig(String node) {
         Map<String, Object> args = new HashMap<>();
         args.put("node", node);
         Type type = new TypeToken<SettingSpec>() {}.getType();
@@ -522,7 +541,7 @@ public final class Core extends AMPAPI {
      * @param nodes
      * @return List&lt;SettingSpec&gt;
      */
-    public List<SettingSpec> GetConfigs(List<String> nodes) {
+    public Result<List<SettingSpec>, AMPError> GetConfigs(List<String> nodes) {
         Map<String, Object> args = new HashMap<>();
         args.put("nodes", nodes);
         Type type = new TypeToken<List<SettingSpec>>() {}.getType();
@@ -534,7 +553,7 @@ public final class Core extends AMPAPI {
      *
      * @return Map&lt;String, String&gt;
      */
-    public Map<String, String> GetDiagnosticsInfo() {
+    public Result<Map<String, String>, AMPError> GetDiagnosticsInfo() {
         Type type = new TypeToken<Map<String, String>>() {}.getType();
         return this.APICall("Core/GetDiagnosticsInfo", type);
     }
@@ -544,7 +563,7 @@ public final class Core extends AMPAPI {
      *
      * @return ModuleInfo
      */
-    public ModuleInfo GetModuleInfo() {
+    public Result<ModuleInfo, AMPError> GetModuleInfo() {
         Type type = new TypeToken<ModuleInfo>() {}.getType();
         return this.APICall("Core/GetModuleInfo", type);
     }
@@ -554,7 +573,7 @@ public final class Core extends AMPAPI {
      *
      * @return UUID
      */
-    public UUID GetNewGuid() {
+    public Result<UUID, AMPError> GetNewGuid() {
         Type type = new TypeToken<UUID>() {}.getType();
         return this.APICall("Core/GetNewGuid", type);
     }
@@ -564,7 +583,7 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;IPermissionsTreeNode&gt;
      */
-    public List<IPermissionsTreeNode> GetPermissionsSpec() {
+    public Result<List<IPermissionsTreeNode>, AMPError> GetPermissionsSpec() {
         Type type = new TypeToken<List<IPermissionsTreeNode>>() {}.getType();
         return this.APICall("Core/GetPermissionsSpec", type);
     }
@@ -574,7 +593,7 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;ListeningPortSummary&gt;
      */
-    public List<ListeningPortSummary> GetPortSummaries() {
+    public Result<List<ListeningPortSummary>, AMPError> GetPortSummaries() {
         Type type = new TypeToken<List<ListeningPortSummary>>() {}.getType();
         return this.APICall("Core/GetPortSummaries", type);
     }
@@ -584,7 +603,7 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;SettingSpec&gt;
      */
-    public List<SettingSpec> GetProvisionSpec() {
+    public Result<List<SettingSpec>, AMPError> GetProvisionSpec() {
         Type type = new TypeToken<List<SettingSpec>>() {}.getType();
         return this.APICall("Core/GetProvisionSpec", type);
     }
@@ -596,7 +615,8 @@ public final class Core extends AMPAPI {
      * @param IsTemporary
      * @return String
      */
-    public String GetRemoteLoginToken(@Nullable String Description, @Nullable Boolean IsTemporary) {
+    public Result<String, AMPError> GetRemoteLoginToken(
+            @Nullable String Description, @Nullable Boolean IsTemporary) {
         Map<String, Object> args = new HashMap<>();
         args.put("Description", Description);
         args.put("IsTemporary", IsTemporary);
@@ -610,7 +630,7 @@ public final class Core extends AMPAPI {
      * @param RoleId
      * @return AuthRoleSummary
      */
-    public AuthRoleSummary GetRole(UUID RoleId) {
+    public Result<AuthRoleSummary, AMPError> GetRole(UUID RoleId) {
         Map<String, Object> args = new HashMap<>();
         args.put("RoleId", RoleId);
         Type type = new TypeToken<AuthRoleSummary>() {}.getType();
@@ -622,7 +642,7 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;AuthRoleSummary&gt;
      */
-    public List<AuthRoleSummary> GetRoleData() {
+    public Result<List<AuthRoleSummary>, AMPError> GetRoleData() {
         Type type = new TypeToken<List<AuthRoleSummary>>() {}.getType();
         return this.APICall("Core/GetRoleData", type);
     }
@@ -632,7 +652,7 @@ public final class Core extends AMPAPI {
      *
      * @return Map&lt;UUID, String&gt;
      */
-    public Map<UUID, String> GetRoleIds() {
+    public Result<Map<UUID, String>, AMPError> GetRoleIds() {
         Type type = new TypeToken<Map<UUID, String>>() {}.getType();
         return this.APICall("Core/GetRoleIds", type);
     }
@@ -642,7 +662,7 @@ public final class Core extends AMPAPI {
      *
      * @return ScheduleInfo
      */
-    public ScheduleInfo GetScheduleData() {
+    public Result<ScheduleInfo, AMPError> GetScheduleData() {
         Type type = new TypeToken<ScheduleInfo>() {}.getType();
         return this.APICall("Core/GetScheduleData", type);
     }
@@ -654,7 +674,8 @@ public final class Core extends AMPAPI {
      * @param WithRefresh
      * @return Map&lt;String, String&gt;
      */
-    public Map<String, String> GetSettingValues(String SettingNode, @Nullable Boolean WithRefresh) {
+    public Result<Map<String, String>, AMPError> GetSettingValues(
+            String SettingNode, @Nullable Boolean WithRefresh) {
         Map<String, Object> args = new HashMap<>();
         args.put("SettingNode", SettingNode);
         args.put("WithRefresh", WithRefresh);
@@ -667,7 +688,7 @@ public final class Core extends AMPAPI {
      *
      * @return Map&lt;String, List&lt;SettingSpec&gt;&gt;
      */
-    public Map<String, List<SettingSpec>> GetSettingsSpec() {
+    public Result<Map<String, List<SettingSpec>>, AMPError> GetSettingsSpec() {
         Map<String, Object> args = new HashMap<>();
         Type type = new TypeToken<Map<String, List<SettingSpec>>>() {}.getType();
         return this.APICall("Core/GetSettingsSpec", args, type);
@@ -678,7 +699,7 @@ public final class Core extends AMPAPI {
      *
      * @return StatusResponse
      */
-    public StatusResponse GetStatus() {
+    public Result<StatusResponse, AMPError> GetStatus() {
         Type type = new TypeToken<StatusResponse>() {}.getType();
         return this.APICall("Core/GetStatus", type);
     }
@@ -688,7 +709,7 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;RunningTask&gt;
      */
-    public List<RunningTask> GetTasks() {
+    public Result<List<RunningTask>, AMPError> GetTasks() {
         Type type = new TypeToken<List<RunningTask>>() {}.getType();
         return this.APICall("Core/GetTasks", type);
     }
@@ -699,7 +720,7 @@ public final class Core extends AMPAPI {
      * @param Id
      * @return TimeIntervalTrigger
      */
-    public TimeIntervalTrigger GetTimeIntervalTrigger(UUID Id) {
+    public Result<TimeIntervalTrigger, AMPError> GetTimeIntervalTrigger(UUID Id) {
         Map<String, Object> args = new HashMap<>();
         args.put("Id", Id);
         Type type = new TypeToken<TimeIntervalTrigger>() {}.getType();
@@ -711,7 +732,7 @@ public final class Core extends AMPAPI {
      *
      * @return UpdateInfo
      */
-    public UpdateInfo GetUpdateInfo() {
+    public Result<UpdateInfo, AMPError> GetUpdateInfo() {
         Type type = new TypeToken<UpdateInfo>() {}.getType();
         return this.APICall("Core/GetUpdateInfo", type);
     }
@@ -723,7 +744,7 @@ public final class Core extends AMPAPI {
      *
      * @return UpdateResponse
      */
-    public UpdateResponse GetUpdates() {
+    public Result<UpdateResponse, AMPError> GetUpdates() {
         Type type = new TypeToken<UpdateResponse>() {}.getType();
         return this.APICall("Core/GetUpdates", type);
     }
@@ -733,7 +754,7 @@ public final class Core extends AMPAPI {
      *
      * @return Object
      */
-    public Object GetUserActionsSpec() {
+    public Result<Object, AMPError> GetUserActionsSpec() {
         Type type = new TypeToken<Object>() {}.getType();
         return this.APICall("Core/GetUserActionsSpec", type);
     }
@@ -745,7 +766,7 @@ public final class Core extends AMPAPI {
      * @param UID
      * @return SimpleUser
      */
-    public SimpleUser GetUserInfo(String UID) {
+    public Result<SimpleUser, AMPError> GetUserInfo(String UID) {
         Map<String, Object> args = new HashMap<>();
         args.put("UID", UID);
         Type type = new TypeToken<SimpleUser>() {}.getType();
@@ -757,7 +778,7 @@ public final class Core extends AMPAPI {
      *
      * @return Map&lt;String, String&gt;
      */
-    public Map<String, String> GetUserList() {
+    public Result<Map<String, String>, AMPError> GetUserList() {
         Type type = new TypeToken<Map<String, String>>() {}.getType();
         return this.APICall("Core/GetUserList", type);
     }
@@ -767,7 +788,7 @@ public final class Core extends AMPAPI {
      *
      * @return ActionResult&lt;String&gt;
      */
-    public ActionResult<String> GetWebauthnChallenge() {
+    public Result<ActionResult<String>, AMPError> GetWebauthnChallenge() {
         Type type = new TypeToken<ActionResult<String>>() {}.getType();
         return this.APICall("Core/GetWebauthnChallenge", type);
     }
@@ -778,7 +799,7 @@ public final class Core extends AMPAPI {
      * @param username
      * @return WebauthnLoginInfo
      */
-    public WebauthnLoginInfo GetWebauthnCredentialIDs(String username) {
+    public Result<WebauthnLoginInfo, AMPError> GetWebauthnCredentialIDs(String username) {
         Map<String, Object> args = new HashMap<>();
         args.put("username", username);
         Type type = new TypeToken<WebauthnLoginInfo>() {}.getType();
@@ -790,14 +811,19 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;WebauthnCredentialSummary&gt;
      */
-    public List<WebauthnCredentialSummary> GetWebauthnCredentialSummaries() {
+    public Result<List<WebauthnCredentialSummary>, AMPError> GetWebauthnCredentialSummaries() {
         Type type = new TypeToken<List<WebauthnCredentialSummary>>() {}.getType();
         return this.APICall("Core/GetWebauthnCredentialSummaries", type);
     }
 
-    /** Name Description */
-    public void Kill() {
-        this.APICall("Core/Kill");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> Kill() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/Kill", type);
     }
 
     /**
@@ -809,7 +835,8 @@ public final class Core extends AMPAPI {
      * @param rememberMe
      * @return LoginResponse
      */
-    public LoginResponse Login(String username, String password, String token, Boolean rememberMe) {
+    public Result<LoginResponse, AMPError> Login(
+            String username, String password, String token, Boolean rememberMe) {
         Map<String, Object> args = new HashMap<>();
         args.put("username", username);
         args.put("password", password);
@@ -819,9 +846,14 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/Login", args, type);
     }
 
-    /** Name Description */
-    public void Logout() {
-        this.APICall("Core/Logout");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> Logout() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/Logout", type);
     }
 
     /**
@@ -830,16 +862,21 @@ public final class Core extends AMPAPI {
      * @param Node
      * @return ActionResult
      */
-    public ActionResult RefreshSettingValueList(String Node) {
+    public Result<ActionResult, AMPError> RefreshSettingValueList(String Node) {
         Map<String, Object> args = new HashMap<>();
         args.put("Node", Node);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("Core/RefreshSettingValueList", args, type);
     }
 
-    /** Name Description */
-    public void RefreshSettingsSourceCache() {
-        this.APICall("Core/RefreshSettingsSourceCache");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> RefreshSettingsSourceCache() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/RefreshSettingsSourceCache", type);
     }
 
     /**
@@ -849,7 +886,7 @@ public final class Core extends AMPAPI {
      * @param NewName
      * @return ActionResult
      */
-    public ActionResult RenameRole(UUID RoleId, String NewName) {
+    public Result<ActionResult, AMPError> RenameRole(UUID RoleId, String NewName) {
         Map<String, Object> args = new HashMap<>();
         args.put("RoleId", RoleId);
         args.put("NewName", NewName);
@@ -864,7 +901,7 @@ public final class Core extends AMPAPI {
      * @param NewPassword
      * @return ActionResult
      */
-    public ActionResult ResetUserPassword(String Username, String NewPassword) {
+    public Result<ActionResult, AMPError> ResetUserPassword(String Username, String NewPassword) {
         Map<String, Object> args = new HashMap<>();
         args.put("Username", Username);
         args.put("NewPassword", NewPassword);
@@ -877,19 +914,29 @@ public final class Core extends AMPAPI {
      *
      * @return ActionResult
      */
-    public ActionResult Restart() {
+    public Result<ActionResult, AMPError> Restart() {
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("Core/Restart", type);
     }
 
-    /** Name Description */
-    public void RestartAMP() {
-        this.APICall("Core/RestartAMP");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> RestartAMP() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/RestartAMP", type);
     }
 
-    /** Allows the service to be re-started after previously being suspended. Name Description */
-    public void Resume() {
-        this.APICall("Core/Resume");
+    /**
+     * Allows the service to be re-started after previously being suspended. Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> Resume() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/Resume", type);
     }
 
     /**
@@ -898,7 +945,7 @@ public final class Core extends AMPAPI {
      * @param ID
      * @return ActionResult
      */
-    public ActionResult RevokeWebauthnCredential(Integer ID) {
+    public Result<ActionResult, AMPError> RevokeWebauthnCredential(Integer ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -911,7 +958,7 @@ public final class Core extends AMPAPI {
      * @param triggerId
      * @return ActionResult
      */
-    public ActionResult RunEventTriggerImmediately(UUID triggerId) {
+    public Result<ActionResult, AMPError> RunEventTriggerImmediately(UUID triggerId) {
         Map<String, Object> args = new HashMap<>();
         args.put("triggerId", triggerId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -923,7 +970,7 @@ public final class Core extends AMPAPI {
      *
      * @return List&lt;SecurityCheckResult&gt;
      */
-    public List<SecurityCheckResult> RunSecurityCheck() {
+    public Result<List<SecurityCheckResult>, AMPError> RunSecurityCheck() {
         Type type = new TypeToken<List<SecurityCheckResult>>() {}.getType();
         return this.APICall("Core/RunSecurityCheck", type);
     }
@@ -932,11 +979,13 @@ public final class Core extends AMPAPI {
      * Name Description
      *
      * @param message
+     * @return Void
      */
-    public void SendConsoleMessage(String message) {
+    public Result<Void, AMPError> SendConsoleMessage(String message) {
         Map<String, Object> args = new HashMap<>();
         args.put("message", message);
-        this.APICall("Core/SendConsoleMessage", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/SendConsoleMessage", args, type);
     }
 
     /**
@@ -947,7 +996,8 @@ public final class Core extends AMPAPI {
      * @param Enabled
      * @return ActionResult
      */
-    public ActionResult SetAMPRolePermission(UUID RoleId, String PermissionNode, Boolean Enabled) {
+    public Result<ActionResult, AMPError> SetAMPRolePermission(
+            UUID RoleId, String PermissionNode, Boolean Enabled) {
         Map<String, Object> args = new HashMap<>();
         args.put("RoleId", RoleId);
         args.put("PermissionNode", PermissionNode);
@@ -964,7 +1014,8 @@ public final class Core extends AMPAPI {
      * @param IsMember
      * @return ActionResult
      */
-    public ActionResult SetAMPUserRoleMembership(UUID UserId, UUID RoleId, Boolean IsMember) {
+    public Result<ActionResult, AMPError> SetAMPUserRoleMembership(
+            UUID UserId, UUID RoleId, Boolean IsMember) {
         Map<String, Object> args = new HashMap<>();
         args.put("UserId", UserId);
         args.put("RoleId", RoleId);
@@ -980,7 +1031,7 @@ public final class Core extends AMPAPI {
      * @param value
      * @return ActionResult
      */
-    public ActionResult SetConfig(String node, String value) {
+    public Result<ActionResult, AMPError> SetConfig(String node, String value) {
         Map<String, Object> args = new HashMap<>();
         args.put("node", node);
         args.put("value", value);
@@ -994,7 +1045,7 @@ public final class Core extends AMPAPI {
      * @param data
      * @return Boolean
      */
-    public Boolean SetConfigs(Map<String, String> data) {
+    public Result<Boolean, AMPError> SetConfigs(Map<String, String> data) {
         Map<String, Object> args = new HashMap<>();
         args.put("data", data);
         Type type = new TypeToken<Boolean>() {}.getType();
@@ -1008,7 +1059,7 @@ public final class Core extends AMPAPI {
      * @param Enabled
      * @return ActionResult
      */
-    public ActionResult SetTriggerEnabled(UUID Id, Boolean Enabled) {
+    public Result<ActionResult, AMPError> SetTriggerEnabled(UUID Id, Boolean Enabled) {
         Map<String, Object> args = new HashMap<>();
         args.put("Id", Id);
         args.put("Enabled", Enabled);
@@ -1021,7 +1072,7 @@ public final class Core extends AMPAPI {
      *
      * @return ActionResult
      */
-    public ActionResult Sleep() {
+    public Result<ActionResult, AMPError> Sleep() {
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("Core/Sleep", type);
     }
@@ -1031,27 +1082,40 @@ public final class Core extends AMPAPI {
      *
      * @return ActionResult
      */
-    public ActionResult Start() {
+    public Result<ActionResult, AMPError> Start() {
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("Core/Start", type);
     }
 
-    /** Name Description */
-    public void Stop() {
-        this.APICall("Core/Stop");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> Stop() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/Stop", type);
     }
 
     /**
      * Prevents the current instance from being started, and stops it if it's currently running.
      * Name Description
+     *
+     * @return Void
      */
-    public void Suspend() {
-        this.APICall("Core/Suspend");
+    public Result<Void, AMPError> Suspend() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/Suspend", type);
     }
 
-    /** Name Description */
-    public void UpdateAMPInstance() {
-        this.APICall("Core/UpdateAMPInstance");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> UpdateAMPInstance() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/UpdateAMPInstance", type);
     }
 
     /**
@@ -1061,7 +1125,8 @@ public final class Core extends AMPAPI {
      * @param TwoFactorPIN
      * @return ActionResult
      */
-    public ActionResult UpdateAccountInfo(String EmailAddress, String TwoFactorPIN) {
+    public Result<ActionResult, AMPError> UpdateAccountInfo(
+            String EmailAddress, String TwoFactorPIN) {
         Map<String, Object> args = new HashMap<>();
         args.put("EmailAddress", EmailAddress);
         args.put("TwoFactorPIN", TwoFactorPIN);
@@ -1074,7 +1139,7 @@ public final class Core extends AMPAPI {
      *
      * @return ActionResult
      */
-    public ActionResult UpdateApplication() {
+    public Result<ActionResult, AMPError> UpdateApplication() {
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("Core/UpdateApplication", type);
     }
@@ -1090,7 +1155,7 @@ public final class Core extends AMPAPI {
      * @param EmailAddress
      * @return ActionResult
      */
-    public ActionResult UpdateUserInfo(
+    public Result<ActionResult, AMPError> UpdateUserInfo(
             String Username,
             Boolean Disabled,
             Boolean PasswordExpires,
@@ -1108,9 +1173,14 @@ public final class Core extends AMPAPI {
         return this.APICall("Core/UpdateUserInfo", args, type);
     }
 
-    /** Name Description */
-    public void UpgradeAMP() {
-        this.APICall("Core/UpgradeAMP");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> UpgradeAMP() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("Core/UpgradeAMP", type);
     }
 
     /**
@@ -1121,7 +1191,7 @@ public final class Core extends AMPAPI {
      * @param description
      * @return ActionResult
      */
-    public ActionResult WebauthnRegister(
+    public Result<ActionResult, AMPError> WebauthnRegister(
             String attestationObject, String clientDataJSON, @Nullable String description) {
         Map<String, Object> args = new HashMap<>();
         args.put("attestationObject", attestationObject);

@@ -4,11 +4,12 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
-import dev.neuralnexus.ampapi.types.*;
+import dev.neuralnexus.ampapi.AMPError;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
@@ -25,15 +26,20 @@ public final class GenericModule extends AMPAPI {
      * @param filename
      * @return Map&lt;String, String&gt;
      */
-    public Map<String, String> ImportConfig(String filename) {
+    public Result<Map<String, String>, AMPError> ImportConfig(String filename) {
         Map<String, Object> args = new HashMap<>();
         args.put("filename", filename);
         Type type = new TypeToken<Map<String, String>>() {}.getType();
         return this.APICall("GenericModule/ImportConfig", args, type);
     }
 
-    /** Name Description */
-    public void ReloadGenericConfig() {
-        this.APICall("GenericModule/ReloadGenericConfig");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> ReloadGenericConfig() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("GenericModule/ReloadGenericConfig", type);
     }
 }

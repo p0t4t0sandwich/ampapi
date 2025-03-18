@@ -3,7 +3,7 @@
      *
 {MethodParameterDocs} * @return {ReturnTypeDoc}
      */
-    public {ReturnType} {MethodName}({MethodParameters}) {
+    public Result<{ReturnType}, APIError> {MethodName}({MethodParameters}) {
         Map<String, Object> args = new HashMap<>();{MethodParameterAssignments}
         Type type = new TypeToken<{ReturnType}>() {}.getType();
         return this.APICall("{PluginName}/{MethodName}", args, type);

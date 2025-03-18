@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
@@ -31,7 +33,7 @@ public final class ADSModule extends AMPAPI {
      * @param newDatastore
      * @return ActionResult
      */
-    public ActionResult AddDatastore(InstanceDatastore newDatastore) {
+    public Result<ActionResult, AMPError> AddDatastore(InstanceDatastore newDatastore) {
         Map<String, Object> args = new HashMap<>();
         args.put("newDatastore", newDatastore);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -46,7 +48,7 @@ public final class ADSModule extends AMPAPI {
      * @param RebuildConfiguration
      * @return ActionResult
      */
-    public ActionResult ApplyInstanceConfiguration(
+    public Result<ActionResult, AMPError> ApplyInstanceConfiguration(
             UUID InstanceID, Map<String, String> Args, @Nullable Boolean RebuildConfiguration) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceID", InstanceID);
@@ -68,7 +70,7 @@ public final class ADSModule extends AMPAPI {
      * @param RestartIfPreviouslyRunning
      * @return ActionResult
      */
-    public ActionResult ApplyTemplate(
+    public Result<ActionResult, AMPError> ApplyTemplate(
             UUID InstanceID,
             Integer TemplateID,
             @Nullable String NewFriendlyName,
@@ -94,7 +96,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceID
      * @return ActionResult
      */
-    public ActionResult AttachADS(
+    public Result<ActionResult, AMPError> AttachADS(
             String Friendly, Boolean IsHTTPS, String Host, Integer Port, UUID InstanceID) {
         Map<String, Object> args = new HashMap<>();
         args.put("Friendly", Friendly);
@@ -113,7 +115,7 @@ public final class ADSModule extends AMPAPI {
      * @param NewName
      * @return ActionResult
      */
-    public ActionResult CloneTemplate(Integer Id, String NewName) {
+    public Result<ActionResult, AMPError> CloneTemplate(Integer Id, String NewName) {
         Map<String, Object> args = new HashMap<>();
         args.put("Id", Id);
         args.put("NewName", NewName);
@@ -127,7 +129,7 @@ public final class ADSModule extends AMPAPI {
      * @param Name
      * @return ActionResult
      */
-    public ActionResult CreateDeploymentTemplate(String Name) {
+    public Result<ActionResult, AMPError> CreateDeploymentTemplate(String Name) {
         Map<String, Object> args = new HashMap<>();
         args.put("Name", Name);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -155,7 +157,7 @@ public final class ADSModule extends AMPAPI {
      * @param PostCreate
      * @return ActionResult
      */
-    public ActionResult CreateInstance(
+    public Result<ActionResult, AMPError> CreateInstance(
             UUID TargetADSInstance,
             UUID NewInstanceId,
             String Module,
@@ -202,7 +204,7 @@ public final class ADSModule extends AMPAPI {
      * @param TargetDatastore
      * @return ActionResult
      */
-    public ActionResult CreateInstanceFromSpec(
+    public Result<ActionResult, AMPError> CreateInstanceFromSpec(
             UUID SpecId,
             UUID TargetADSInstance,
             String FriendlyName,
@@ -227,7 +229,7 @@ public final class ADSModule extends AMPAPI {
      * @param PostCreate
      * @return ActionResult
      */
-    public ActionResult CreateLocalInstance(
+    public Result<ActionResult, AMPError> CreateLocalInstance(
             LocalAMPInstance Instance, @Nullable PostCreateAppActions PostCreate) {
         Map<String, Object> args = new HashMap<>();
         args.put("Instance", Instance);
@@ -242,7 +244,7 @@ public final class ADSModule extends AMPAPI {
      * @param id
      * @return ActionResult
      */
-    public ActionResult DeleteDatastore(Integer id) {
+    public Result<ActionResult, AMPError> DeleteDatastore(Integer id) {
         Map<String, Object> args = new HashMap<>();
         args.put("id", id);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -255,7 +257,7 @@ public final class ADSModule extends AMPAPI {
      * @param Id
      * @return ActionResult
      */
-    public ActionResult DeleteDeploymentTemplate(Integer Id) {
+    public Result<ActionResult, AMPError> DeleteDeploymentTemplate(Integer Id) {
         Map<String, Object> args = new HashMap<>();
         args.put("Id", Id);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -268,7 +270,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceName
      * @return RunningTask
      */
-    public RunningTask DeleteInstance(String InstanceName) {
+    public Result<RunningTask, AMPError> DeleteInstance(String InstanceName) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceName", InstanceName);
         Type type = new TypeToken<RunningTask>() {}.getType();
@@ -281,7 +283,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceId
      * @return ActionResult
      */
-    public ActionResult DeleteInstanceUsers(UUID InstanceId) {
+    public Result<ActionResult, AMPError> DeleteInstanceUsers(UUID InstanceId) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceId", InstanceId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -320,7 +322,7 @@ public final class ADSModule extends AMPAPI {
      *     4: Update and Start Always, 5. Start Always
      * @return RunningTask
      */
-    public RunningTask DeployTemplate(
+    public Result<RunningTask, AMPError> DeployTemplate(
             Integer TemplateID,
             @Nullable String NewUsername,
             @Nullable String NewPassword,
@@ -352,7 +354,7 @@ public final class ADSModule extends AMPAPI {
      * @param Id
      * @return ActionResult
      */
-    public ActionResult DetachTarget(UUID Id) {
+    public Result<ActionResult, AMPError> DetachTarget(UUID Id) {
         Map<String, Object> args = new HashMap<>();
         args.put("Id", Id);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -365,7 +367,7 @@ public final class ADSModule extends AMPAPI {
      * @param SourceArchive
      * @return ActionResult
      */
-    public ActionResult ExtractEverywhere(String SourceArchive) {
+    public Result<ActionResult, AMPError> ExtractEverywhere(String SourceArchive) {
         Map<String, Object> args = new HashMap<>();
         args.put("SourceArchive", SourceArchive);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -378,7 +380,7 @@ public final class ADSModule extends AMPAPI {
      * @param instanceId
      * @return List&lt;EndpointInfo&gt;
      */
-    public List<EndpointInfo> GetApplicationEndpoints(UUID instanceId) {
+    public Result<List<EndpointInfo>, AMPError> GetApplicationEndpoints(UUID instanceId) {
         Map<String, Object> args = new HashMap<>();
         args.put("instanceId", instanceId);
         Type type = new TypeToken<List<EndpointInfo>>() {}.getType();
@@ -391,7 +393,7 @@ public final class ADSModule extends AMPAPI {
      * @param id
      * @return InstanceDatastore
      */
-    public InstanceDatastore GetDatastore(Integer id) {
+    public Result<InstanceDatastore, AMPError> GetDatastore(Integer id) {
         Map<String, Object> args = new HashMap<>();
         args.put("id", id);
         Type type = new TypeToken<InstanceDatastore>() {}.getType();
@@ -404,7 +406,7 @@ public final class ADSModule extends AMPAPI {
      * @param datastoreId
      * @return List&lt;InstanceSummary&gt;
      */
-    public List<InstanceSummary> GetDatastoreInstances(Integer datastoreId) {
+    public Result<List<InstanceSummary>, AMPError> GetDatastoreInstances(Integer datastoreId) {
         Map<String, Object> args = new HashMap<>();
         args.put("datastoreId", datastoreId);
         Type type = new TypeToken<List<InstanceSummary>>() {}.getType();
@@ -416,7 +418,7 @@ public final class ADSModule extends AMPAPI {
      *
      * @return List&lt;InstanceDatastore&gt;
      */
-    public List<InstanceDatastore> GetDatastores() {
+    public Result<List<InstanceDatastore>, AMPError> GetDatastores() {
         Type type = new TypeToken<List<InstanceDatastore>>() {}.getType();
         return this.APICall("ADSModule/GetDatastores", type);
     }
@@ -426,7 +428,7 @@ public final class ADSModule extends AMPAPI {
      *
      * @return List&lt;DeploymentTemplate&gt;
      */
-    public List<DeploymentTemplate> GetDeploymentTemplates() {
+    public Result<List<DeploymentTemplate>, AMPError> GetDeploymentTemplates() {
         Type type = new TypeToken<List<DeploymentTemplate>>() {}.getType();
         return this.APICall("ADSModule/GetDeploymentTemplates", type);
     }
@@ -437,7 +439,7 @@ public final class ADSModule extends AMPAPI {
      * @param GroupId
      * @return IADSInstance
      */
-    public IADSInstance GetGroup(UUID GroupId) {
+    public Result<IADSInstance, AMPError> GetGroup(UUID GroupId) {
         Map<String, Object> args = new HashMap<>();
         args.put("GroupId", GroupId);
         Type type = new TypeToken<IADSInstance>() {}.getType();
@@ -450,7 +452,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceId
      * @return InstanceSummary
      */
-    public InstanceSummary GetInstance(UUID InstanceId) {
+    public Result<InstanceSummary, AMPError> GetInstance(UUID InstanceId) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceId", InstanceId);
         Type type = new TypeToken<InstanceSummary>() {}.getType();
@@ -463,7 +465,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceName
      * @return List&lt;PortUsage&gt;
      */
-    public List<PortUsage> GetInstanceNetworkInfo(String InstanceName) {
+    public Result<List<PortUsage>, AMPError> GetInstanceNetworkInfo(String InstanceName) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceName", InstanceName);
         Type type = new TypeToken<List<PortUsage>>() {}.getType();
@@ -475,7 +477,7 @@ public final class ADSModule extends AMPAPI {
      *
      * @return List&lt;InstanceStatus&gt;
      */
-    public List<InstanceStatus> GetInstanceStatuses() {
+    public Result<List<InstanceStatus>, AMPError> GetInstanceStatuses() {
         Type type = new TypeToken<List<InstanceStatus>>() {}.getType();
         return this.APICall("ADSModule/GetInstanceStatuses", type);
     }
@@ -486,7 +488,7 @@ public final class ADSModule extends AMPAPI {
      * @param ForceIncludeSelf
      * @return List&lt;IADSInstance&gt;
      */
-    public List<IADSInstance> GetInstances(@Nullable Boolean ForceIncludeSelf) {
+    public Result<List<IADSInstance>, AMPError> GetInstances(@Nullable Boolean ForceIncludeSelf) {
         Map<String, Object> args = new HashMap<>();
         args.put("ForceIncludeSelf", ForceIncludeSelf);
         Type type = new TypeToken<List<IADSInstance>>() {}.getType();
@@ -498,7 +500,7 @@ public final class ADSModule extends AMPAPI {
      *
      * @return List&lt;InstanceSummary&gt;
      */
-    public List<InstanceSummary> GetLocalInstances() {
+    public Result<List<InstanceSummary>, AMPError> GetLocalInstances() {
         Type type = new TypeToken<List<InstanceSummary>>() {}.getType();
         return this.APICall("ADSModule/GetLocalInstances", type);
     }
@@ -509,7 +511,7 @@ public final class ADSModule extends AMPAPI {
      * @param ModuleName
      * @return List&lt;ProvisionSettingInfo&gt;
      */
-    public List<ProvisionSettingInfo> GetProvisionArguments(String ModuleName) {
+    public Result<List<ProvisionSettingInfo>, AMPError> GetProvisionArguments(String ModuleName) {
         Map<String, Object> args = new HashMap<>();
         args.put("ModuleName", ModuleName);
         Type type = new TypeToken<List<ProvisionSettingInfo>>() {}.getType();
@@ -521,7 +523,7 @@ public final class ADSModule extends AMPAPI {
      *
      * @return ProvisionFitness
      */
-    public ProvisionFitness GetProvisionFitness() {
+    public Result<ProvisionFitness, AMPError> GetProvisionFitness() {
         Type type = new TypeToken<ProvisionFitness>() {}.getType();
         return this.APICall("ADSModule/GetProvisionFitness", type);
     }
@@ -531,7 +533,7 @@ public final class ADSModule extends AMPAPI {
      *
      * @return List&lt;ApplicationSpecSummary&gt;
      */
-    public List<ApplicationSpecSummary> GetSupportedAppSummaries() {
+    public Result<List<ApplicationSpecSummary>, AMPError> GetSupportedAppSummaries() {
         Type type = new TypeToken<List<ApplicationSpecSummary>>() {}.getType();
         return this.APICall("ADSModule/GetSupportedAppSummaries", type);
     }
@@ -541,7 +543,7 @@ public final class ADSModule extends AMPAPI {
      *
      * @return List&lt;ApplicationSpec&gt;
      */
-    public List<ApplicationSpec> GetSupportedApplications() {
+    public Result<List<ApplicationSpec>, AMPError> GetSupportedApplications() {
         Type type = new TypeToken<List<ApplicationSpec>>() {}.getType();
         return this.APICall("ADSModule/GetSupportedApplications", type);
     }
@@ -551,7 +553,7 @@ public final class ADSModule extends AMPAPI {
      *
      * @return RemoteTargetInfo
      */
-    public RemoteTargetInfo GetTargetInfo() {
+    public Result<RemoteTargetInfo, AMPError> GetTargetInfo() {
         Type type = new TypeToken<RemoteTargetInfo>() {}.getType();
         return this.APICall("ADSModule/GetTargetInfo", type);
     }
@@ -564,7 +566,7 @@ public final class ADSModule extends AMPAPI {
      * @param Values
      * @return ActionResult
      */
-    public ActionResult HandoutInstanceConfigs(
+    public Result<ActionResult, AMPError> HandoutInstanceConfigs(
             String ForModule, String SettingNode, List<String> Values) {
         Map<String, Object> args = new HashMap<>();
         args.put("ForModule", ForModule);
@@ -580,7 +582,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceId
      * @return ActionResult&lt;String&gt;
      */
-    public ActionResult<String> ManageInstance(UUID InstanceId) {
+    public Result<ActionResult<String>, AMPError> ManageInstance(UUID InstanceId) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceId", InstanceId);
         Type type = new TypeToken<ActionResult<String>>() {}.getType();
@@ -598,7 +600,7 @@ public final class ADSModule extends AMPAPI {
      * @param Open
      * @return ActionResult
      */
-    public ActionResult ModifyCustomFirewallRule(
+    public Result<ActionResult, AMPError> ModifyCustomFirewallRule(
             UUID instanceId,
             Integer PortNumber,
             Integer Range,
@@ -623,7 +625,8 @@ public final class ADSModule extends AMPAPI {
      * @param datastoreId
      * @return RunningTask
      */
-    public RunningTask MoveInstanceDatastore(UUID instanceId, Integer datastoreId) {
+    public Result<RunningTask, AMPError> MoveInstanceDatastore(
+            UUID instanceId, Integer datastoreId) {
         Map<String, Object> args = new HashMap<>();
         args.put("instanceId", instanceId);
         args.put("datastoreId", datastoreId);
@@ -637,7 +640,7 @@ public final class ADSModule extends AMPAPI {
      * @param instanceId
      * @return RunningTask
      */
-    public RunningTask ReactivateInstance(UUID instanceId) {
+    public Result<RunningTask, AMPError> ReactivateInstance(UUID instanceId) {
         Map<String, Object> args = new HashMap<>();
         args.put("instanceId", instanceId);
         Type type = new TypeToken<RunningTask>() {}.getType();
@@ -649,14 +652,19 @@ public final class ADSModule extends AMPAPI {
      *
      * @return RunningTask
      */
-    public RunningTask ReactivateLocalInstances() {
+    public Result<RunningTask, AMPError> ReactivateLocalInstances() {
         Type type = new TypeToken<RunningTask>() {}.getType();
         return this.APICall("ADSModule/ReactivateLocalInstances", type);
     }
 
-    /** Name Description */
-    public void RefreshAppCache() {
-        this.APICall("ADSModule/RefreshAppCache");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> RefreshAppCache() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("ADSModule/RefreshAppCache", type);
     }
 
     /**
@@ -665,7 +673,7 @@ public final class ADSModule extends AMPAPI {
      * @param GroupId
      * @return ActionResult
      */
-    public ActionResult RefreshGroup(UUID GroupId) {
+    public Result<ActionResult, AMPError> RefreshGroup(UUID GroupId) {
         Map<String, Object> args = new HashMap<>();
         args.put("GroupId", GroupId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -678,7 +686,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceId
      * @return ActionResult
      */
-    public ActionResult RefreshInstanceConfig(String InstanceId) {
+    public Result<ActionResult, AMPError> RefreshInstanceConfig(String InstanceId) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceId", InstanceId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -689,11 +697,13 @@ public final class ADSModule extends AMPAPI {
      * Name Description
      *
      * @param force
+     * @return Void
      */
-    public void RefreshRemoteConfigStores(@Nullable Boolean force) {
+    public Result<Void, AMPError> RefreshRemoteConfigStores(@Nullable Boolean force) {
         Map<String, Object> args = new HashMap<>();
         args.put("force", force);
-        this.APICall("ADSModule/RefreshRemoteConfigStores", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("ADSModule/RefreshRemoteConfigStores", args, type);
     }
 
     /**
@@ -707,7 +717,7 @@ public final class ADSModule extends AMPAPI {
      * @param friendlyName
      * @return ActionResult
      */
-    public ActionResult RegisterTarget(
+    public Result<ActionResult, AMPError> RegisterTarget(
             String controllerUrl,
             String myUrl,
             String username,
@@ -731,7 +741,7 @@ public final class ADSModule extends AMPAPI {
      * @param id
      * @return RunningTask
      */
-    public RunningTask RepairDatastore(Integer id) {
+    public Result<RunningTask, AMPError> RepairDatastore(Integer id) {
         Map<String, Object> args = new HashMap<>();
         args.put("id", id);
         Type type = new TypeToken<RunningTask>() {}.getType();
@@ -744,7 +754,7 @@ public final class ADSModule extends AMPAPI {
      * @param datastoreId
      * @return RunningTask
      */
-    public RunningTask RequestDatastoreSizeCalculation(Integer datastoreId) {
+    public Result<RunningTask, AMPError> RequestDatastoreSizeCalculation(Integer datastoreId) {
         Map<String, Object> args = new HashMap<>();
         args.put("datastoreId", datastoreId);
         Type type = new TypeToken<RunningTask>() {}.getType();
@@ -757,7 +767,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceName
      * @return ActionResult
      */
-    public ActionResult RestartInstance(String InstanceName) {
+    public Result<ActionResult, AMPError> RestartInstance(String InstanceName) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceName", InstanceName);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -771,7 +781,8 @@ public final class ADSModule extends AMPAPI {
      * @param RealIP
      * @return Map&lt;String, Object&gt;
      */
-    public Map<String, Object> Servers(Map<String, Object> Data, InetAddress RealIP) {
+    public Result<Map<String, Object>, AMPError> Servers(
+            Map<String, Object> Data, InetAddress RealIP) {
         Map<String, Object> args = new HashMap<>();
         args.put("Data", Data);
         args.put("RealIP", RealIP);
@@ -787,7 +798,8 @@ public final class ADSModule extends AMPAPI {
      * @param Value
      * @return ActionResult
      */
-    public ActionResult SetInstanceConfig(String InstanceName, String SettingNode, String Value) {
+    public Result<ActionResult, AMPError> SetInstanceConfig(
+            String InstanceName, String SettingNode, String Value) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceName", InstanceName);
         args.put("SettingNode", SettingNode);
@@ -803,7 +815,8 @@ public final class ADSModule extends AMPAPI {
      * @param PortMappings
      * @return ActionResult
      */
-    public ActionResult SetInstanceNetworkInfo(UUID InstanceId, Map<String, Integer> PortMappings) {
+    public Result<ActionResult, AMPError> SetInstanceNetworkInfo(
+            UUID InstanceId, Map<String, Integer> PortMappings) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceId", InstanceId);
         args.put("PortMappings", PortMappings);
@@ -818,7 +831,8 @@ public final class ADSModule extends AMPAPI {
      * @param Suspended
      * @return ActionResult
      */
-    public ActionResult SetInstanceSuspended(String InstanceName, Boolean Suspended) {
+    public Result<ActionResult, AMPError> SetInstanceSuspended(
+            String InstanceName, Boolean Suspended) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceName", InstanceName);
         args.put("Suspended", Suspended);
@@ -832,7 +846,7 @@ public final class ADSModule extends AMPAPI {
      * @param TargetADSInstance
      * @return ActionResult
      */
-    public ActionResult StartAllInstances(UUID TargetADSInstance) {
+    public Result<ActionResult, AMPError> StartAllInstances(UUID TargetADSInstance) {
         Map<String, Object> args = new HashMap<>();
         args.put("TargetADSInstance", TargetADSInstance);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -845,7 +859,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceName
      * @return ActionResult
      */
-    public ActionResult StartInstance(String InstanceName) {
+    public Result<ActionResult, AMPError> StartInstance(String InstanceName) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceName", InstanceName);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -858,7 +872,7 @@ public final class ADSModule extends AMPAPI {
      * @param TargetADSInstance
      * @return ActionResult
      */
-    public ActionResult StopAllInstances(UUID TargetADSInstance) {
+    public Result<ActionResult, AMPError> StopAllInstances(UUID TargetADSInstance) {
         Map<String, Object> args = new HashMap<>();
         args.put("TargetADSInstance", TargetADSInstance);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -871,7 +885,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceName
      * @return ActionResult
      */
-    public ActionResult StopInstance(String InstanceName) {
+    public Result<ActionResult, AMPError> StopInstance(String InstanceName) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceName", InstanceName);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -887,7 +901,7 @@ public final class ADSModule extends AMPAPI {
      * @param twoFactorToken
      * @return ActionResult
      */
-    public ActionResult TestADSLoginDetails(
+    public Result<ActionResult, AMPError> TestADSLoginDetails(
             String url, String username, String password, String twoFactorToken) {
         Map<String, Object> args = new HashMap<>();
         args.put("url", url);
@@ -904,7 +918,7 @@ public final class ADSModule extends AMPAPI {
      * @param updatedDatastore
      * @return ActionResult
      */
-    public ActionResult UpdateDatastore(InstanceDatastore updatedDatastore) {
+    public Result<ActionResult, AMPError> UpdateDatastore(InstanceDatastore updatedDatastore) {
         Map<String, Object> args = new HashMap<>();
         args.put("updatedDatastore", updatedDatastore);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -917,7 +931,8 @@ public final class ADSModule extends AMPAPI {
      * @param templateToUpdate
      * @return ActionResult
      */
-    public ActionResult UpdateDeploymentTemplate(DeploymentTemplate templateToUpdate) {
+    public Result<ActionResult, AMPError> UpdateDeploymentTemplate(
+            DeploymentTemplate templateToUpdate) {
         Map<String, Object> args = new HashMap<>();
         args.put("templateToUpdate", templateToUpdate);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -942,7 +957,7 @@ public final class ADSModule extends AMPAPI {
      * @param WelcomeMessage
      * @return ActionResult
      */
-    public ActionResult UpdateInstanceInfo(
+    public Result<ActionResult, AMPError> UpdateInstanceInfo(
             String InstanceId,
             String FriendlyName,
             String Description,
@@ -978,11 +993,13 @@ public final class ADSModule extends AMPAPI {
      * Name Description
      *
      * @param TargetID
+     * @return Void
      */
-    public void UpdateTarget(UUID TargetID) {
+    public Result<Void, AMPError> UpdateTarget(UUID TargetID) {
         Map<String, Object> args = new HashMap<>();
         args.put("TargetID", TargetID);
-        this.APICall("ADSModule/UpdateTarget", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("ADSModule/UpdateTarget", args, type);
     }
 
     /**
@@ -995,7 +1012,7 @@ public final class ADSModule extends AMPAPI {
      * @param Tags
      * @return ActionResult
      */
-    public ActionResult UpdateTargetInfo(
+    public Result<ActionResult, AMPError> UpdateTargetInfo(
             UUID Id, String FriendlyName, URI Url, String Description, List<String> Tags) {
         Map<String, Object> args = new HashMap<>();
         args.put("Id", Id);
@@ -1014,7 +1031,8 @@ public final class ADSModule extends AMPAPI {
      * @param TargetADSInstance
      * @return ActionResult
      */
-    public ActionResult UpgradeAllInstances(Boolean RestartRunning, UUID TargetADSInstance) {
+    public Result<ActionResult, AMPError> UpgradeAllInstances(
+            Boolean RestartRunning, UUID TargetADSInstance) {
         Map<String, Object> args = new HashMap<>();
         args.put("RestartRunning", RestartRunning);
         args.put("TargetADSInstance", TargetADSInstance);
@@ -1028,7 +1046,7 @@ public final class ADSModule extends AMPAPI {
      * @param InstanceName
      * @return ActionResult
      */
-    public ActionResult UpgradeInstance(String InstanceName) {
+    public Result<ActionResult, AMPError> UpgradeInstance(String InstanceName) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceName", InstanceName);
         Type type = new TypeToken<ActionResult>() {}.getType();

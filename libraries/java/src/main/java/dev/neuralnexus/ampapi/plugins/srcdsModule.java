@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.*;
 
 import java.lang.reflect.Type;
@@ -24,11 +26,13 @@ public final class srcdsModule extends AMPAPI {
      * Name Description
      *
      * @param ID
+     * @return Void
      */
-    public void BanUserByID(String ID) {
+    public Result<Void, AMPError> BanUserByID(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
-        this.APICall("srcdsModule/BanUserByID", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("srcdsModule/BanUserByID", args, type);
     }
 
     /**
@@ -36,7 +40,7 @@ public final class srcdsModule extends AMPAPI {
      *
      * @return List&lt;String&gt;
      */
-    public List<String> GetMapCycle() {
+    public Result<List<String>, AMPError> GetMapCycle() {
         Type type = new TypeToken<List<String>>() {}.getType();
         return this.APICall("srcdsModule/GetMapCycle", type);
     }
@@ -45,22 +49,26 @@ public final class srcdsModule extends AMPAPI {
      * Name Description
      *
      * @param MapName
+     * @return Void
      */
-    public void InsertMapEntry(String MapName) {
+    public Result<Void, AMPError> InsertMapEntry(String MapName) {
         Map<String, Object> args = new HashMap<>();
         args.put("MapName", MapName);
-        this.APICall("srcdsModule/InsertMapEntry", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("srcdsModule/InsertMapEntry", args, type);
     }
 
     /**
      * Name Description
      *
      * @param ID
+     * @return Void
      */
-    public void KickUserByID(String ID) {
+    public Result<Void, AMPError> KickUserByID(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
-        this.APICall("srcdsModule/KickUserByID", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("srcdsModule/KickUserByID", args, type);
     }
 
     /**
@@ -68,12 +76,14 @@ public final class srcdsModule extends AMPAPI {
      *
      * @param Index
      * @param NewIndex
+     * @return Void
      */
-    public void MoveMapEntry(Integer Index, Integer NewIndex) {
+    public Result<Void, AMPError> MoveMapEntry(Integer Index, Integer NewIndex) {
         Map<String, Object> args = new HashMap<>();
         args.put("Index", Index);
         args.put("NewIndex", NewIndex);
-        this.APICall("srcdsModule/MoveMapEntry", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("srcdsModule/MoveMapEntry", args, type);
     }
 
     /**
@@ -82,7 +92,7 @@ public final class srcdsModule extends AMPAPI {
      * @param Name
      * @return ActionResult
      */
-    public ActionResult RecordDemo(String Name) {
+    public Result<ActionResult, AMPError> RecordDemo(String Name) {
         Map<String, Object> args = new HashMap<>();
         args.put("Name", Name);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -93,21 +103,25 @@ public final class srcdsModule extends AMPAPI {
      * Name Description
      *
      * @param Index
+     * @return Void
      */
-    public void RemoveMapEntry(Integer Index) {
+    public Result<Void, AMPError> RemoveMapEntry(Integer Index) {
         Map<String, Object> args = new HashMap<>();
         args.put("Index", Index);
-        this.APICall("srcdsModule/RemoveMapEntry", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("srcdsModule/RemoveMapEntry", args, type);
     }
 
     /**
      * Name Description
      *
      * @param MapList
+     * @return Void
      */
-    public void ReplaceMapList(String[] MapList) {
+    public Result<Void, AMPError> ReplaceMapList(String[] MapList) {
         Map<String, Object> args = new HashMap<>();
         args.put("MapList", MapList);
-        this.APICall("srcdsModule/ReplaceMapList", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("srcdsModule/ReplaceMapList", args, type);
     }
 }

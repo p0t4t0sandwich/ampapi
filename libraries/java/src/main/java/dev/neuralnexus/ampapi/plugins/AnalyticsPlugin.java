@@ -4,11 +4,12 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
-import dev.neuralnexus.ampapi.types.*;
+import dev.neuralnexus.ampapi.AMPError;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -29,7 +30,7 @@ public final class AnalyticsPlugin extends AMPAPI {
      * @param Filters
      * @return Object
      */
-    public Object GetAnalyticsSummary(
+    public Result<Object, AMPError> GetAnalyticsSummary(
             @Nullable Integer PeriodDays,
             @Nullable String StartDate,
             @Nullable Map<String, String> Filters) {

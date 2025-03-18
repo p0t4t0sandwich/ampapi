@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
@@ -29,13 +31,15 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param Filename
      * @param Data
      * @param Delete
+     * @return Void
      */
-    public void AppendFileChunk(String Filename, String Data, Boolean Delete) {
+    public Result<Void, AMPError> AppendFileChunk(String Filename, String Data, Boolean Delete) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);
         args.put("Data", Data);
         args.put("Delete", Delete);
-        this.APICall("FileManagerPlugin/AppendFileChunk", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("FileManagerPlugin/AppendFileChunk", args, type);
     }
 
     /**
@@ -44,7 +48,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param FilePath
      * @return ActionResult&lt;String&gt;
      */
-    public ActionResult<String> CalculateFileMD5Sum(String FilePath) {
+    public Result<ActionResult<String>, AMPError> CalculateFileMD5Sum(String FilePath) {
         Map<String, Object> args = new HashMap<>();
         args.put("FilePath", FilePath);
         Type type = new TypeToken<ActionResult<String>>() {}.getType();
@@ -59,7 +63,8 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param Exclude
      * @return ActionResult
      */
-    public ActionResult ChangeExclusion(String ModifyPath, Boolean AsDirectory, Boolean Exclude) {
+    public Result<ActionResult, AMPError> ChangeExclusion(
+            String ModifyPath, Boolean AsDirectory, Boolean Exclude) {
         Map<String, Object> args = new HashMap<>();
         args.put("ModifyPath", ModifyPath);
         args.put("AsDirectory", AsDirectory);
@@ -75,7 +80,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param TargetDirectory
      * @return ActionResult
      */
-    public ActionResult CopyFile(String Origin, String TargetDirectory) {
+    public Result<ActionResult, AMPError> CopyFile(String Origin, String TargetDirectory) {
         Map<String, Object> args = new HashMap<>();
         args.put("Origin", Origin);
         args.put("TargetDirectory", TargetDirectory);
@@ -89,7 +94,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param PathToArchive
      * @return ActionResult
      */
-    public ActionResult CreateArchive(String PathToArchive) {
+    public Result<ActionResult, AMPError> CreateArchive(String PathToArchive) {
         Map<String, Object> args = new HashMap<>();
         args.put("PathToArchive", PathToArchive);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -102,7 +107,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param NewPath
      * @return ActionResult
      */
-    public ActionResult CreateDirectory(String NewPath) {
+    public Result<ActionResult, AMPError> CreateDirectory(String NewPath) {
         Map<String, Object> args = new HashMap<>();
         args.put("NewPath", NewPath);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -116,7 +121,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param TargetDirectory
      * @return ActionResult
      */
-    public ActionResult DownloadFileFromURL(URI Source, String TargetDirectory) {
+    public Result<ActionResult, AMPError> DownloadFileFromURL(URI Source, String TargetDirectory) {
         Map<String, Object> args = new HashMap<>();
         args.put("Source", Source);
         args.put("TargetDirectory", TargetDirectory);
@@ -124,9 +129,14 @@ public final class FileManagerPlugin extends AMPAPI {
         return this.APICall("FileManagerPlugin/DownloadFileFromURL", args, type);
     }
 
-    /** Name Description */
-    public void Dummy() {
-        this.APICall("FileManagerPlugin/Dummy");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> Dummy() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("FileManagerPlugin/Dummy", type);
     }
 
     /**
@@ -135,7 +145,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param TrashDirectoryName
      * @return ActionResult
      */
-    public ActionResult EmptyTrash(String TrashDirectoryName) {
+    public Result<ActionResult, AMPError> EmptyTrash(String TrashDirectoryName) {
         Map<String, Object> args = new HashMap<>();
         args.put("TrashDirectoryName", TrashDirectoryName);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -149,7 +159,8 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param DestinationPath
      * @return ActionResult
      */
-    public ActionResult ExtractArchive(String ArchivePath, @Nullable String DestinationPath) {
+    public Result<ActionResult, AMPError> ExtractArchive(
+            String ArchivePath, @Nullable String DestinationPath) {
         Map<String, Object> args = new HashMap<>();
         args.put("ArchivePath", ArchivePath);
         args.put("DestinationPath", DestinationPath);
@@ -163,7 +174,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param Dir
      * @return List&lt;DirectoryListing&gt;
      */
-    public List<DirectoryListing> GetDirectoryListing(String Dir) {
+    public Result<List<DirectoryListing>, AMPError> GetDirectoryListing(String Dir) {
         Map<String, Object> args = new HashMap<>();
         args.put("Dir", Dir);
         Type type = new TypeToken<List<DirectoryListing>>() {}.getType();
@@ -178,7 +189,8 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param Length
      * @return FileChunkData
      */
-    public FileChunkData GetFileChunk(String Filename, Integer Position, Integer Length) {
+    public Result<FileChunkData, AMPError> GetFileChunk(
+            String Filename, Integer Position, Integer Length) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);
         args.put("Position", Position);
@@ -195,7 +207,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param ChunkSize
      * @return ActionResult&lt;String&gt;
      */
-    public ActionResult<String> ReadFileChunk(
+    public Result<ActionResult<String>, AMPError> ReadFileChunk(
             String Filename, Integer Offset, @Nullable Integer ChunkSize) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);
@@ -211,7 +223,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param Filename
      * @return ActionResult
      */
-    public ActionResult ReleaseFileUploadLock(String Filename) {
+    public Result<ActionResult, AMPError> ReleaseFileUploadLock(String Filename) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -225,7 +237,8 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param NewDirectoryName The name component of the new directory (not the full path)
      * @return ActionResult
      */
-    public ActionResult RenameDirectory(String oldDirectory, String NewDirectoryName) {
+    public Result<ActionResult, AMPError> RenameDirectory(
+            String oldDirectory, String NewDirectoryName) {
         Map<String, Object> args = new HashMap<>();
         args.put("oldDirectory", oldDirectory);
         args.put("NewDirectoryName", NewDirectoryName);
@@ -240,7 +253,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param NewFilename
      * @return ActionResult
      */
-    public ActionResult RenameFile(String Filename, String NewFilename) {
+    public Result<ActionResult, AMPError> RenameFile(String Filename, String NewFilename) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);
         args.put("NewFilename", NewFilename);
@@ -255,7 +268,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param DirectoryName
      * @return ActionResult
      */
-    public ActionResult TrashDirectory(String DirectoryName) {
+    public Result<ActionResult, AMPError> TrashDirectory(String DirectoryName) {
         Map<String, Object> args = new HashMap<>();
         args.put("DirectoryName", DirectoryName);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -268,7 +281,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param Filename
      * @return ActionResult
      */
-    public ActionResult TrashFile(String Filename) {
+    public Result<ActionResult, AMPError> TrashFile(String Filename) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -284,7 +297,7 @@ public final class FileManagerPlugin extends AMPAPI {
      * @param FinalChunk
      * @return ActionResult
      */
-    public ActionResult WriteFileChunk(
+    public Result<ActionResult, AMPError> WriteFileChunk(
             String Filename, String Data, Integer Offset, Boolean FinalChunk) {
         Map<String, Object> args = new HashMap<>();
         args.put("Filename", Filename);

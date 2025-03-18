@@ -4,10 +4,12 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.reflect.TypeToken;
 
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.*;
 
 import org.jetbrains.annotations.Nullable;
@@ -29,7 +31,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      * @param BackupId
      * @return ActionResult
      */
-    public ActionResult DeleteFromS3(UUID BackupId) {
+    public Result<ActionResult, AMPError> DeleteFromS3(UUID BackupId) {
         Map<String, Object> args = new HashMap<>();
         args.put("BackupId", BackupId);
         Type type = new TypeToken<ActionResult>() {}.getType();
@@ -40,11 +42,13 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      * Name Description
      *
      * @param BackupId
+     * @return Void
      */
-    public void DeleteLocalBackup(UUID BackupId) {
+    public Result<Void, AMPError> DeleteLocalBackup(UUID BackupId) {
         Map<String, Object> args = new HashMap<>();
         args.put("BackupId", BackupId);
-        this.APICall("LocalFileBackupPlugin/DeleteLocalBackup", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("LocalFileBackupPlugin/DeleteLocalBackup", args, type);
     }
 
     /**
@@ -53,7 +57,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      * @param BackupId
      * @return RunningTask
      */
-    public RunningTask DownloadFromS3(UUID BackupId) {
+    public Result<RunningTask, AMPError> DownloadFromS3(UUID BackupId) {
         Map<String, Object> args = new HashMap<>();
         args.put("BackupId", BackupId);
         Type type = new TypeToken<RunningTask>() {}.getType();
@@ -65,14 +69,19 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      *
      * @return List&lt;BackupManifest&gt;
      */
-    public List<BackupManifest> GetBackups() {
+    public Result<List<BackupManifest>, AMPError> GetBackups() {
         Type type = new TypeToken<List<BackupManifest>>() {}.getType();
         return this.APICall("LocalFileBackupPlugin/GetBackups", type);
     }
 
-    /** Name Description */
-    public void RefreshBackupList() {
-        this.APICall("LocalFileBackupPlugin/RefreshBackupList");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> RefreshBackupList() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("LocalFileBackupPlugin/RefreshBackupList", type);
     }
 
     /**
@@ -82,7 +91,8 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      * @param DeleteExistingData
      * @return ActionResult
      */
-    public ActionResult RestoreBackup(UUID BackupId, @Nullable Boolean DeleteExistingData) {
+    public Result<ActionResult, AMPError> RestoreBackup(
+            UUID BackupId, @Nullable Boolean DeleteExistingData) {
         Map<String, Object> args = new HashMap<>();
         args.put("BackupId", BackupId);
         args.put("DeleteExistingData", DeleteExistingData);
@@ -95,12 +105,14 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      *
      * @param BackupId
      * @param Sticky
+     * @return Void
      */
-    public void SetBackupSticky(UUID BackupId, Boolean Sticky) {
+    public Result<Void, AMPError> SetBackupSticky(UUID BackupId, Boolean Sticky) {
         Map<String, Object> args = new HashMap<>();
         args.put("BackupId", BackupId);
         args.put("Sticky", Sticky);
-        this.APICall("LocalFileBackupPlugin/SetBackupSticky", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("LocalFileBackupPlugin/SetBackupSticky", args, type);
     }
 
     /**
@@ -112,7 +124,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      * @param WasCreatedAutomatically
      * @return ActionResult
      */
-    public ActionResult TakeBackup(
+    public Result<ActionResult, AMPError> TakeBackup(
             String Title,
             String Description,
             Boolean Sticky,
@@ -132,7 +144,7 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      * @param BackupId
      * @return RunningTask
      */
-    public RunningTask UploadToS3(UUID BackupId) {
+    public Result<RunningTask, AMPError> UploadToS3(UUID BackupId) {
         Map<String, Object> args = new HashMap<>();
         args.put("BackupId", BackupId);
         Type type = new TypeToken<RunningTask>() {}.getType();

@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+/** Store for AuthProviders */
 public class AuthStore {
     private final Map<UUID, AuthProvider> authProviders = new HashMap<>();
 

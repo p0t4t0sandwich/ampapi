@@ -17,10 +17,7 @@ repositories {
 dependencies {
     compileOnly("org.jetbrains:annotations:24.1.0")
     implementation("com.google.code.gson:gson:2.12.1")
-}
-
-tasks.named<DowngradeJar>("downgradeJar") {
-    downgradeTo = JavaVersion.VERSION_1_8
+    implementation("com.github.sviperll:result4j:1.2.0")
 }
 
 spotless {
@@ -65,6 +62,7 @@ java {
 }
 
 tasks.downgradeJar {
+    downgradeTo = JavaVersion.VERSION_1_8
     dependsOn(tasks.spotlessApply)
 }
 
@@ -80,7 +78,7 @@ tasks.shadeDowngradedApi {
 }
 
 tasks.assemble {
-    dependsOn(tasks.downgradeJar)
+    dependsOn(tasks.shadeDowngradedApi)
 }
 
 tasks.withType<GenerateModuleMetadata> {

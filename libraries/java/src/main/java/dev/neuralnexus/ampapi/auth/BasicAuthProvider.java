@@ -4,7 +4,9 @@
  */
 package dev.neuralnexus.ampapi.auth;
 
-import dev.neuralnexus.ampapi.exceptions.LoginException;
+import com.github.sviperll.result4j.Result;
+
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.LoginResponse;
 import dev.neuralnexus.ampapi.types.ModuleInfo;
 
@@ -74,13 +76,13 @@ public class BasicAuthProvider implements AuthProvider {
     }
 
     private void UpdateModuleInfo() {
-        try {
-            ModuleInfo info = this.APICall("Core/GetModuleInfo", ModuleInfo.class);
-            this.instanceName = info.InstanceName();
-            this.instanceId = info.InstanceId();
-        } catch (LoginException e) {
-            e.printStackTrace();
-        }
+        this.<ModuleInfo>APICall("Core/GetModuleInfo", ModuleInfo.class)
+                .discardError()
+                .ifPresent(
+                        info -> {
+                            this.instanceName = info.InstanceName();
+                            this.instanceId = info.InstanceId();
+                        });
     }
 
     @Override
@@ -100,8 +102,8 @@ public class BasicAuthProvider implements AuthProvider {
     }
 
     @Override
-    public <T> T APICall(String endpoint, Map<String, Object> args, Type returnType)
-            throws LoginException {
+    public <T> Result<T, AMPError> APICall(
+            String endpoint, Map<String, Object> args, Type returnType) {
         if (this.sessionId.isEmpty()) {
             this.Login();
         }
@@ -116,24 +118,25 @@ public class BasicAuthProvider implements AuthProvider {
     }
 
     @Override
-    public LoginResponse Login(boolean rememberMe) throws LoginException {
+    public Result<LoginResponse, AMPError> Login(boolean rememberMe) {
         Map<String, Object> args = new HashMap<>();
         args.put("username", this.username);
         args.put("password", this.password);
         args.put("token", this.token);
         args.put("rememberMe", rememberMe);
 
-        LoginResponse loginResponse =
-                HTTPReq.APICall(
+        return HTTPReq.<LoginResponse>APICall(
                         this.dataSource + "Core/Login",
                         this.requestMethod,
                         args,
-                        LoginResponse.class);
-        if (!loginResponse.success()) {
-            throw new LoginException(loginResponse);
-        }
-        this.update(loginResponse);
-        return loginResponse;
+                        LoginResponse.class)
+                .map(
+                        loginResponse -> {
+                            if (loginResponse.success()) {
+                                this.update(loginResponse);
+                            }
+                            return loginResponse;
+                        });
     }
 
     public static Builder builder() {

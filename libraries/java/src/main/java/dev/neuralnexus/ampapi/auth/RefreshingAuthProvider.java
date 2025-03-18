@@ -4,7 +4,9 @@
  */
 package dev.neuralnexus.ampapi.auth;
 
-import dev.neuralnexus.ampapi.exceptions.LoginException;
+import com.github.sviperll.result4j.Result;
+
+import dev.neuralnexus.ampapi.AMPError;
 import dev.neuralnexus.ampapi.types.LoginResponse;
 
 import java.lang.reflect.Type;
@@ -39,11 +41,11 @@ public class RefreshingAuthProvider extends BasicAuthProvider {
     }
 
     @Override
-    public <T> T APICall(String endpoint, Map<String, Object> args, Type returnType)
-            throws LoginException {
+    public <T> Result<T, AMPError> APICall(
+            String endpoint, Map<String, Object> args, Type returnType) {
         long now = System.currentTimeMillis();
         if (now - this.lastCall > this.relogInterval) {
-            this.relogCallback.login(this);
+            this.relogCallback.callback(this);
         }
 
         this.lastCall = now;
@@ -55,7 +57,7 @@ public class RefreshingAuthProvider extends BasicAuthProvider {
     }
 
     @Override
-    public LoginResponse Login(boolean rememberMe) throws LoginException {
+    public Result<LoginResponse, AMPError> Login(boolean rememberMe) {
         Map<String, Object> args = new HashMap<>();
         args.put("username", this.username);
 
@@ -68,17 +70,18 @@ public class RefreshingAuthProvider extends BasicAuthProvider {
         }
         args.put("rememberMe", rememberMe);
 
-        LoginResponse loginResponse =
-                HTTPReq.APICall(
+        return HTTPReq.<LoginResponse>APICall(
                         this.dataSource + "Core/Login",
                         this.requestMethod,
                         args,
-                        LoginResponse.class);
-        if (!loginResponse.success()) {
-            throw new LoginException(loginResponse);
-        }
-        this.update(loginResponse);
-        return loginResponse;
+                        LoginResponse.class)
+                .map(
+                        loginResponse -> {
+                            if (loginResponse.success()) {
+                                this.update(loginResponse);
+                            }
+                            return loginResponse;
+                        });
     }
 
     public static Builder builder() {
@@ -90,11 +93,21 @@ public class RefreshingAuthProvider extends BasicAuthProvider {
         private int relogInterval = 1000 * 60 * 5;
         private LoginCallback relogCallback = null;
 
+        /**
+         * Set the relog interval for the AuthProvider
+         * @param relogInterval The relog interval to use
+         * @return The builder
+         */
         public Builder relogInterval(int relogInterval) {
             this.relogInterval = relogInterval;
             return this;
         }
 
+        /**
+         * Set the relog callback for the AuthProvider, you can use this to set up token storage and the like
+         * @param relogCallback The relog callback to use
+         * @return The builder
+         */
         public Builder relogCallback(LoginCallback relogCallback) {
             this.relogCallback = relogCallback;
             return this;
@@ -131,8 +144,9 @@ public class RefreshingAuthProvider extends BasicAuthProvider {
         }
     }
 
+    /** Callback for the relog event */
     @FunctionalInterface
     public interface LoginCallback {
-        void login(RefreshingAuthProvider authProvider) throws LoginException;
+        void callback(RefreshingAuthProvider authProvider);
     }
 }

@@ -4,6 +4,7 @@
  */
 package dev.neuralnexus.ampapi.auth;
 
+import com.github.sviperll.result4j.Result;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.TypeAdapter;
@@ -13,7 +14,7 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
 
-import dev.neuralnexus.ampapi.exceptions.AMPAPIException;
+import dev.neuralnexus.ampapi.AMPError;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,7 +32,7 @@ public class HTTPReq {
     private static final Gson gson =
             new GsonBuilder().registerTypeAdapterFactory(OptionalTypeAdapter.FACTORY).create();
 
-    public static @NotNull <T> T APICall(
+    public static @NotNull <T> Result<T, AMPError> APICall(
             String endpoint, String requestMethod, Map<String, Object> args, Type returnType) {
         try {
             HttpURLConnection con =
@@ -40,7 +41,7 @@ public class HTTPReq {
             con.setRequestMethod(requestMethod);
             con.setRequestProperty("Content-Type", "application/json");
             con.setRequestProperty("Accept", "application/json");
-            con.setRequestProperty("User-Agent", "ampapi-java/1.3.0");
+            con.setRequestProperty("User-Agent", "ampapi-java/2612.3.0");
             con.setConnectTimeout(5000);
             con.getOutputStream().write(gson.toJson(args).getBytes());
 
@@ -51,13 +52,12 @@ public class HTTPReq {
             if (jsonString.contains("Title")
                     && jsonString.contains("Message")
                     && jsonString.contains("StackTrace")) {
-                throw new AMPAPIException(
-                        gson.fromJson(jsonString, AMPAPIException.APIError.class));
+                return Result.error(gson.fromJson(jsonString, AMPError.class));
             }
             if (returnType == Void.class) {
-                return null;
+                return Result.success(null);
             }
-            return gson.fromJson(jsonString, returnType);
+            return Result.success(gson.fromJson(jsonString, returnType));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

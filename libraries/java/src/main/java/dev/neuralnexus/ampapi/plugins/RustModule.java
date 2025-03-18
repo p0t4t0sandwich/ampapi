@@ -4,10 +4,14 @@
  */
 package dev.neuralnexus.ampapi.plugins;
 
+import com.github.sviperll.result4j.Result;
+import com.google.gson.reflect.TypeToken;
+
 import dev.neuralnexus.ampapi.AMPAPI;
 import dev.neuralnexus.ampapi.auth.AuthProvider;
-import dev.neuralnexus.ampapi.types.*;
+import dev.neuralnexus.ampapi.AMPError;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,31 +24,45 @@ public final class RustModule extends AMPAPI {
      * Name Description
      *
      * @param ID
+     * @return Void
      */
-    public void Ban(String ID) {
+    public Result<Void, AMPError> Ban(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
-        this.APICall("RustModule/Ban", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("RustModule/Ban", args, type);
     }
 
     /**
      * Name Description
      *
      * @param ID
+     * @return Void
      */
-    public void Kick(String ID) {
+    public Result<Void, AMPError> Kick(String ID) {
         Map<String, Object> args = new HashMap<>();
         args.put("ID", ID);
-        this.APICall("RustModule/Kick", args);
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("RustModule/Kick", args, type);
     }
 
-    /** Name Description */
-    public void WipeBlueprints() {
-        this.APICall("RustModule/WipeBlueprints");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> WipeBlueprints() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("RustModule/WipeBlueprints", type);
     }
 
-    /** Name Description */
-    public void WipeMap() {
-        this.APICall("RustModule/WipeMap");
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> WipeMap() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("RustModule/WipeMap", type);
     }
 }
