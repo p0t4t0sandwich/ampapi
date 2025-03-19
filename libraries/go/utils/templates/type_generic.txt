@@ -1,0 +1,5 @@
+// {TypeName} {TypeDescription}
+type {TypeName}[T any] struct {
+{TypeFields}
+}
+

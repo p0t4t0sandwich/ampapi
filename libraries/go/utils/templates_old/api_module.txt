@@ -1,0 +1,22 @@
+package apimodules
+
+// A Go library for the AMP API
+// Author: p0t4t0sandich
+
+import (
+	"encoding/json"
+
+	"github.com/p0t4t0sandwich/ampapi-go"
+)
+
+// struct %MODULE_NAME%
+type %MODULE_NAME% struct {
+    *ampapi.AMPAPI
+}
+
+// Function New%MODULE_NAME%
+// Creates a new %MODULE_NAME% object
+func New%MODULE_NAME%(api *ampapi.AMPAPI) *%MODULE_NAME% {
+	return &%MODULE_NAME%{api}
+}
+

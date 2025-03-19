@@ -1,0 +1,24 @@
+// {TypeName} {TypeDescription}
+type {TypeName} int
+
+// {TypeName}Map A map of {TypeName}s to their integer values
+// {TypeName}MapReverse A map of integer values to their {TypeName}s
+var (
+	{TypeName}Map = map[string]int{
+{TypeFields}
+	}
+
+	{TypeName}MapReverse = map[int]string{
+{TypeFieldsReverse}
+    }
+)
+
+// String Returns the string representation of the {TypeName}
+// Author: p0t4t0sandwich
+func (e {TypeName}) String() string {
+	if val, ok := {TypeName}MapReverse[int(e)]; ok {
+		return val
+	}
+	return "Undefined"
+}
+

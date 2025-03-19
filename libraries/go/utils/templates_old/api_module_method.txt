@@ -1,0 +1,12 @@
+/* %METHOD_NAME% - %METHOD_DESCRIPTION%
+ * Name Description Optional%METHOD_PARAMETER_DOC%
+ * return %METHOD_RETURN_TYPE%
+ */
+func (a *%MODULE_NAME%) %METHOD_NAME%(%METHOD_PARAMETERS%) (%METHOD_RETURN_TYPE%, error) {
+    var args = make(map[string]any)%METHOD_PARAMETER_MAP%
+    var res %METHOD_RETURN_TYPE%
+    bytes, err := a.ApiCall("%MODULE_NAME%/%METHOD_NAME%", args)
+    json.Unmarshal(bytes, &res)
+    return res, err
+}
+
