@@ -1,0 +1,17 @@
+/**
+{TypeDescription}
+ */
+public enum {TypeName} {
+{TypeFields}
+
+    /** The value of the enum. */
+    private final int value;
+
+    {TypeName}(int i) {
+        this.value = i;
+    }
+
+    {TypeName}(double i) {
+        this.value = (int) i;
+    }
+}

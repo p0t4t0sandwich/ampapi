@@ -1,0 +1,5 @@
+/**
+{TypeDescription}
+ * @param <T> Type of the result
+ */
+public record {TypeName}<T>({TypeFields}) {}

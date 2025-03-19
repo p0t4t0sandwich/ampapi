@@ -1,0 +1,17 @@
+/**
+ * Copyright (c) 2025 Dylan Sperrer - dylan@sperrer.ca
+ * This project is Licensed under <a href="https://github.com/p0t4t0sandwich/ampapi/blob/main/LICENSE">MIT</a>
+ */
+package dev.neuralnexus.ampapi.types;
+
+import java.util.Map;
+
+/**
+ * Type for the result of Core.GetStatus
+ *
+ * @param Metrics The metrics
+ * @param State The state of the instance
+ * @param Uptime The uptime of the instance
+ */
+public record StatusResponse(
+        Map<String, MetricInfo> Metrics, ApplicationState State, String Uptime) {}
