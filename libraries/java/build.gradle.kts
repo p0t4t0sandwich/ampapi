@@ -1,5 +1,3 @@
-import xyz.wagyourtail.jvmdg.gradle.task.DowngradeJar
-
 plugins {
     id("java")
     id("maven-publish")
@@ -8,7 +6,7 @@ plugins {
 }
 
 group = "dev.neuralnexus"
-version = "2612.3.0"
+version = "2608.3.0"
 
 repositories {
     mavenCentral()
@@ -23,7 +21,6 @@ dependencies {
 spotless {
     format("misc") {
     target("*.gradle", ".gitattributes", ".gitignore")
-
         trimTrailingWhitespace()
         leadingTabsToSpaces()
         endWithNewline()
