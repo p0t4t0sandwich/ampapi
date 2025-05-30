@@ -218,6 +218,10 @@ class AuthStore:
     def add(self, instanceId: str, authProvider: AuthProvider) -> None:
         self._authProviders[instanceId] = authProvider
 
+    @overload
+    def remove(self, authProvider: AuthProvider) -> None:
+        self.remove(authProvider.instanceId)
+
     def remove(self, instanceId: str) -> None:
         del self._authProviders[instanceId]
 
