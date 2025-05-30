@@ -29,8 +29,8 @@ type AMPAPI struct {
 	RelogInterval   int64
 }
 
-// AMPAPIError struct
-type AMPAPIError struct {
+// AMPError struct
+type AMPError struct {
 	Title      string `json:"Title"`      // Error title
 	Message    string `json:"Message"`    // Error message
 	StackTrace string `json:"StackTrace"` // Stack trace
@@ -111,7 +111,7 @@ func (ampapi *AMPAPI) ApiCall(endpoint string, args map[string]any) ([]byte, err
 	}
 
 	// Raise an exception if the API call failed
-	var errorResult AMPAPIError
+	var errorResult AMPError
 	json.Unmarshal(result, &errorResult)
 	// TODO: There's an internal library issue with Core/Login that needs to be solved.
 	if errorResult.Title != "" && errorResult.Message != "" && errorResult.StackTrace != "" {
@@ -122,7 +122,7 @@ func (ampapi *AMPAPI) ApiCall(endpoint string, args map[string]any) ([]byte, err
 }
 
 // Simplified login function
-func (ampapi *AMPAPI) Login() (LoginResult, error) {
+func (ampapi *AMPAPI) Login() (LoginResponse, error) {
 	var args = make(map[string]any)
 	args["username"] = ampapi.Username
 	args["password"] = ampapi.Password
@@ -134,7 +134,7 @@ func (ampapi *AMPAPI) Login() (LoginResult, error) {
 		args["password"] = ""
 	}
 
-	var loginResult LoginResult
+	var loginResult LoginResponse
 	res, err := ampapi.ApiCall("Core/Login", args)
 	json.Unmarshal(res, &loginResult)
 	if err != nil {
@@ -142,7 +142,7 @@ func (ampapi *AMPAPI) Login() (LoginResult, error) {
 	}
 
 	if loginResult.Success {
-		ampapi.SessionId = loginResult.SessionId
+		ampapi.SessionId = loginResult.SessionID
 		ampapi.RememberMeToken = loginResult.RememberMeToken
 	}
 
