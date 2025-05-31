@@ -4,6 +4,8 @@
  */
 package dev.neuralnexus.ampapi;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * AMPError
  *
@@ -13,7 +15,7 @@ package dev.neuralnexus.ampapi;
  */
 public record AMPError(String Title, String Message, String StackTrace) {
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return this.Title + ": " + this.Message + "\n" + this.StackTrace;
     }
 }

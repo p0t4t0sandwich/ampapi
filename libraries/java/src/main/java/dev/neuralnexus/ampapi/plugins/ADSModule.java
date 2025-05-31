@@ -182,6 +182,78 @@ public final class ADSModule extends AMPAPI {
     /**
      * Name Description
      *
+     * @param PairingCode
+     * @param Friendly
+     * @param IsHTTPS
+     * @param Host
+     * @param Port
+     * @param InstanceID
+     * @return ActionResult
+     */
+    public Result<ActionResult, AMPError> AttachADSWithPairingCode(
+            String PairingCode,
+            String Friendly,
+            Boolean IsHTTPS,
+            String Host,
+            Integer Port,
+            UUID InstanceID) {
+        Map<String, Object> args = new HashMap<>();
+        args.put("PairingCode", PairingCode);
+        args.put("Friendly", Friendly);
+        args.put("IsHTTPS", IsHTTPS);
+        args.put("Host", Host);
+        args.put("Port", Port);
+        args.put("InstanceID", InstanceID);
+        Type type = new TypeToken<ActionResult>() {}.getType();
+        return this.APICall("ADSModule/AttachADSWithPairingCode", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param PairingCode
+     * @param Friendly
+     * @param IsHTTPS
+     * @param Host
+     * @param Port
+     * @param InstanceID
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> AttachADSWithPairingCodeAsync(
+            String PairingCode,
+            String Friendly,
+            Boolean IsHTTPS,
+            String Host,
+            Integer Port,
+            UUID InstanceID) {
+        return CompletableFuture.supplyAsync(
+                () ->
+                        this.AttachADSWithPairingCode(
+                                PairingCode, Friendly, IsHTTPS, Host, Port, InstanceID));
+    }
+
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> CancelPairing() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("ADSModule/CancelPairing", type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> CancelPairingAsync() {
+        return CompletableFuture.supplyAsync(() -> this.CancelPairing());
+    }
+
+    /**
+     * Name Description
+     *
      * @param Id
      * @param NewName
      * @return ActionResult
@@ -249,6 +321,7 @@ public final class ADSModule extends AMPAPI {
      * @param DisplayImageSource
      * @param TargetDatastore
      * @param PostCreate
+     * @param Group
      * @return ActionResult
      */
     public Result<ActionResult, AMPError> CreateInstance(
@@ -266,7 +339,8 @@ public final class ADSModule extends AMPAPI {
             @Nullable Boolean StartOnBoot,
             @Nullable String DisplayImageSource,
             @Nullable Integer TargetDatastore,
-            @Nullable PostCreateAppActions PostCreate) {
+            @Nullable PostCreateAppActions PostCreate,
+            @Nullable String Group) {
         Map<String, Object> args = new HashMap<>();
         args.put("TargetADSInstance", TargetADSInstance);
         args.put("NewInstanceId", NewInstanceId);
@@ -283,6 +357,7 @@ public final class ADSModule extends AMPAPI {
         args.put("DisplayImageSource", DisplayImageSource);
         args.put("TargetDatastore", TargetDatastore);
         args.put("PostCreate", PostCreate);
+        args.put("Group", Group);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("ADSModule/CreateInstance", args, type);
     }
@@ -306,6 +381,7 @@ public final class ADSModule extends AMPAPI {
      * @param DisplayImageSource
      * @param TargetDatastore
      * @param PostCreate
+     * @param Group
      * @return ActionResult
      */
     public CompletionStage<Result<ActionResult, AMPError>> CreateInstanceAsync(
@@ -323,7 +399,8 @@ public final class ADSModule extends AMPAPI {
             @Nullable Boolean StartOnBoot,
             @Nullable String DisplayImageSource,
             @Nullable Integer TargetDatastore,
-            @Nullable PostCreateAppActions PostCreate) {
+            @Nullable PostCreateAppActions PostCreate,
+            @Nullable String Group) {
         return CompletableFuture.supplyAsync(
                 () ->
                         this.CreateInstance(
@@ -341,7 +418,8 @@ public final class ADSModule extends AMPAPI {
                                 StartOnBoot,
                                 DisplayImageSource,
                                 TargetDatastore,
-                                PostCreate));
+                                PostCreate,
+                                Group));
     }
 
     /**
@@ -353,6 +431,7 @@ public final class ADSModule extends AMPAPI {
      * @param PostCreate
      * @param StartOnBoot
      * @param TargetDatastore
+     * @param Group
      * @return ActionResult
      */
     public Result<ActionResult, AMPError> CreateInstanceFromSpec(
@@ -361,7 +440,8 @@ public final class ADSModule extends AMPAPI {
             String FriendlyName,
             @Nullable PostCreateAppActions PostCreate,
             @Nullable Boolean StartOnBoot,
-            @Nullable Integer TargetDatastore) {
+            @Nullable Integer TargetDatastore,
+            @Nullable String Group) {
         Map<String, Object> args = new HashMap<>();
         args.put("SpecId", SpecId);
         args.put("TargetADSInstance", TargetADSInstance);
@@ -369,6 +449,7 @@ public final class ADSModule extends AMPAPI {
         args.put("PostCreate", PostCreate);
         args.put("StartOnBoot", StartOnBoot);
         args.put("TargetDatastore", TargetDatastore);
+        args.put("Group", Group);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("ADSModule/CreateInstanceFromSpec", args, type);
     }
@@ -382,6 +463,7 @@ public final class ADSModule extends AMPAPI {
      * @param PostCreate
      * @param StartOnBoot
      * @param TargetDatastore
+     * @param Group
      * @return ActionResult
      */
     public CompletionStage<Result<ActionResult, AMPError>> CreateInstanceFromSpecAsync(
@@ -390,7 +472,8 @@ public final class ADSModule extends AMPAPI {
             String FriendlyName,
             @Nullable PostCreateAppActions PostCreate,
             @Nullable Boolean StartOnBoot,
-            @Nullable Integer TargetDatastore) {
+            @Nullable Integer TargetDatastore,
+            @Nullable String Group) {
         return CompletableFuture.supplyAsync(
                 () ->
                         this.CreateInstanceFromSpec(
@@ -399,7 +482,8 @@ public final class ADSModule extends AMPAPI {
                                 FriendlyName,
                                 PostCreate,
                                 StartOnBoot,
-                                TargetDatastore));
+                                TargetDatastore,
+                                Group));
     }
 
     /**
@@ -1034,6 +1118,25 @@ public final class ADSModule extends AMPAPI {
     /**
      * Name Description
      *
+     * @return ActionResult&lt;String&gt;
+     */
+    public Result<ActionResult<String>, AMPError> GetTargetPairingCode() {
+        Type type = new TypeToken<ActionResult<String>>() {}.getType();
+        return this.APICall("ADSModule/GetTargetPairingCode", type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @return ActionResult&lt;String&gt;
+     */
+    public CompletionStage<Result<ActionResult<String>, AMPError>> GetTargetPairingCodeAsync() {
+        return CompletableFuture.supplyAsync(() -> this.GetTargetPairingCode());
+    }
+
+    /**
+     * Name Description
+     *
      * @param ForModule
      * @param SettingNode
      * @param Values
@@ -1362,6 +1465,41 @@ public final class ADSModule extends AMPAPI {
     /**
      * Name Description
      *
+     * @param controllerUrl
+     * @param myUrl
+     * @param code
+     * @param friendlyName
+     * @return ActionResult
+     */
+    public Result<ActionResult, AMPError> RegisterTargetWithCode(
+            String controllerUrl, String myUrl, String code, String friendlyName) {
+        Map<String, Object> args = new HashMap<>();
+        args.put("controllerUrl", controllerUrl);
+        args.put("myUrl", myUrl);
+        args.put("code", code);
+        args.put("friendlyName", friendlyName);
+        Type type = new TypeToken<ActionResult>() {}.getType();
+        return this.APICall("ADSModule/RegisterTargetWithCode", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param controllerUrl
+     * @param myUrl
+     * @param code
+     * @param friendlyName
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> RegisterTargetWithCodeAsync(
+            String controllerUrl, String myUrl, String code, String friendlyName) {
+        return CompletableFuture.supplyAsync(
+                () -> this.RegisterTargetWithCode(controllerUrl, myUrl, code, friendlyName));
+    }
+
+    /**
+     * Name Description
+     *
      * @param id
      * @return RunningTask
      */
@@ -1496,13 +1634,20 @@ public final class ADSModule extends AMPAPI {
      *
      * @param InstanceId
      * @param PortMappings
+     * @param ApplicationIP
+     * @param mustStop
      * @return ActionResult
      */
     public Result<ActionResult, AMPError> SetInstanceNetworkInfo(
-            UUID InstanceId, Map<String, Integer> PortMappings) {
+            UUID InstanceId,
+            Map<String, Integer> PortMappings,
+            @Nullable String ApplicationIP,
+            @Nullable Boolean mustStop) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceId", InstanceId);
         args.put("PortMappings", PortMappings);
+        args.put("ApplicationIP", ApplicationIP);
+        args.put("mustStop", mustStop);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("ADSModule/SetInstanceNetworkInfo", args, type);
     }
@@ -1512,12 +1657,19 @@ public final class ADSModule extends AMPAPI {
      *
      * @param InstanceId
      * @param PortMappings
+     * @param ApplicationIP
+     * @param mustStop
      * @return ActionResult
      */
     public CompletionStage<Result<ActionResult, AMPError>> SetInstanceNetworkInfoAsync(
-            UUID InstanceId, Map<String, Integer> PortMappings) {
+            UUID InstanceId,
+            Map<String, Integer> PortMappings,
+            @Nullable String ApplicationIP,
+            @Nullable Boolean mustStop) {
         return CompletableFuture.supplyAsync(
-                () -> this.SetInstanceNetworkInfo(InstanceId, PortMappings));
+                () ->
+                        this.SetInstanceNetworkInfo(
+                                InstanceId, PortMappings, ApplicationIP, mustStop));
     }
 
     /**
@@ -1646,41 +1798,6 @@ public final class ADSModule extends AMPAPI {
     /**
      * Name Description
      *
-     * @param url
-     * @param username
-     * @param password
-     * @param twoFactorToken
-     * @return ActionResult
-     */
-    public Result<ActionResult, AMPError> TestADSLoginDetails(
-            String url, String username, String password, String twoFactorToken) {
-        Map<String, Object> args = new HashMap<>();
-        args.put("url", url);
-        args.put("username", username);
-        args.put("password", password);
-        args.put("twoFactorToken", twoFactorToken);
-        Type type = new TypeToken<ActionResult>() {}.getType();
-        return this.APICall("ADSModule/TestADSLoginDetails", args, type);
-    }
-
-    /**
-     * Name Description
-     *
-     * @param url
-     * @param username
-     * @param password
-     * @param twoFactorToken
-     * @return ActionResult
-     */
-    public CompletionStage<Result<ActionResult, AMPError>> TestADSLoginDetailsAsync(
-            String url, String username, String password, String twoFactorToken) {
-        return CompletableFuture.supplyAsync(
-                () -> this.TestADSLoginDetails(url, username, password, twoFactorToken));
-    }
-
-    /**
-     * Name Description
-     *
      * @param updatedDatastore
      * @return ActionResult
      */
@@ -1743,6 +1860,10 @@ public final class ADSModule extends AMPAPI {
      * @param ContainerImage
      * @param ContainerSwap
      * @param WelcomeMessage
+     * @param DisplayGroup
+     * @param CustomMountBindings
+     * @param ExtraContainerPackages
+     * @param IsMultiIPAware
      * @return ActionResult
      */
     public Result<ActionResult, AMPError> UpdateInstanceInfo(
@@ -1758,7 +1879,11 @@ public final class ADSModule extends AMPAPI {
             Float ContainerMaxCPU,
             String ContainerImage,
             Integer ContainerSwap,
-            @Nullable String WelcomeMessage) {
+            @Nullable String WelcomeMessage,
+            @Nullable String DisplayGroup,
+            @Nullable Map<String, String> CustomMountBindings,
+            @Nullable List<String> ExtraContainerPackages,
+            @Nullable Boolean IsMultiIPAware) {
         Map<String, Object> args = new HashMap<>();
         args.put("InstanceId", InstanceId);
         args.put("FriendlyName", FriendlyName);
@@ -1773,6 +1898,10 @@ public final class ADSModule extends AMPAPI {
         args.put("ContainerImage", ContainerImage);
         args.put("ContainerSwap", ContainerSwap);
         args.put("WelcomeMessage", WelcomeMessage);
+        args.put("DisplayGroup", DisplayGroup);
+        args.put("CustomMountBindings", CustomMountBindings);
+        args.put("ExtraContainerPackages", ExtraContainerPackages);
+        args.put("IsMultiIPAware", IsMultiIPAware);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("ADSModule/UpdateInstanceInfo", args, type);
     }
@@ -1793,6 +1922,10 @@ public final class ADSModule extends AMPAPI {
      * @param ContainerImage
      * @param ContainerSwap
      * @param WelcomeMessage
+     * @param DisplayGroup
+     * @param CustomMountBindings
+     * @param ExtraContainerPackages
+     * @param IsMultiIPAware
      * @return ActionResult
      */
     public CompletionStage<Result<ActionResult, AMPError>> UpdateInstanceInfoAsync(
@@ -1808,7 +1941,11 @@ public final class ADSModule extends AMPAPI {
             Float ContainerMaxCPU,
             String ContainerImage,
             Integer ContainerSwap,
-            @Nullable String WelcomeMessage) {
+            @Nullable String WelcomeMessage,
+            @Nullable String DisplayGroup,
+            @Nullable Map<String, String> CustomMountBindings,
+            @Nullable List<String> ExtraContainerPackages,
+            @Nullable Boolean IsMultiIPAware) {
         return CompletableFuture.supplyAsync(
                 () ->
                         this.UpdateInstanceInfo(
@@ -1824,7 +1961,11 @@ public final class ADSModule extends AMPAPI {
                                 ContainerMaxCPU,
                                 ContainerImage,
                                 ContainerSwap,
-                                WelcomeMessage));
+                                WelcomeMessage,
+                                DisplayGroup,
+                                CustomMountBindings,
+                                ExtraContainerPackages,
+                                IsMultiIPAware));
     }
 
     /**
