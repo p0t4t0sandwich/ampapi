@@ -2,10 +2,12 @@ ADSModule.AddDatastore(newDatastore: InstanceDatastore) -> ActionResult
 ADSModule.ApplyInstanceConfiguration(InstanceID: Guid, Args: Dictionary<String, String>, RebuildConfiguration: Boolean) -> ActionResult
 ADSModule.ApplyTemplate(InstanceID: Guid, TemplateID: Int32, NewFriendlyName: String, Secret: String, RestartIfPreviouslyRunning: Boolean) -> ActionResult
 ADSModule.AttachADS(Friendly: String, IsHTTPS: Boolean, Host: String, Port: Int32, InstanceID: Guid) -> ActionResult
+ADSModule.AttachADSWithPairingCode(PairingCode: String, Friendly: String, IsHTTPS: Boolean, Host: String, Port: Int32, InstanceID: Guid) -> ActionResult
+ADSModule.CancelPairing() -> Void
 ADSModule.CloneTemplate(Id: Int32, NewName: String) -> ActionResult
 ADSModule.CreateDeploymentTemplate(Name: String) -> ActionResult
-ADSModule.CreateInstance(TargetADSInstance: Guid, NewInstanceId: Guid, Module: String, InstanceName: String, FriendlyName: String, IPBinding: String, PortNumber: Int32, AdminUsername: String, AdminPassword: String, ProvisionSettings: Dictionary<String, String>, AutoConfigure: Boolean, StartOnBoot: Boolean, DisplayImageSource: String, TargetDatastore: Int32, PostCreate: PostCreateAppActions) -> ActionResult
-ADSModule.CreateInstanceFromSpec(SpecId: Guid, TargetADSInstance: Guid, FriendlyName: String, PostCreate: PostCreateAppActions, StartOnBoot: Boolean, TargetDatastore: Int32) -> ActionResult
+ADSModule.CreateInstance(TargetADSInstance: Guid, NewInstanceId: Guid, Module: String, InstanceName: String, FriendlyName: String, IPBinding: String, PortNumber: Int32, AdminUsername: String, AdminPassword: String, ProvisionSettings: Dictionary<String, String>, AutoConfigure: Boolean, StartOnBoot: Boolean, DisplayImageSource: String, TargetDatastore: Int32, PostCreate: PostCreateAppActions, Group: String) -> ActionResult
+ADSModule.CreateInstanceFromSpec(SpecId: Guid, TargetADSInstance: Guid, FriendlyName: String, PostCreate: PostCreateAppActions, StartOnBoot: Boolean, TargetDatastore: Int32, Group: String) -> ActionResult
 ADSModule.CreateLocalInstance(Instance: LocalAMPInstance, PostCreate: PostCreateAppActions) -> ActionResult
 ADSModule.DeleteDatastore(id: Int32) -> ActionResult
 ADSModule.DeleteDeploymentTemplate(Id: Int32) -> ActionResult
@@ -30,6 +32,7 @@ ADSModule.GetProvisionFitness() -> ProvisionFitness
 ADSModule.GetSupportedAppSummaries() -> List<ApplicationSpecSummary>
 ADSModule.GetSupportedApplications() -> List<ApplicationSpec>
 ADSModule.GetTargetInfo() -> RemoteTargetInfo
+ADSModule.GetTargetPairingCode() -> ActionResult<String>
 ADSModule.HandoutInstanceConfigs(ForModule: String, SettingNode: String, Values: List<String>) -> ActionResult
 ADSModule.ManageInstance(InstanceId: Guid) -> ActionResult<String>
 ADSModule.ModifyCustomFirewallRule(instanceId: Guid, PortNumber: Int32, Range: Int32, Protocol: PortProtocol, Description: String, Open: Boolean) -> ActionResult
@@ -41,21 +44,21 @@ ADSModule.RefreshGroup(GroupId: Guid) -> ActionResult
 ADSModule.RefreshInstanceConfig(InstanceId: String) -> ActionResult
 ADSModule.RefreshRemoteConfigStores(force: Boolean) -> Void
 ADSModule.RegisterTarget(controllerUrl: String, myUrl: String, username: String, password: String, twoFactorToken: String, friendlyName: String) -> ActionResult
+ADSModule.RegisterTargetWithCode(controllerUrl: String, myUrl: String, code: String, friendlyName: String) -> ActionResult
 ADSModule.RepairDatastore(id: Int32) -> RunningTask
 ADSModule.RequestDatastoreSizeCalculation(datastoreId: Int32) -> RunningTask
 ADSModule.RestartInstance(InstanceName: String) -> ActionResult
 ADSModule.Servers(Data: JObject, RealIP: IPAddress) -> JSONRawResponse
 ADSModule.SetInstanceConfig(InstanceName: String, SettingNode: String, Value: String) -> ActionResult
-ADSModule.SetInstanceNetworkInfo(InstanceId: Guid, PortMappings: Dictionary<String, Int32>) -> ActionResult
+ADSModule.SetInstanceNetworkInfo(InstanceId: Guid, PortMappings: Dictionary<String, Int32>, ApplicationIP: String, mustStop: Boolean) -> ActionResult
 ADSModule.SetInstanceSuspended(InstanceName: String, Suspended: Boolean) -> ActionResult
 ADSModule.StartAllInstances(TargetADSInstance: Guid) -> ActionResult
 ADSModule.StartInstance(InstanceName: String) -> ActionResult
 ADSModule.StopAllInstances(TargetADSInstance: Guid) -> ActionResult
 ADSModule.StopInstance(InstanceName: String) -> ActionResult
-ADSModule.TestADSLoginDetails(url: String, username: String, password: String, twoFactorToken: String) -> ActionResult
 ADSModule.UpdateDatastore(updatedDatastore: InstanceDatastore) -> ActionResult
 ADSModule.UpdateDeploymentTemplate(templateToUpdate: DeploymentTemplate) -> ActionResult
-ADSModule.UpdateInstanceInfo(InstanceId: String, FriendlyName: String, Description: String, StartOnBoot: Boolean, Suspended: Boolean, ExcludeFromFirewall: Boolean, RunInContainer: Boolean, ContainerMemory: Int32, MemoryPolicy: ContainerMemoryPolicy, ContainerMaxCPU: Float, ContainerImage: String, ContainerSwap: Int32, WelcomeMessage: String) -> ActionResult
+ADSModule.UpdateInstanceInfo(InstanceId: String, FriendlyName: String, Description: String, StartOnBoot: Boolean, Suspended: Boolean, ExcludeFromFirewall: Boolean, RunInContainer: Boolean, ContainerMemory: Int32, MemoryPolicy: ContainerMemoryPolicy, ContainerMaxCPU: Float, ContainerImage: String, ContainerSwap: Int32, WelcomeMessage: String, DisplayGroup: String, CustomMountBindings: Dictionary<String, String>, ExtraContainerPackages: List<String>, IsMultiIPAware: Boolean) -> ActionResult
 ADSModule.UpdateTarget(TargetID: Guid) -> Void
 ADSModule.UpdateTargetInfo(Id: Guid, FriendlyName: String, Url: Uri, Description: String, Tags: List<String>) -> ActionResult
 ADSModule.UpgradeAllInstances(RestartRunning: Boolean, TargetADSInstance: Guid) -> ActionResult
@@ -100,6 +103,7 @@ Core.GetConfigs(nodes: List<String>) -> List<SettingSpec>
 Core.GetDiagnosticsInfo() -> Dictionary<String, String>
 Core.GetModuleInfo() -> ModuleInfo
 Core.GetNewGuid() -> Guid
+Core.GetOIDCLoginURL(state: String, redirect_uri: String) -> String
 Core.GetPermissionsSpec() -> List<IPermissionsTreeNode>
 Core.GetPortSummaries() -> List<ListeningPortSummary>
 Core.GetProvisionSpec() -> List<SettingSpec>
@@ -124,6 +128,7 @@ Core.GetWebauthnCredentialSummaries() -> List<WebauthnCredentialSummary>
 Core.Kill() -> Void
 Core.Login(username: String, password: String, token: String, rememberMe: Boolean) -> LoginResponse
 Core.Logout() -> Void
+Core.OIDCLogin(code: String, redirect_uri: String, serverId: Nullable<Guid>) -> JObject
 Core.RefreshSettingValueList(Node: String) -> ActionResult
 Core.RefreshSettingsSourceCache() -> Void
 Core.RenameRole(RoleId: Guid, NewName: String) -> ActionResult
@@ -147,6 +152,7 @@ Core.Suspend() -> Void
 Core.UpdateAMPInstance() -> Void
 Core.UpdateAccountInfo(EmailAddress: String, TwoFactorPIN: String) -> ActionResult
 Core.UpdateApplication() -> ActionResult
+Core.UpdatePublicKey(PubKey: String) -> ActionResult
 Core.UpdateUserInfo(Username: String, Disabled: Boolean, PasswordExpires: Boolean, CannotChangePassword: Boolean, MustChangePassword: Boolean, EmailAddress: String) -> ActionResult
 Core.UpgradeAMP() -> Void
 Core.WebauthnRegister(attestationObject: String, clientDataJSON: String, description: String) -> ActionResult
@@ -172,6 +178,7 @@ FileManagerPlugin.TrashFile(Filename: String) -> ActionResult
 FileManagerPlugin.WriteFileChunk(Filename: String, Data: String, Offset: Int64, FinalChunk: Boolean) -> ActionResult
 GenericModule.ImportConfig(filename: String) -> Dictionary<String, String>
 GenericModule.ReloadGenericConfig() -> Void
+GenericModule.RequestServerInfo() -> Void
 LocalFileBackupPlugin.DeleteFromS3(BackupId: Guid) -> ActionResult
 LocalFileBackupPlugin.DeleteLocalBackup(BackupId: Guid) -> Void
 LocalFileBackupPlugin.DownloadFromS3(BackupId: Guid) -> RunningTask
@@ -179,7 +186,7 @@ LocalFileBackupPlugin.GetBackups() -> List<BackupManifest>
 LocalFileBackupPlugin.RefreshBackupList() -> Void
 LocalFileBackupPlugin.RestoreBackup(BackupId: Guid, DeleteExistingData: Boolean) -> ActionResult
 LocalFileBackupPlugin.SetBackupSticky(BackupId: Guid, Sticky: Boolean) -> Void
-LocalFileBackupPlugin.TakeBackup(Title: String, Description: String, Sticky: Boolean, WasCreatedAutomatically: Boolean) -> ActionResult
+LocalFileBackupPlugin.TakeBackup(Title: String, Description: String, Sticky: Boolean, WasCreatedAutomatically: Boolean, Local: Boolean, S3: Boolean) -> ActionResult
 LocalFileBackupPlugin.UploadToS3(BackupId: Guid) -> RunningTask
 MinecraftModule.AcceptEULA() -> Boolean
 MinecraftModule.AddOPEntry(UserOrUUID: String) -> ActionResult
@@ -201,6 +208,7 @@ MinecraftModule.GetWhitelist() -> List<WhitelistEntry>
 MinecraftModule.KickUserByID(ID: String) -> Void
 MinecraftModule.KillByID(ID: String) -> Void
 MinecraftModule.LoadOPList() -> List<OPEntry>
+MinecraftModule.RejectEULA() -> Boolean
 MinecraftModule.RemoveOPEntry(UserOrUUID: String) -> Void
 MinecraftModule.RemoveWhitelistEntry(UserOrUUID: String) -> Void
 MinecraftModule.SmiteByID(ID: String) -> Void
