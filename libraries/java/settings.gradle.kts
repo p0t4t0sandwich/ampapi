@@ -4,7 +4,5 @@ pluginManagement {
     repositories {
         mavenLocal()
         maven("https://maven.neuralnexus.dev/mirror")
-        mavenCentral()
-        gradlePluginPortal()
     }
 }

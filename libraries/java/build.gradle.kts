@@ -1,20 +1,20 @@
 plugins {
     id("java")
     id("maven-publish")
-    id("com.diffplug.spotless") version("7.0.2")
-    id("xyz.wagyourtail.jvmdowngrader") version("1.2.2")
+    id("com.diffplug.spotless") version("7.0.4")
+    id("xyz.wagyourtail.jvmdowngrader") version("1.3.0")
 }
 
 group = "dev.neuralnexus"
-version = "2608.3.0"
+version = "2620.4.0"
 
 repositories {
-    mavenCentral()
+    maven("https://maven.neuralnexus.dev/mirror")
 }
 
 dependencies {
-    compileOnly("org.jetbrains:annotations:24.1.0")
-    implementation("com.google.code.gson:gson:2.12.1")
+    compileOnly("org.jetbrains:annotations:26.0.2")
+    implementation("com.google.code.gson:gson:2.13.1")
     implementation("com.github.sviperll:result4j:1.2.0")
 }
 
@@ -26,6 +26,7 @@ spotless {
         endWithNewline()
     }
     java {
+        toggleOffOn()
         importOrder()
         removeUnusedImports()
         cleanthat()

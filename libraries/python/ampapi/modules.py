@@ -40,6 +40,27 @@ class ADSAsync(CommonAPIAsync):
         super().__init__(auth)
         self.ADSModule = ADSModuleAsync(self)
 
+class FiveM(CommonAPI):
+    AnalyticsPlugin = Final[AnalyticsPlugin]
+    FiveMModule = Final[FiveMModule]
+    LocalFileBackupPlugin = Final[LocalFileBackupPlugin]
+    def __init__(self, auth: AuthProvider):
+        super().__init__(auth)
+        self.AnalyticsPlugin = AnalyticsPlugin(self)
+        self.FiveMModule = FiveMModule(self)
+        self.LocalFileBackupPlugin = LocalFileBackupPlugin(self)
+
+class FiveMAsync(CommonAPIAsync):
+    AnalyticsPlugin = Final[AnalyticsPluginAsync]
+    FiveMModule = Final[FiveMModuleAsync]
+    LocalFileBackupPlugin = Final[LocalFileBackupPluginAsync]
+
+    def __init__(self, auth: AuthProvider):
+        super().__init__(auth)
+        self.AnalyticsPlugin = AnalyticsPluginAsync(self)
+        self.FiveMModule = FiveMModuleAsync(self)
+        self.LocalFileBackupPlugin = LocalFileBackupPluginAsync(self)
+
 class GenericModule(CommonAPI):
     AnalyticsPlugin = Final[AnalyticsPlugin]
     GenericModule = Final[GenericModule]

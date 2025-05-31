@@ -65,4 +65,23 @@ public final class GenericModule extends AMPAPI {
     public CompletionStage<Result<Void, AMPError>> ReloadGenericConfigAsync() {
         return CompletableFuture.supplyAsync(() -> this.ReloadGenericConfig());
     }
+
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public Result<Void, AMPError> RequestServerInfo() {
+        Type type = new TypeToken<Void>() {}.getType();
+        return this.APICall("GenericModule/RequestServerInfo", type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @return Void
+     */
+    public CompletionStage<Result<Void, AMPError>> RequestServerInfoAsync() {
+        return CompletableFuture.supplyAsync(() -> this.RequestServerInfo());
+    }
 }

@@ -82,6 +82,40 @@ class ADSModule(AMPAPI):
             'InstanceID': InstanceID
         }), ActionResult)
 
+    def AttachADSWithPairingCode(self, PairingCode: 'str', Friendly: 'str', IsHTTPS: 'bool', Host: 'str', Port: 'int', InstanceID: 'str') -> ActionResult:
+        """
+        Name Description Optional
+        :param PairingCode: 
+        :type PairingCode: str
+        :param Friendly: 
+        :type Friendly: str
+        :param IsHTTPS: 
+        :type IsHTTPS: bool
+        :param Host: 
+        :type Host: str
+        :param Port: 
+        :type Port: int
+        :param InstanceID: 
+        :type InstanceID: str
+        :returns: ActionResult
+        """
+        return json_to_obj(self.api_call("ADSModule/AttachADSWithPairingCode", {
+            'PairingCode': PairingCode,
+            'Friendly': Friendly,
+            'IsHTTPS': IsHTTPS,
+            'Host': Host,
+            'Port': Port,
+            'InstanceID': InstanceID
+        }), ActionResult)
+
+    def CancelPairing(self, ) -> None:
+        """
+        Name Description Optional
+
+        :returns: None
+        """
+        return json_to_obj(self.api_call("ADSModule/CancelPairing", {}), None)
+
     def CloneTemplate(self, Id: 'int', NewName: 'str') -> ActionResult:
         """
         Name Description Optional
@@ -107,7 +141,7 @@ class ADSModule(AMPAPI):
             'Name': Name
         }), ActionResult)
 
-    def CreateInstance(self, TargetADSInstance: 'str', NewInstanceId: 'str', Module: 'str', InstanceName: 'str', FriendlyName: 'str', IPBinding: 'str', PortNumber: 'int', AdminUsername: 'str', AdminPassword: 'str', ProvisionSettings: 'dict[str, str]', AutoConfigure: 'bool', StartOnBoot: 'bool', DisplayImageSource: 'str', TargetDatastore: 'int', PostCreate: 'PostCreateAppActions') -> ActionResult:
+    def CreateInstance(self, TargetADSInstance: 'str', NewInstanceId: 'str', Module: 'str', InstanceName: 'str', FriendlyName: 'str', IPBinding: 'str', PortNumber: 'int', AdminUsername: 'str', AdminPassword: 'str', ProvisionSettings: 'dict[str, str]', AutoConfigure: 'bool', StartOnBoot: 'bool', DisplayImageSource: 'str', TargetDatastore: 'int', PostCreate: 'PostCreateAppActions', Group: 'str') -> ActionResult:
         """
         Name Description Optional
         :param TargetADSInstance: 
@@ -140,6 +174,8 @@ class ADSModule(AMPAPI):
         :type TargetDatastore: int
         :param PostCreate: 
         :type PostCreate: PostCreateAppActions
+        :param Group: 
+        :type Group: str
         :returns: ActionResult
         """
         return json_to_obj(self.api_call("ADSModule/CreateInstance", {
@@ -157,10 +193,11 @@ class ADSModule(AMPAPI):
             'StartOnBoot': StartOnBoot,
             'DisplayImageSource': DisplayImageSource,
             'TargetDatastore': TargetDatastore,
-            'PostCreate': PostCreate
+            'PostCreate': PostCreate,
+            'Group': Group
         }), ActionResult)
 
-    def CreateInstanceFromSpec(self, SpecId: 'str', TargetADSInstance: 'str', FriendlyName: 'str', PostCreate: 'PostCreateAppActions', StartOnBoot: 'bool', TargetDatastore: 'int') -> ActionResult:
+    def CreateInstanceFromSpec(self, SpecId: 'str', TargetADSInstance: 'str', FriendlyName: 'str', PostCreate: 'PostCreateAppActions', StartOnBoot: 'bool', TargetDatastore: 'int', Group: 'str') -> ActionResult:
         """
         Name Description Optional
         :param SpecId: 
@@ -175,6 +212,8 @@ class ADSModule(AMPAPI):
         :type StartOnBoot: bool
         :param TargetDatastore: 
         :type TargetDatastore: int
+        :param Group: 
+        :type Group: str
         :returns: ActionResult
         """
         return json_to_obj(self.api_call("ADSModule/CreateInstanceFromSpec", {
@@ -183,7 +222,8 @@ class ADSModule(AMPAPI):
             'FriendlyName': FriendlyName,
             'PostCreate': PostCreate,
             'StartOnBoot': StartOnBoot,
-            'TargetDatastore': TargetDatastore
+            'TargetDatastore': TargetDatastore,
+            'Group': Group
         }), ActionResult)
 
     def CreateLocalInstance(self, Instance: 'LocalAMPInstance', PostCreate: 'PostCreateAppActions') -> ActionResult:
@@ -456,6 +496,14 @@ class ADSModule(AMPAPI):
         """
         return json_to_obj(self.api_call("ADSModule/GetTargetInfo", {}), RemoteTargetInfo)
 
+    def GetTargetPairingCode(self, ) -> ActionResult[str]:
+        """
+        Name Description Optional
+
+        :returns: ActionResult[str]
+        """
+        return json_to_obj(self.api_call("ADSModule/GetTargetPairingCode", {}), ActionResult[str])
+
     def HandoutInstanceConfigs(self, ForModule: 'str', SettingNode: 'str', Values: 'list[str]') -> ActionResult:
         """
         Name Description Optional
@@ -610,6 +658,26 @@ class ADSModule(AMPAPI):
             'friendlyName': friendlyName
         }), ActionResult)
 
+    def RegisterTargetWithCode(self, controllerUrl: 'str', myUrl: 'str', code: 'str', friendlyName: 'str') -> ActionResult:
+        """
+        Name Description Optional
+        :param controllerUrl: 
+        :type controllerUrl: str
+        :param myUrl: 
+        :type myUrl: str
+        :param code: 
+        :type code: str
+        :param friendlyName: 
+        :type friendlyName: str
+        :returns: ActionResult
+        """
+        return json_to_obj(self.api_call("ADSModule/RegisterTargetWithCode", {
+            'controllerUrl': controllerUrl,
+            'myUrl': myUrl,
+            'code': code,
+            'friendlyName': friendlyName
+        }), ActionResult)
+
     def RepairDatastore(self, id: 'int') -> RunningTask:
         """
         Name Description Optional
@@ -674,18 +742,24 @@ class ADSModule(AMPAPI):
             'Value': Value
         }), ActionResult)
 
-    def SetInstanceNetworkInfo(self, InstanceId: 'str', PortMappings: 'dict[str, int]') -> ActionResult:
+    def SetInstanceNetworkInfo(self, InstanceId: 'str', PortMappings: 'dict[str, int]', ApplicationIP: 'str', mustStop: 'bool') -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: 
         :type InstanceId: str
         :param PortMappings: 
         :type PortMappings: dict[str, int]
+        :param ApplicationIP: 
+        :type ApplicationIP: str
+        :param mustStop: 
+        :type mustStop: bool
         :returns: ActionResult
         """
         return json_to_obj(self.api_call("ADSModule/SetInstanceNetworkInfo", {
             'InstanceId': InstanceId,
-            'PortMappings': PortMappings
+            'PortMappings': PortMappings,
+            'ApplicationIP': ApplicationIP,
+            'mustStop': mustStop
         }), ActionResult)
 
     def SetInstanceSuspended(self, InstanceName: 'str', Suspended: 'bool') -> ActionResult:
@@ -746,26 +820,6 @@ class ADSModule(AMPAPI):
             'InstanceName': InstanceName
         }), ActionResult)
 
-    def TestADSLoginDetails(self, url: 'str', username: 'str', password: 'str', twoFactorToken: 'str') -> ActionResult:
-        """
-        Name Description Optional
-        :param url: 
-        :type url: str
-        :param username: 
-        :type username: str
-        :param password: 
-        :type password: str
-        :param twoFactorToken: 
-        :type twoFactorToken: str
-        :returns: ActionResult
-        """
-        return json_to_obj(self.api_call("ADSModule/TestADSLoginDetails", {
-            'url': url,
-            'username': username,
-            'password': password,
-            'twoFactorToken': twoFactorToken
-        }), ActionResult)
-
     def UpdateDatastore(self, updatedDatastore: 'InstanceDatastore') -> ActionResult:
         """
         Name Description Optional
@@ -788,7 +842,7 @@ class ADSModule(AMPAPI):
             'templateToUpdate': templateToUpdate
         }), ActionResult)
 
-    def UpdateInstanceInfo(self, InstanceId: 'str', FriendlyName: 'str', Description: 'str', StartOnBoot: 'bool', Suspended: 'bool', ExcludeFromFirewall: 'bool', RunInContainer: 'bool', ContainerMemory: 'int', MemoryPolicy: 'ContainerMemoryPolicy', ContainerMaxCPU: 'float', ContainerImage: 'str', ContainerSwap: 'int', WelcomeMessage: 'str') -> ActionResult:
+    def UpdateInstanceInfo(self, InstanceId: 'str', FriendlyName: 'str', Description: 'str', StartOnBoot: 'bool', Suspended: 'bool', ExcludeFromFirewall: 'bool', RunInContainer: 'bool', ContainerMemory: 'int', MemoryPolicy: 'ContainerMemoryPolicy', ContainerMaxCPU: 'float', ContainerImage: 'str', ContainerSwap: 'int', WelcomeMessage: 'str', DisplayGroup: 'str', CustomMountBindings: 'dict[str, str]', ExtraContainerPackages: 'list[str]', IsMultiIPAware: 'bool') -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: 
@@ -817,6 +871,14 @@ class ADSModule(AMPAPI):
         :type ContainerSwap: int
         :param WelcomeMessage: 
         :type WelcomeMessage: str
+        :param DisplayGroup: 
+        :type DisplayGroup: str
+        :param CustomMountBindings: 
+        :type CustomMountBindings: dict[str, str]
+        :param ExtraContainerPackages: 
+        :type ExtraContainerPackages: list[str]
+        :param IsMultiIPAware: 
+        :type IsMultiIPAware: bool
         :returns: ActionResult
         """
         return json_to_obj(self.api_call("ADSModule/UpdateInstanceInfo", {
@@ -832,7 +894,11 @@ class ADSModule(AMPAPI):
             'ContainerMaxCPU': ContainerMaxCPU,
             'ContainerImage': ContainerImage,
             'ContainerSwap': ContainerSwap,
-            'WelcomeMessage': WelcomeMessage
+            'WelcomeMessage': WelcomeMessage,
+            'DisplayGroup': DisplayGroup,
+            'CustomMountBindings': CustomMountBindings,
+            'ExtraContainerPackages': ExtraContainerPackages,
+            'IsMultiIPAware': IsMultiIPAware
         }), ActionResult)
 
     def UpdateTarget(self, TargetID: 'str') -> None:
@@ -972,6 +1038,40 @@ class ADSModuleAsync(AMPAPI):
             'InstanceID': InstanceID
         }), ActionResult)
 
+    async def AttachADSWithPairingCode(self, PairingCode: 'str', Friendly: 'str', IsHTTPS: 'bool', Host: 'str', Port: 'int', InstanceID: 'str') -> ActionResult:
+        """
+        Name Description Optional
+        :param PairingCode: 
+        :type PairingCode: str
+        :param Friendly: 
+        :type Friendly: str
+        :param IsHTTPS: 
+        :type IsHTTPS: bool
+        :param Host: 
+        :type Host: str
+        :param Port: 
+        :type Port: int
+        :param InstanceID: 
+        :type InstanceID: str
+        :returns: ActionResult
+        """
+        return json_to_obj(await self.api_call("ADSModule/AttachADSWithPairingCode", {
+            'PairingCode': PairingCode,
+            'Friendly': Friendly,
+            'IsHTTPS': IsHTTPS,
+            'Host': Host,
+            'Port': Port,
+            'InstanceID': InstanceID
+        }), ActionResult)
+
+    async def CancelPairing(self, ) -> None:
+        """
+        Name Description Optional
+
+        :returns: None
+        """
+        return json_to_obj(await self.api_call("ADSModule/CancelPairing", {}), None)
+
     async def CloneTemplate(self, Id: 'int', NewName: 'str') -> ActionResult:
         """
         Name Description Optional
@@ -997,7 +1097,7 @@ class ADSModuleAsync(AMPAPI):
             'Name': Name
         }), ActionResult)
 
-    async def CreateInstance(self, TargetADSInstance: 'str', NewInstanceId: 'str', Module: 'str', InstanceName: 'str', FriendlyName: 'str', IPBinding: 'str', PortNumber: 'int', AdminUsername: 'str', AdminPassword: 'str', ProvisionSettings: 'dict[str, str]', AutoConfigure: 'bool', StartOnBoot: 'bool', DisplayImageSource: 'str', TargetDatastore: 'int', PostCreate: 'PostCreateAppActions') -> ActionResult:
+    async def CreateInstance(self, TargetADSInstance: 'str', NewInstanceId: 'str', Module: 'str', InstanceName: 'str', FriendlyName: 'str', IPBinding: 'str', PortNumber: 'int', AdminUsername: 'str', AdminPassword: 'str', ProvisionSettings: 'dict[str, str]', AutoConfigure: 'bool', StartOnBoot: 'bool', DisplayImageSource: 'str', TargetDatastore: 'int', PostCreate: 'PostCreateAppActions', Group: 'str') -> ActionResult:
         """
         Name Description Optional
         :param TargetADSInstance: 
@@ -1030,6 +1130,8 @@ class ADSModuleAsync(AMPAPI):
         :type TargetDatastore: int
         :param PostCreate: 
         :type PostCreate: PostCreateAppActions
+        :param Group: 
+        :type Group: str
         :returns: ActionResult
         """
         return json_to_obj(await self.api_call("ADSModule/CreateInstance", {
@@ -1047,10 +1149,11 @@ class ADSModuleAsync(AMPAPI):
             'StartOnBoot': StartOnBoot,
             'DisplayImageSource': DisplayImageSource,
             'TargetDatastore': TargetDatastore,
-            'PostCreate': PostCreate
+            'PostCreate': PostCreate,
+            'Group': Group
         }), ActionResult)
 
-    async def CreateInstanceFromSpec(self, SpecId: 'str', TargetADSInstance: 'str', FriendlyName: 'str', PostCreate: 'PostCreateAppActions', StartOnBoot: 'bool', TargetDatastore: 'int') -> ActionResult:
+    async def CreateInstanceFromSpec(self, SpecId: 'str', TargetADSInstance: 'str', FriendlyName: 'str', PostCreate: 'PostCreateAppActions', StartOnBoot: 'bool', TargetDatastore: 'int', Group: 'str') -> ActionResult:
         """
         Name Description Optional
         :param SpecId: 
@@ -1065,6 +1168,8 @@ class ADSModuleAsync(AMPAPI):
         :type StartOnBoot: bool
         :param TargetDatastore: 
         :type TargetDatastore: int
+        :param Group: 
+        :type Group: str
         :returns: ActionResult
         """
         return json_to_obj(await self.api_call("ADSModule/CreateInstanceFromSpec", {
@@ -1073,7 +1178,8 @@ class ADSModuleAsync(AMPAPI):
             'FriendlyName': FriendlyName,
             'PostCreate': PostCreate,
             'StartOnBoot': StartOnBoot,
-            'TargetDatastore': TargetDatastore
+            'TargetDatastore': TargetDatastore,
+            'Group': Group
         }), ActionResult)
 
     async def CreateLocalInstance(self, Instance: 'LocalAMPInstance', PostCreate: 'PostCreateAppActions') -> ActionResult:
@@ -1346,6 +1452,14 @@ class ADSModuleAsync(AMPAPI):
         """
         return json_to_obj(await self.api_call("ADSModule/GetTargetInfo", {}), RemoteTargetInfo)
 
+    async def GetTargetPairingCode(self, ) -> ActionResult[str]:
+        """
+        Name Description Optional
+
+        :returns: ActionResult[str]
+        """
+        return json_to_obj(await self.api_call("ADSModule/GetTargetPairingCode", {}), ActionResult[str])
+
     async def HandoutInstanceConfigs(self, ForModule: 'str', SettingNode: 'str', Values: 'list[str]') -> ActionResult:
         """
         Name Description Optional
@@ -1500,6 +1614,26 @@ class ADSModuleAsync(AMPAPI):
             'friendlyName': friendlyName
         }), ActionResult)
 
+    async def RegisterTargetWithCode(self, controllerUrl: 'str', myUrl: 'str', code: 'str', friendlyName: 'str') -> ActionResult:
+        """
+        Name Description Optional
+        :param controllerUrl: 
+        :type controllerUrl: str
+        :param myUrl: 
+        :type myUrl: str
+        :param code: 
+        :type code: str
+        :param friendlyName: 
+        :type friendlyName: str
+        :returns: ActionResult
+        """
+        return json_to_obj(await self.api_call("ADSModule/RegisterTargetWithCode", {
+            'controllerUrl': controllerUrl,
+            'myUrl': myUrl,
+            'code': code,
+            'friendlyName': friendlyName
+        }), ActionResult)
+
     async def RepairDatastore(self, id: 'int') -> RunningTask:
         """
         Name Description Optional
@@ -1564,18 +1698,24 @@ class ADSModuleAsync(AMPAPI):
             'Value': Value
         }), ActionResult)
 
-    async def SetInstanceNetworkInfo(self, InstanceId: 'str', PortMappings: 'dict[str, int]') -> ActionResult:
+    async def SetInstanceNetworkInfo(self, InstanceId: 'str', PortMappings: 'dict[str, int]', ApplicationIP: 'str', mustStop: 'bool') -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: 
         :type InstanceId: str
         :param PortMappings: 
         :type PortMappings: dict[str, int]
+        :param ApplicationIP: 
+        :type ApplicationIP: str
+        :param mustStop: 
+        :type mustStop: bool
         :returns: ActionResult
         """
         return json_to_obj(await self.api_call("ADSModule/SetInstanceNetworkInfo", {
             'InstanceId': InstanceId,
-            'PortMappings': PortMappings
+            'PortMappings': PortMappings,
+            'ApplicationIP': ApplicationIP,
+            'mustStop': mustStop
         }), ActionResult)
 
     async def SetInstanceSuspended(self, InstanceName: 'str', Suspended: 'bool') -> ActionResult:
@@ -1636,26 +1776,6 @@ class ADSModuleAsync(AMPAPI):
             'InstanceName': InstanceName
         }), ActionResult)
 
-    async def TestADSLoginDetails(self, url: 'str', username: 'str', password: 'str', twoFactorToken: 'str') -> ActionResult:
-        """
-        Name Description Optional
-        :param url: 
-        :type url: str
-        :param username: 
-        :type username: str
-        :param password: 
-        :type password: str
-        :param twoFactorToken: 
-        :type twoFactorToken: str
-        :returns: ActionResult
-        """
-        return json_to_obj(await self.api_call("ADSModule/TestADSLoginDetails", {
-            'url': url,
-            'username': username,
-            'password': password,
-            'twoFactorToken': twoFactorToken
-        }), ActionResult)
-
     async def UpdateDatastore(self, updatedDatastore: 'InstanceDatastore') -> ActionResult:
         """
         Name Description Optional
@@ -1678,7 +1798,7 @@ class ADSModuleAsync(AMPAPI):
             'templateToUpdate': templateToUpdate
         }), ActionResult)
 
-    async def UpdateInstanceInfo(self, InstanceId: 'str', FriendlyName: 'str', Description: 'str', StartOnBoot: 'bool', Suspended: 'bool', ExcludeFromFirewall: 'bool', RunInContainer: 'bool', ContainerMemory: 'int', MemoryPolicy: 'ContainerMemoryPolicy', ContainerMaxCPU: 'float', ContainerImage: 'str', ContainerSwap: 'int', WelcomeMessage: 'str') -> ActionResult:
+    async def UpdateInstanceInfo(self, InstanceId: 'str', FriendlyName: 'str', Description: 'str', StartOnBoot: 'bool', Suspended: 'bool', ExcludeFromFirewall: 'bool', RunInContainer: 'bool', ContainerMemory: 'int', MemoryPolicy: 'ContainerMemoryPolicy', ContainerMaxCPU: 'float', ContainerImage: 'str', ContainerSwap: 'int', WelcomeMessage: 'str', DisplayGroup: 'str', CustomMountBindings: 'dict[str, str]', ExtraContainerPackages: 'list[str]', IsMultiIPAware: 'bool') -> ActionResult:
         """
         Name Description Optional
         :param InstanceId: 
@@ -1707,6 +1827,14 @@ class ADSModuleAsync(AMPAPI):
         :type ContainerSwap: int
         :param WelcomeMessage: 
         :type WelcomeMessage: str
+        :param DisplayGroup: 
+        :type DisplayGroup: str
+        :param CustomMountBindings: 
+        :type CustomMountBindings: dict[str, str]
+        :param ExtraContainerPackages: 
+        :type ExtraContainerPackages: list[str]
+        :param IsMultiIPAware: 
+        :type IsMultiIPAware: bool
         :returns: ActionResult
         """
         return json_to_obj(await self.api_call("ADSModule/UpdateInstanceInfo", {
@@ -1722,7 +1850,11 @@ class ADSModuleAsync(AMPAPI):
             'ContainerMaxCPU': ContainerMaxCPU,
             'ContainerImage': ContainerImage,
             'ContainerSwap': ContainerSwap,
-            'WelcomeMessage': WelcomeMessage
+            'WelcomeMessage': WelcomeMessage,
+            'DisplayGroup': DisplayGroup,
+            'CustomMountBindings': CustomMountBindings,
+            'ExtraContainerPackages': ExtraContainerPackages,
+            'IsMultiIPAware': IsMultiIPAware
         }), ActionResult)
 
     async def UpdateTarget(self, TargetID: 'str') -> None:
@@ -2307,6 +2439,20 @@ class Core(AMPAPI):
         """
         return json_to_obj(self.api_call("Core/GetNewGuid", {}), str)
 
+    def GetOIDCLoginURL(self, state: 'str', redirect_uri: 'str') -> str:
+        """
+        Name Description Optional
+        :param state: 
+        :type state: str
+        :param redirect_uri: 
+        :type redirect_uri: str
+        :returns: str
+        """
+        return json_to_obj(self.api_call("Core/GetOIDCLoginURL", {
+            'state': state,
+            'redirect_uri': redirect_uri
+        }), str)
+
     def GetPermissionsSpec(self, ) -> list[IPermissionsTreeNode]:
         """
         Name Description Optional
@@ -2534,6 +2680,23 @@ class Core(AMPAPI):
         :returns: None
         """
         return json_to_obj(self.api_call("Core/Logout", {}), None)
+
+    def OIDCLogin(self, code: 'str', redirect_uri: 'str', serverId: 'str | None') -> dict[str, Any]:
+        """
+        Name Description Optional
+        :param code: 
+        :type code: str
+        :param redirect_uri: 
+        :type redirect_uri: str
+        :param serverId: 
+        :type serverId: str | None
+        :returns: dict[str, Any]
+        """
+        return json_to_obj(self.api_call("Core/OIDCLogin", {
+            'code': code,
+            'redirect_uri': redirect_uri,
+            'serverId': serverId
+        }), dict[str, Any])
 
     def RefreshSettingValueList(self, Node: 'str') -> ActionResult:
         """
@@ -2781,6 +2944,17 @@ class Core(AMPAPI):
         :returns: ActionResult
         """
         return json_to_obj(self.api_call("Core/UpdateApplication", {}), ActionResult)
+
+    def UpdatePublicKey(self, PubKey: 'str') -> ActionResult:
+        """
+        Name Description Optional
+        :param PubKey: 
+        :type PubKey: str
+        :returns: ActionResult
+        """
+        return json_to_obj(self.api_call("Core/UpdatePublicKey", {
+            'PubKey': PubKey
+        }), ActionResult)
 
     def UpdateUserInfo(self, Username: 'str', Disabled: 'bool', PasswordExpires: 'bool', CannotChangePassword: 'bool', MustChangePassword: 'bool', EmailAddress: 'str') -> ActionResult:
         """
@@ -3314,6 +3488,20 @@ class CoreAsync(AMPAPI):
         """
         return json_to_obj(await self.api_call("Core/GetNewGuid", {}), str)
 
+    async def GetOIDCLoginURL(self, state: 'str', redirect_uri: 'str') -> str:
+        """
+        Name Description Optional
+        :param state: 
+        :type state: str
+        :param redirect_uri: 
+        :type redirect_uri: str
+        :returns: str
+        """
+        return json_to_obj(await self.api_call("Core/GetOIDCLoginURL", {
+            'state': state,
+            'redirect_uri': redirect_uri
+        }), str)
+
     async def GetPermissionsSpec(self, ) -> list[IPermissionsTreeNode]:
         """
         Name Description Optional
@@ -3541,6 +3729,23 @@ class CoreAsync(AMPAPI):
         :returns: None
         """
         return json_to_obj(await self.api_call("Core/Logout", {}), None)
+
+    async def OIDCLogin(self, code: 'str', redirect_uri: 'str', serverId: 'str | None') -> dict[str, Any]:
+        """
+        Name Description Optional
+        :param code: 
+        :type code: str
+        :param redirect_uri: 
+        :type redirect_uri: str
+        :param serverId: 
+        :type serverId: str | None
+        :returns: dict[str, Any]
+        """
+        return json_to_obj(await self.api_call("Core/OIDCLogin", {
+            'code': code,
+            'redirect_uri': redirect_uri,
+            'serverId': serverId
+        }), dict[str, Any])
 
     async def RefreshSettingValueList(self, Node: 'str') -> ActionResult:
         """
@@ -3788,6 +3993,17 @@ class CoreAsync(AMPAPI):
         :returns: ActionResult
         """
         return json_to_obj(await self.api_call("Core/UpdateApplication", {}), ActionResult)
+
+    async def UpdatePublicKey(self, PubKey: 'str') -> ActionResult:
+        """
+        Name Description Optional
+        :param PubKey: 
+        :type PubKey: str
+        :returns: ActionResult
+        """
+        return json_to_obj(await self.api_call("Core/UpdatePublicKey", {
+            'PubKey': PubKey
+        }), ActionResult)
 
     async def UpdateUserInfo(self, Username: 'str', Disabled: 'bool', PasswordExpires: 'bool', CannotChangePassword: 'bool', MustChangePassword: 'bool', EmailAddress: 'str') -> ActionResult:
         """
@@ -4380,6 +4596,14 @@ class FileManagerPluginAsync(AMPAPI):
             'FinalChunk': FinalChunk
         }), ActionResult)
 
+class FiveMModule(AMPAPI):
+    def __init__(self, authprovider: AuthProvider) -> None:
+        super().__init__(authprovider)
+
+class FiveMModuleAsync(AMPAPI):
+    def __init__(self, authprovider: AuthProvider) -> None:
+        super().__init__(authprovider)
+
 class GenericModule(AMPAPI):
     def __init__(self, authprovider: AuthProvider) -> None:
         super().__init__(authprovider)
@@ -4403,6 +4627,14 @@ class GenericModule(AMPAPI):
         """
         return json_to_obj(self.api_call("GenericModule/ReloadGenericConfig", {}), None)
 
+    def RequestServerInfo(self, ) -> None:
+        """
+        Name Description Optional
+
+        :returns: None
+        """
+        return json_to_obj(self.api_call("GenericModule/RequestServerInfo", {}), None)
+
 class GenericModuleAsync(AMPAPI):
     def __init__(self, authprovider: AuthProvider) -> None:
         super().__init__(authprovider)
@@ -4425,6 +4657,14 @@ class GenericModuleAsync(AMPAPI):
         :returns: None
         """
         return json_to_obj(await self.api_call("GenericModule/ReloadGenericConfig", {}), None)
+
+    async def RequestServerInfo(self, ) -> None:
+        """
+        Name Description Optional
+
+        :returns: None
+        """
+        return json_to_obj(await self.api_call("GenericModule/RequestServerInfo", {}), None)
 
 class LocalFileBackupPlugin(AMPAPI):
     def __init__(self, authprovider: AuthProvider) -> None:
@@ -4507,7 +4747,7 @@ class LocalFileBackupPlugin(AMPAPI):
             'Sticky': Sticky
         }), None)
 
-    def TakeBackup(self, Title: 'str', Description: 'str', Sticky: 'bool', WasCreatedAutomatically: 'bool') -> ActionResult:
+    def TakeBackup(self, Title: 'str', Description: 'str', Sticky: 'bool', WasCreatedAutomatically: 'bool', Local: 'bool', S3: 'bool') -> ActionResult:
         """
         Name Description Optional
         :param Title: 
@@ -4518,13 +4758,19 @@ class LocalFileBackupPlugin(AMPAPI):
         :type Sticky: bool
         :param WasCreatedAutomatically: 
         :type WasCreatedAutomatically: bool
+        :param Local: 
+        :type Local: bool
+        :param S3: 
+        :type S3: bool
         :returns: ActionResult
         """
         return json_to_obj(self.api_call("LocalFileBackupPlugin/TakeBackup", {
             'Title': Title,
             'Description': Description,
             'Sticky': Sticky,
-            'WasCreatedAutomatically': WasCreatedAutomatically
+            'WasCreatedAutomatically': WasCreatedAutomatically,
+            'Local': Local,
+            'S3': S3
         }), ActionResult)
 
     def UploadToS3(self, BackupId: 'str') -> RunningTask:
@@ -4619,7 +4865,7 @@ class LocalFileBackupPluginAsync(AMPAPI):
             'Sticky': Sticky
         }), None)
 
-    async def TakeBackup(self, Title: 'str', Description: 'str', Sticky: 'bool', WasCreatedAutomatically: 'bool') -> ActionResult:
+    async def TakeBackup(self, Title: 'str', Description: 'str', Sticky: 'bool', WasCreatedAutomatically: 'bool', Local: 'bool', S3: 'bool') -> ActionResult:
         """
         Name Description Optional
         :param Title: 
@@ -4630,13 +4876,19 @@ class LocalFileBackupPluginAsync(AMPAPI):
         :type Sticky: bool
         :param WasCreatedAutomatically: 
         :type WasCreatedAutomatically: bool
+        :param Local: 
+        :type Local: bool
+        :param S3: 
+        :type S3: bool
         :returns: ActionResult
         """
         return json_to_obj(await self.api_call("LocalFileBackupPlugin/TakeBackup", {
             'Title': Title,
             'Description': Description,
             'Sticky': Sticky,
-            'WasCreatedAutomatically': WasCreatedAutomatically
+            'WasCreatedAutomatically': WasCreatedAutomatically,
+            'Local': Local,
+            'S3': S3
         }), ActionResult)
 
     async def UploadToS3(self, BackupId: 'str') -> RunningTask:
@@ -4861,6 +5113,14 @@ class MinecraftModule(AMPAPI):
         :returns: list[OPEntry]
         """
         return json_to_obj(self.api_call("MinecraftModule/LoadOPList", {}), list[OPEntry])
+
+    def RejectEULA(self, ) -> bool:
+        """
+        Name Description Optional
+
+        :returns: bool
+        """
+        return json_to_obj(self.api_call("MinecraftModule/RejectEULA", {}), bool)
 
     def RemoveOPEntry(self, UserOrUUID: 'str') -> None:
         """
@@ -5107,6 +5367,14 @@ class MinecraftModuleAsync(AMPAPI):
         """
         return json_to_obj(await self.api_call("MinecraftModule/LoadOPList", {}), list[OPEntry])
 
+    async def RejectEULA(self, ) -> bool:
+        """
+        Name Description Optional
+
+        :returns: bool
+        """
+        return json_to_obj(await self.api_call("MinecraftModule/RejectEULA", {}), bool)
+
     async def RemoveOPEntry(self, UserOrUUID: 'str') -> None:
         """
         Name Description Optional
@@ -5329,11 +5597,11 @@ class srcdsModule(AMPAPI):
             'Index': Index
         }), None)
 
-    def ReplaceMapList(self, MapList: 'String[]') -> None:
+    def ReplaceMapList(self, MapList: 'list[str]') -> None:
         """
         Name Description Optional
         :param MapList: 
-        :type MapList: String[]
+        :type MapList: list[str]
         :returns: None
         """
         return json_to_obj(self.api_call("srcdsModule/ReplaceMapList", {
@@ -5421,11 +5689,11 @@ class srcdsModuleAsync(AMPAPI):
             'Index': Index
         }), None)
 
-    async def ReplaceMapList(self, MapList: 'String[]') -> None:
+    async def ReplaceMapList(self, MapList: 'list[str]') -> None:
         """
         Name Description Optional
         :param MapList: 
-        :type MapList: String[]
+        :type MapList: list[str]
         :returns: None
         """
         return json_to_obj(await self.api_call("srcdsModule/ReplaceMapList", {

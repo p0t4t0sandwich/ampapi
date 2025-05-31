@@ -1032,6 +1032,34 @@ public final class Core extends AMPAPI {
     /**
      * Name Description
      *
+     * @param state
+     * @param redirect_uri
+     * @return String
+     */
+    public Result<String, AMPError> GetOIDCLoginURL(
+            @Nullable String state, @Nullable String redirect_uri) {
+        Map<String, Object> args = new HashMap<>();
+        args.put("state", state);
+        args.put("redirect_uri", redirect_uri);
+        Type type = new TypeToken<String>() {}.getType();
+        return this.APICall("Core/GetOIDCLoginURL", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param state
+     * @param redirect_uri
+     * @return String
+     */
+    public CompletionStage<Result<String, AMPError>> GetOIDCLoginURLAsync(
+            @Nullable String state, @Nullable String redirect_uri) {
+        return CompletableFuture.supplyAsync(() -> this.GetOIDCLoginURL(state, redirect_uri));
+    }
+
+    /**
+     * Name Description
+     *
      * @return List&lt;IPermissionsTreeNode&gt;
      */
     public Result<List<IPermissionsTreeNode>, AMPError> GetPermissionsSpec() {
@@ -1545,6 +1573,37 @@ public final class Core extends AMPAPI {
      */
     public CompletionStage<Result<Void, AMPError>> LogoutAsync() {
         return CompletableFuture.supplyAsync(() -> this.Logout());
+    }
+
+    /**
+     * Name Description
+     *
+     * @param code
+     * @param redirect_uri
+     * @param serverId
+     * @return Map&lt;String, Object&gt;
+     */
+    public Result<Map<String, Object>, AMPError> OIDCLogin(
+            String code, String redirect_uri, UUID serverId) {
+        Map<String, Object> args = new HashMap<>();
+        args.put("code", code);
+        args.put("redirect_uri", redirect_uri);
+        args.put("serverId", serverId);
+        Type type = new TypeToken<Map<String, Object>>() {}.getType();
+        return this.APICall("Core/OIDCLogin", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param code
+     * @param redirect_uri
+     * @param serverId
+     * @return Map&lt;String, Object&gt;
+     */
+    public CompletionStage<Result<Map<String, Object>, AMPError>> OIDCLoginAsync(
+            String code, String redirect_uri, UUID serverId) {
+        return CompletableFuture.supplyAsync(() -> this.OIDCLogin(code, redirect_uri, serverId));
     }
 
     /**
@@ -2075,6 +2134,29 @@ public final class Core extends AMPAPI {
      */
     public CompletionStage<Result<ActionResult, AMPError>> UpdateApplicationAsync() {
         return CompletableFuture.supplyAsync(() -> this.UpdateApplication());
+    }
+
+    /**
+     * Name Description
+     *
+     * @param PubKey
+     * @return ActionResult
+     */
+    public Result<ActionResult, AMPError> UpdatePublicKey(String PubKey) {
+        Map<String, Object> args = new HashMap<>();
+        args.put("PubKey", PubKey);
+        Type type = new TypeToken<ActionResult>() {}.getType();
+        return this.APICall("Core/UpdatePublicKey", args, type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @param PubKey
+     * @return ActionResult
+     */
+    public CompletionStage<Result<ActionResult, AMPError>> UpdatePublicKeyAsync(String PubKey) {
+        return CompletableFuture.supplyAsync(() -> this.UpdatePublicKey(PubKey));
     }
 
     /**

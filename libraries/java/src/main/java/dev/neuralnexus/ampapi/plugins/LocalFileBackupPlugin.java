@@ -197,18 +197,24 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      * @param Description
      * @param Sticky
      * @param WasCreatedAutomatically
+     * @param Local
+     * @param S3
      * @return ActionResult
      */
     public Result<ActionResult, AMPError> TakeBackup(
             String Title,
             String Description,
             Boolean Sticky,
-            @Nullable Boolean WasCreatedAutomatically) {
+            @Nullable Boolean WasCreatedAutomatically,
+            @Nullable Boolean Local,
+            @Nullable Boolean S3) {
         Map<String, Object> args = new HashMap<>();
         args.put("Title", Title);
         args.put("Description", Description);
         args.put("Sticky", Sticky);
         args.put("WasCreatedAutomatically", WasCreatedAutomatically);
+        args.put("Local", Local);
+        args.put("S3", S3);
         Type type = new TypeToken<ActionResult>() {}.getType();
         return this.APICall("LocalFileBackupPlugin/TakeBackup", args, type);
     }
@@ -220,15 +226,21 @@ public final class LocalFileBackupPlugin extends AMPAPI {
      * @param Description
      * @param Sticky
      * @param WasCreatedAutomatically
+     * @param Local
+     * @param S3
      * @return ActionResult
      */
     public CompletionStage<Result<ActionResult, AMPError>> TakeBackupAsync(
             String Title,
             String Description,
             Boolean Sticky,
-            @Nullable Boolean WasCreatedAutomatically) {
+            @Nullable Boolean WasCreatedAutomatically,
+            @Nullable Boolean Local,
+            @Nullable Boolean S3) {
         return CompletableFuture.supplyAsync(
-                () -> this.TakeBackup(Title, Description, Sticky, WasCreatedAutomatically));
+                () ->
+                        this.TakeBackup(
+                                Title, Description, Sticky, WasCreatedAutomatically, Local, S3));
     }
 
     /**

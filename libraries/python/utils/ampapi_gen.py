@@ -24,6 +24,7 @@ cs_to_py = {
     "List": "list",
     "Object": "Any",
     "String": "str",
+    "String[]": "list[str]",
     "TimeSpan": "str",
     "Uri": "str",
     "Void": "None",

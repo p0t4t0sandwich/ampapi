@@ -474,6 +474,25 @@ public final class MinecraftModule extends AMPAPI {
     /**
      * Name Description
      *
+     * @return Boolean
+     */
+    public Result<Boolean, AMPError> RejectEULA() {
+        Type type = new TypeToken<Boolean>() {}.getType();
+        return this.APICall("MinecraftModule/RejectEULA", type);
+    }
+
+    /**
+     * Name Description
+     *
+     * @return Boolean
+     */
+    public CompletionStage<Result<Boolean, AMPError>> RejectEULAAsync() {
+        return CompletableFuture.supplyAsync(() -> this.RejectEULA());
+    }
+
+    /**
+     * Name Description
+     *
      * @param UserOrUUID
      * @return Void
      */

@@ -130,6 +130,63 @@
       "ReturnTypeName": "ActionResult",
       "IsComplexType": true
     },
+    "AttachADSWithPairingCode": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "PairingCode",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "Friendly",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "IsHTTPS",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "Boolean"
+        },
+        {
+          "Description": "",
+          "Name": "Host",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "Port",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "Int32"
+        },
+        {
+          "Description": "",
+          "Name": "InstanceID",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "Guid"
+        }
+      ],
+      "ReturnTypeName": "ActionResult",
+      "IsComplexType": true
+    },
+    "CancelPairing": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [],
+      "ReturnTypeName": "Void",
+      "IsComplexType": false
+    },
     "CloneTemplate": {
       "Description": null,
       "Returns": null,
@@ -282,6 +339,13 @@
           "Optional": true,
           "ParamEnumValues": null,
           "TypeName": "Int32"
+        },
+        {
+          "Description": "",
+          "Name": "Group",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "String"
         }
       ],
       "ReturnTypeName": "ActionResult",
@@ -339,6 +403,13 @@
           "Optional": true,
           "ParamEnumValues": null,
           "TypeName": "Int32"
+        },
+        {
+          "Description": "",
+          "Name": "Group",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "String"
         }
       ],
       "ReturnTypeName": "ActionResult",
@@ -724,6 +795,13 @@
       "ReturnTypeName": "JObject",
       "IsComplexType": true
     },
+    "GetTargetPairingCode": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [],
+      "ReturnTypeName": "ActionResult<String>",
+      "IsComplexType": true
+    },
     "HandoutInstanceConfigs": {
       "Description": null,
       "Returns": null,
@@ -968,6 +1046,42 @@
       "ReturnTypeName": "ActionResult",
       "IsComplexType": true
     },
+    "RegisterTargetWithCode": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "controllerUrl",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "myUrl",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "code",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "friendlyName",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        }
+      ],
+      "ReturnTypeName": "ActionResult",
+      "IsComplexType": true
+    },
     "RepairDatastore": {
       "Description": null,
       "Returns": null,
@@ -1081,6 +1195,20 @@
           "Optional": false,
           "ParamEnumValues": null,
           "TypeName": "Dictionary<String, Int32>"
+        },
+        {
+          "Description": "",
+          "Name": "ApplicationIP",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "mustStop",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "Boolean"
         }
       ],
       "ReturnTypeName": "ActionResult",
@@ -1160,42 +1288,6 @@
         {
           "Description": "",
           "Name": "InstanceName",
-          "Optional": false,
-          "ParamEnumValues": null,
-          "TypeName": "String"
-        }
-      ],
-      "ReturnTypeName": "ActionResult",
-      "IsComplexType": true
-    },
-    "TestADSLoginDetails": {
-      "Description": null,
-      "Returns": null,
-      "Parameters": [
-        {
-          "Description": "",
-          "Name": "url",
-          "Optional": false,
-          "ParamEnumValues": null,
-          "TypeName": "String"
-        },
-        {
-          "Description": "",
-          "Name": "username",
-          "Optional": false,
-          "ParamEnumValues": null,
-          "TypeName": "String"
-        },
-        {
-          "Description": "",
-          "Name": "password",
-          "Optional": false,
-          "ParamEnumValues": null,
-          "TypeName": "String"
-        },
-        {
-          "Description": "",
-          "Name": "twoFactorToken",
           "Optional": false,
           "ParamEnumValues": null,
           "TypeName": "String"
@@ -1332,6 +1424,34 @@
           "Optional": true,
           "ParamEnumValues": null,
           "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "DisplayGroup",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "CustomMountBindings",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "Dictionary<String, String>"
+        },
+        {
+          "Description": "",
+          "Name": "ExtraContainerPackages",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "List<String>"
+        },
+        {
+          "Description": "",
+          "Name": "IsMultiIPAware",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "Boolean"
         }
       ],
       "ReturnTypeName": "ActionResult",
@@ -2152,6 +2272,28 @@
       "ReturnTypeName": "Guid",
       "IsComplexType": false
     },
+    "GetOIDCLoginURL": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "state",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "redirect_uri",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        }
+      ],
+      "ReturnTypeName": "String",
+      "IsComplexType": false
+    },
     "GetPermissionsSpec": {
       "Description": null,
       "Returns": null,
@@ -2410,6 +2552,35 @@
       "Parameters": [],
       "ReturnTypeName": "Void",
       "IsComplexType": false
+    },
+    "OIDCLogin": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "code",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "redirect_uri",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        },
+        {
+          "Description": "",
+          "Name": "serverId",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "Nullable<Guid>"
+        }
+      ],
+      "ReturnTypeName": "JObject",
+      "IsComplexType": true
     },
     "RefreshSettingValueList": {
       "Description": null,
@@ -2728,6 +2899,21 @@
       "Description": null,
       "Returns": null,
       "Parameters": [],
+      "ReturnTypeName": "ActionResult",
+      "IsComplexType": true
+    },
+    "UpdatePublicKey": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [
+        {
+          "Description": "",
+          "Name": "PubKey",
+          "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "String"
+        }
+      ],
       "ReturnTypeName": "ActionResult",
       "IsComplexType": true
     },
@@ -3218,6 +3404,7 @@
       "IsComplexType": true
     }
   },
+  "FiveMModule": {},
   "GenericModule": {
     "ImportConfig": {
       "Description": null,
@@ -3235,6 +3422,13 @@
       "IsComplexType": false
     },
     "ReloadGenericConfig": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [],
+      "ReturnTypeName": "Void",
+      "IsComplexType": false
+    },
+    "RequestServerInfo": {
       "Description": null,
       "Returns": null,
       "Parameters": [],
@@ -3368,6 +3562,20 @@
           "Description": "",
           "Name": "Sticky",
           "Optional": false,
+          "ParamEnumValues": null,
+          "TypeName": "Boolean"
+        },
+        {
+          "Description": "",
+          "Name": "Local",
+          "Optional": true,
+          "ParamEnumValues": null,
+          "TypeName": "Boolean"
+        },
+        {
+          "Description": "",
+          "Name": "S3",
+          "Optional": true,
           "ParamEnumValues": null,
           "TypeName": "Boolean"
         },
@@ -3662,6 +3870,13 @@
       "Parameters": [],
       "ReturnTypeName": "IEnumerable<JObject>",
       "IsComplexType": true
+    },
+    "RejectEULA": {
+      "Description": null,
+      "Returns": null,
+      "Parameters": [],
+      "ReturnTypeName": "Boolean",
+      "IsComplexType": false
     },
     "RemoveOPEntry": {
       "Description": null,

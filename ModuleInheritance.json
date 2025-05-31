@@ -6,6 +6,15 @@
     "EmailSenderPlugin",
     "FileManagerPlugin"
   ],
+  "FiveM": [
+    "AnalyticsPlugin",
+    "CommonCorePlugin",
+    "Core",
+    "EmailSenderPlugin",
+    "FileManagerPlugin",
+    "FiveMModule",
+    "LocalFileBackupPlugin"
+  ],
   "GenericModule": [
     "AnalyticsPlugin",
     "CommonCorePlugin",
